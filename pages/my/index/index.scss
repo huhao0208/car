@@ -1,0 +1,87 @@
+page{
+  background: rgba(233,233,233,.6);
+  position:absolute;
+  .top{
+    height: 251rpx;
+    background: #FFF;
+    padding:0 28rpx 0 53rpx;
+    overflow: hidden;
+    .user_info{
+      margin-top: 30rpx;
+    }
+    .avator{
+      width: 171rpx;
+      height: 171rpx;
+      float: left;
+      background: #1989fa;
+      border-radius: 50%;
+    }
+    .user_info_right{
+      float: right;
+      width: 443rpx;
+      .name{
+        font-size: 37rpx;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        van-icon{
+          vertical-align: middle;
+        }
+        .detaile_user_info{
+          font-size: 24rpx;
+          color:#666;
+        }
+      }
+      .account{
+        font-size: 27rpx;
+        margin: 24rpx 0 27rpx;
+        color:#666
+      }
+
+      .grade{
+        display: flex;
+        justify-content: space-between;
+        .grade_name{
+          color: #FDA701;
+          height: 36rpx;
+          line-height: 36rpx;
+          border-radius: 18rpx 11rpx 11rpx 18rpx;
+          background-size:  contain;
+          padding: 0 13rpx 0 40rpx;
+          font-size: 20rpx;
+
+        }
+
+        .term{
+          font-size: 20rpx;
+          color:#999;
+        }
+      }
+    }
+
+    .login{
+      text-align: center;
+      .avator{
+        float:none;
+        margin: auto;
+      }
+
+      text{
+        margin-top:10rpx;
+        color:#999
+      }
+    }
+
+  }
+
+  .cell_group{
+    margin-top: 27rpx;
+    .van-cell{
+      height: 90rpx;
+    }
+    .van-cell__left-icon-wrap,.van-cell__right-icon-wrap{
+      font-size: 40rpx;
+      vertical-align: middle;
+    }
+  }
+}

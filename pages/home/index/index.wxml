@@ -1,0 +1,38 @@
+<!--pages/index/index.wxml -->
+<!--搜索-->
+<van-search value="{{ search }}"
+            bind:search="onSearch"
+            background="#003561"
+            shape="round"
+            placeholder="请输入搜索关键词"
+            use-action-slot
+>
+	<view slot="action" bind:tap="onSearch" style="color:#FFF;padding: 0 10rpx">搜索</view>
+</van-search>
+<!--轮播图-->
+<swiper indicator-dots="{{false}}"
+        autoplay=" {{true}}"
+		interval="{{2000}}"
+		duration="{{500}}"
+		circular="{{true}}"
+>
+<block wx:for="{{indexSwiperData}}" wx:key="index">
+	<swiper-item >
+		<image src="{{item.url}}"
+		       mode="scaleToFill"
+		       class="swiper_item_image"
+		/>
+	</swiper-item>
+</block>
+</swiper>
+
+<!--卡片-->
+<view class="cards">
+	<navigator class=card_item"
+	           url="{{'/pages/home/'+item.navigatorUrl+'/index'}}"
+	           wx:for="{{cardsData}}" >
+		<image class="icon" src="http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/{{item.bg}}"></image>
+		{{item.name}}
+
+	</navigator>
+</view>

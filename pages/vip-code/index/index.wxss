@@ -1,0 +1,52 @@
+.top {
+  margin: 0 17rpx;
+  height: 115rpx;
+  line-height: 115rpx;
+  background: #F8F8F8;
+  padding: 0 27rpx 0 43rpx;
+  border-radius: 15rpx; }
+  .top icon {
+    width: 41rpx;
+    height: 41rpx;
+    background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/hg-vip.png") no-repeat center;
+    background-size: 100%;
+    vertical-align: middle; }
+  .top text {
+    float: right; }
+
+.card {
+  height: 300rpx;
+  background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/card-bg-l.png") no-repeat center, linear-gradient(129deg, #e2ba82, #f3daa6);
+  background-size: cover;
+  border-radius: 11rpx;
+  margin: 80rpx 60rpx;
+  padding: 50rpx 40rpx 38rpx 60rpx; }
+  .card .grade {
+    color: #FFF;
+    float: left; }
+    .card .grade .text_ch {
+      text-align: center;
+      font-size: 39rpx; }
+    .card .grade .text_en {
+      text-align: center;
+      font-size: 20rpx; }
+  .card .to_use {
+    float: right;
+    font-size: 25rpx;
+    color: #FFF;
+    margin-top: 20rpx;
+    padding: 15rpx;
+    border: 1px solid #FFF;
+    border-radius: 5rpx; }
+  .card .card_number {
+    margin-top: 270rpx;
+    font-size: 29rpx;
+    color: #FFF; }
+
+.qr_code {
+  text-align: center; }
+  .qr_code image {
+    width: 400rpx;
+    height: 400rpx; }
+
+/*# sourceMappingURL=index.wxss.map */

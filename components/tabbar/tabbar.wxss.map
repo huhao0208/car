@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAEA,qBAAqB;EACnB,KAAK,EAAE,gBAAmB;EAC1B,MAAM,EAAE,gBAAmB",
+"sources": ["tabbar.scss"],
+"names": [],
+"file": "tabbar.wxss"
+}

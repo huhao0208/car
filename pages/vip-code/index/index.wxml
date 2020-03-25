@@ -1,0 +1,20 @@
+<!--pages/vip-code/index.wxml -->
+
+<view class="top">
+	<icon />  胡歌的会员卡
+	<text >会员使用规则 》</text>
+</view>
+
+<view class="card">
+	<view class="grade">
+		<view class="text_ch">黄金会员</view>
+		<view class="text_en">GOLD MEMBER</view>
+	</view>
+	<view class="to_use">立即使用</view>
+	<view class="card_number">3069 10005 28223 4863</view>
+</view>
+
+<view class="qr_code">
+	<image  src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584991338421&di=0e3efec1a7cae95cfc9f4119d404c314&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F42%2F52%2F49573d7f1e77c60.jpg"></image>
+
+</view>

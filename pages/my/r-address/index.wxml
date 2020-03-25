@@ -1,0 +1,57 @@
+<!--收货地址-->
+
+<view class="address" >
+	<view class="title"><text>*</text>所在地区</view>
+	<view class="select_address">
+		<view class="item" >{{address[0].name}} <van-icon name="arrow" /></view>
+		<view class="item" >{{address[1].name}} <van-icon name="arrow" /></view>
+		<view class="item" >{{address[2].name}} <van-icon name="arrow" /></view>
+		<button bindtap="toSelectAddress"
+				style="position: absolute;left:0;right:0;top:0;bottom:0;opacity: 0.1"
+		/>
+	</view>
+	<input type="text"
+	       bindconfirm = "iptAddressHandle"
+	       bindblur = "iptAddressHandle"
+	       placeholder=" 请输入详细地址"/>
+</view>
+
+<view class="ueserInfo">
+	<input type="text"
+	       bindconfirm = "iptNameHandle"
+	       bindblur = "iptNameHandle"
+	       placeholder="您的名字" />
+	<van-radio-group
+			custom-class = "radio_group"
+			value="{{userInfo.sex}}"
+			bind:change="selcetSexHandle"
+			label-position ="left"
+			checked-color="#FF6A21"
+	>
+		<van-radio custom-class="radio_item" name="1" icon-size="30rpx">男士</van-radio>
+		<van-radio custom-class="radio_item" name="2" icon-size="30rpx">女士</van-radio>
+	</van-radio-group>
+	<input type="text"
+	       bindconfirm = "iptPhoneHandle"
+	       bindblur = "iptPhoneHandle"
+	       placeholder="您的联系方式" />
+</view>
+
+	<van-button custom-class="save_btn"
+	            block
+	            color="#FF6A21">保存</van-button>
+
+
+<van-popup
+		show="{{ isShowAera }}"
+		position="bottom"
+		bind:close="onCloseAera"
+>
+	<van-area
+			bind:cancel="onCloseAera"
+			bind:confirm = "addressSelected"
+			area-list="{{ areaList }}"
+			columns-placeholder="{{ ['请选择省', '请选择市', '请选择区'] }}"
+			title="请选择地址"
+	/>
+</van-popup>

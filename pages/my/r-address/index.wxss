@@ -1,0 +1,47 @@
+page {
+  background: rgba(233, 233, 233, 0.6);
+  position: absolute; }
+  page .address {
+    background: #FFF;
+    padding: 0 30rpx; }
+    page .address .title {
+      padding: 27rpx 0 25rpx; }
+      page .address .title text {
+        color: red; }
+    page .address .select_address {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1rpx solid #EEE;
+      border-top: 1rpx solid #EEE; }
+      page .address .select_address .item {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        padding: 25rpx 10rpx 25rpx 20rpx;
+        font-size: 24rpx; }
+      page .address .select_address .item:nth-child(2) {
+        border-left: 1rpx solid #EEE;
+        border-right: 1rpx solid #EEE; }
+  page input {
+    padding: 25rpx 0; }
+  page .ueserInfo {
+    background: #FFF;
+    margin: 30rpx 0 187rpx;
+    padding: 0 30rpx;
+    width: 100%;
+    overflow: hidden; }
+    page .ueserInfo van-radio-group {
+      border-bottom: 1rpx solid #EEE;
+      border-top: 1rpx solid #EEE;
+      display: block;
+      width: 100%;
+      overflow: hidden; }
+    page .ueserInfo .radio_item {
+      float: left;
+      margin: 24rpx 40rpx 24rpx 0; }
+  page .save_btn {
+    width: 80%; }
+
+/*# sourceMappingURL=index.wxss.map */

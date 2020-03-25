@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5412adc3-33cc-4be7-9816-dc0790d099d7" name="默认更改列表" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="work" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Wechat mini program page js file(Page API)" />
+        <option value="Wechat mini program page json file(Page API)" />
+        <option value="Wechat mini program component js file" />
+        <option value="Wechat mini program component json file" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZKim2N86h2kgHz9jPQ47sWHLRQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pages/my" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\work\pages\my" />
+      <recent name="E:\work\pages\goods" />
+      <recent name="E:\work\pages\goods\goods-detail" />
+      <recent name="E:\work\pages\home" />
+      <recent name="E:\work\pages\home\mall" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\work\components\list-card" />
+      <recent name="E:\work\pages\vip-code\index" />
+      <recent name="E:\work\pages\my\index" />
+      <recent name="E:\work\pages\vip\index" />
+      <recent name="E:\work\pages\home" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5412adc3-33cc-4be7-9816-dc0790d099d7" name="默认更改列表" comment="" />
+      <created>1584594341120</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584594341120</updated>
+      <workItem from="1584594342355" duration="1018000" />
+      <workItem from="1584597781312" duration="16000" />
+      <workItem from="1584598358098" duration="5454000" />
+      <workItem from="1584603984151" duration="38400000" />
+      <workItem from="1584800695807" duration="38533000" />
+      <workItem from="1584889038156" duration="63000" />
+      <workItem from="1584930245844" duration="19638000" />
+      <workItem from="1584954353585" duration="63107000" />
+      <workItem from="1585056967675" duration="3944000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584811751245">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584811751245" />
+    <state x="2486" y="414" key="EditFileWatcherDialog" timestamp="1584612067749">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2486" y="414" key="EditFileWatcherDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1584612067749" />
+    <state x="2381" y="279" key="SettingsEditor" timestamp="1584612069078">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2381" y="279" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1584612069078" />
+    <state x="714" y="260" width="634" height="534" key="find.popup" timestamp="1585058706061">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2634" y="260" width="632" height="534" key="find.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1585013967719" />
+    <state x="714" y="260" width="634" height="534" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1585058706061" />
+    <state x="2621" y="234" width="672" height="678" key="search.everywhere.popup" timestamp="1585013731787">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2621" y="234" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1585013731787" />
+    <state x="701" y="234" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584856218384" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/common/login.js</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/home/index/index",
+    "pages/vip/index/index" ,
+    "pages/vip-code/index/index",
+    "pages/my/index/index",
+    "pages/home/mall/index",
+    "pages/home/activity/index",
+    "pages/home/car-sales/index",
+    "pages/home/cooperation/index",
+    "pages/home/exclusive/index",
+    "pages/home/loan/index",
+    "pages/home/more/index",
+    "pages/home/service/index",
+    "pages/goods/goods-detail/index",
+    "pages/goods/prepayment/index",
+    "pages/my/r-address/index",
+    "pages/my/order/index",
+    "pages/my/raffle/index",
+    "pages/my/crowdfunding/index",
+    "pages/login/index",
+    "pages/search/search",
+    "pages/test/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/home/index/index",
+      "text": "主页",
+      "iconPath": "images/tabbar/home1.png",
+      "selectedIconPath": "images/tabbar/home2.png"
+    },{
+        "pagePath": "pages/vip/index/index",
+        "text": "会员",
+        "iconPath": "images/tabbar/vip1.png",
+        "selectedIconPath": "images/tabbar/vip2.png"
+      },
+      {
+        "pagePath": "pages/vip-code/index/index",
+        "text": "会员码",
+        "iconPath": "images/tabbar/vipc1.png",
+        "selectedIconPath": "images/tabbar/vipc2.png"
+      },
+      {
+        "pagePath": "pages/my/index/index",
+        "text": "我的",
+        "iconPath": "images/tabbar/my1.png",
+        "selectedIconPath": "images/tabbar/my2.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

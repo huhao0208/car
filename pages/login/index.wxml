@@ -1,0 +1,9 @@
+<view >
+    <view class="guidanceText">
+        请授权获取您的{{openType=='getUserInfo'?'用户信息':'手机号码'}}
+    </view>
+
+    <button open-type="getUserInfo" wx:if="{{openType=='getUserInfo'}}" type="primary" lang="zh_CN" bindgetuserinfo="getUserInfo">确定1</button>
+    <button open-type="getPhoneNumber" wx:else type="primary" lang="zh_CN" bindgetphonenumber="getPhoneNumber">确定2</button>
+    <button bindtap="loginCancel">取消</button>
+</view>

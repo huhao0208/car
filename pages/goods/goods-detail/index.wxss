@@ -1,0 +1,46 @@
+van-card .van-card__header {
+  border-bottom: 1rpx solid #EEE;
+  justify-content: space-between; }
+van-card .title {
+  font-size: 25rpx; }
+van-card .van-card__content {
+  padding-left: 40rpx; }
+van-card .van-card {
+  background: #FFF; }
+
+.progress {
+  display: inline-block;
+  width: 303rpx;
+  padding-top: 20rpx;
+  font-size: 24rpx;
+  color: #DD2928; }
+  .progress .progess_background {
+    width: 307rpx;
+    margin-top: 5rpx;
+    background: #F1F1F1; }
+    .progress .progess_background .progress_value {
+      height: 5rpx;
+      background: #DD2928; }
+
+.price {
+  float: right;
+  color: #DD2928;
+  font-size: 37rpx;
+  text-align: center; }
+  .price view {
+    height: 40rpx; }
+  .price .price_show {
+    color: #CACACA;
+    font-size: 24rpx;
+    text-decoration: line-through; }
+
+.bottom {
+  height: 110rpx; }
+
+.tags {
+  height: 23rpx;
+  width: 77rpx;
+  background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/baoyou.png") no-repeat center;
+  background-size: 100%; }
+
+/*# sourceMappingURL=index.wxss.map */

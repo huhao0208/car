@@ -1,0 +1,82 @@
+<!--pages/my/index.wxml-->
+<view class="top">
+	<view class="user_info"
+	      wx:if="{{isLogin}}"
+	>
+		<image class="avator"/>
+		<view class="user_info_right">
+			<view class="name">
+				<view>
+					胡歌
+					<van-icon name="{{imgUrl}}anzhuo-2.png"/>
+				</view>
+				<view class="detaile_user_info">完善个人信息 ＞</view>
+			</view>
+			<view class="account ">
+				帐号：189 0656 8888
+			</view>
+			<view class="grade">
+				<view class="grade_name" style="background: #FFEFD4 url('{{imgUrl}}hg-vip.png') no-repeat 0 center ;background-size: contain;">
+					 黄金会员
+				</view>
+				<text class="term"> 还有183天到期</text>
+			</view>
+		</view>
+	</view>
+
+	<navigator class="login"
+               url="/pages/login/index"
+	            wx:else
+	>
+		<view class="avator"></view>
+		<view>未登录</view>
+	</navigator>
+</view>
+
+<van-cell-group custom-class="cell_group" bindtap="islogin">
+	<van-cell title="我的订单"
+              custom-class="cell"
+	          is-link
+	          icon="{{imgUrl}}wodedingdan.png"
+	          link-type="navigateTo"
+	          url="/pages/my/{{isLogin?'order':'login'}}/index"
+	/>
+	<van-cell title="我的众筹"
+	          border="{{ false }}"
+	          icon="{{imgUrl}}wodezhongchou-.png"
+	          is-link
+	          link-type="navigateTo"
+	          url="/pages/my/{{isLogin?'crowdfunding':'login'}}/index"
+	/>
+</van-cell-group>
+
+<van-cell-group custom-class="cell_group">
+	<van-cell title="抽奖列表"
+	          icon="{{imgUrl}}choujiang1.png"
+	          is-link
+	          link-type="navigateTo"
+	          url="/pages/my/{{isLogin?'raffle':'login'}}/index"
+	/>
+	<van-cell title="收货地址"
+	          icon="{{imgUrl}}shouhuodizhi-2.png"
+	          border="{{ false }}"
+	          is-link
+	          link-type="navigateTo"
+	          url="/pages/my/{{isLogin?'r-address':'login'}}/index"
+	/>
+</van-cell-group>
+<van-cell-group custom-class="cell_group">
+	<van-cell title="在线客服"
+	          icon="{{imgUrl}}kefu-2.png"
+	          is-link
+              link-type="navigateTo"
+              url="{{isLogin?'':'/pages/login/index'}}"
+	>
+        <button open-type="{{isLogin?'contact':''}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0)"></button>
+    </van-cell>
+
+
+</van-cell-group>
+
+
+

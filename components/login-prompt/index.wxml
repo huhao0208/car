@@ -1,0 +1,15 @@
+
+	<cover-view wx:if="{{showLogin && !isLogin }}" class="login-mask" >
+		<cover-view class="login">
+			<cover-view class="pop-head">
+				<cover-image src="../../images/default_avatar.jpg" mode="aspectFill"></cover-image>
+				<cover-view>立即登录，体验更多功能</cover-view>
+			</cover-view>
+			<cover-view class="pop-opt">
+				<navigator url="/pages/login/index">
+					<button class="pop-btnr">登录</button>
+				</navigator>
+				<button class="pop-btnl" catchtap="_loginCancel">取消</button>
+			</cover-view>
+		</cover-view>
+	</cover-view>

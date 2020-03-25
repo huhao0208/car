@@ -1,0 +1,64 @@
+van-card .van-card__header {
+  border-bottom: 1rpx solid #EEE;
+  justify-content: space-between; }
+van-card .title {
+  font-size: 25rpx; }
+van-card .van-card__content {
+  padding-left: 40rpx; }
+van-card .van-card {
+  background: #FFF; }
+
+.progress {
+  display: inline-block;
+  width: 303rpx;
+  padding-top: 20rpx;
+  font-size: 24rpx;
+  color: #DD2928; }
+  .progress .progess_background {
+    width: 307rpx;
+    margin-top: 5rpx;
+    background: #F1F1F1; }
+    .progress .progess_background .progress_value {
+      height: 5rpx;
+      background: #DD2928; }
+
+.price {
+  float: right;
+  color: #DD2928;
+  font-size: 37rpx;
+  text-align: center;
+  line-height: 100rpx; }
+
+.bottom {
+  height: 110rpx; }
+
+.tags {
+  height: 23rpx;
+  width: 77rpx; }
+
+.address {
+  padding: 35rpx 15rpx 35rpx 30rpx;
+  border-bottom: 2rpx solid #EEE;
+  border-top: 2rpx solid #EEE;
+  color: #666; }
+  .address .name {
+    padding: 10rpx 0; }
+  .address text {
+    float: right; }
+
+.payment_type {
+  padding: 35rpx 15rpx 35rpx 30rpx;
+  border-bottom: 2rpx solid #EEE; }
+  .payment_type icon {
+    width: 65rpx;
+    height: 53rpx;
+    background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/weixin.png") no-repeat center;
+    background-size: 100%;
+    vertical-align: middle; }
+  .payment_type text {
+    float: right; }
+
+.submit {
+  margin: 231rpx 65rpx 0; }
+
+/*# sourceMappingURL=index.wxss.map */

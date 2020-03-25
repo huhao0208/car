@@ -1,0 +1,61 @@
+@mixin bg($name){
+  background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) no-repeat center;
+  background-size: 100%;
+};
+
+van-card {
+  .van-card__header{
+    border-bottom: 1rpx solid #EEE;
+    justify-content: space-between;
+  }
+  .title{
+    font-size: 25rpx;
+  }
+  .van-card__content{
+    padding-left: 40rpx;
+  }
+  .van-card{
+    background: #FFF;
+  }
+}
+
+.progress{
+  display: inline-block;
+  width: 303rpx;
+  padding-top:20rpx;
+  font-size: 24rpx;
+  color: #DD2928;
+  .progess_background{
+    width: 307rpx;
+    margin-top: 5rpx;
+    background: #F1F1F1;
+    .progress_value{
+      height: 5rpx;
+      background:  #DD2928;
+    }
+  }
+}
+
+.price{
+  float:right;
+  color: #DD2928;
+  font-size: 37rpx;
+  text-align: center;
+  view {
+    height: 40rpx;
+  }
+  .price_show{
+    color:#CACACA;
+    font-size: 24rpx;
+    text-decoration:line-through;
+  }
+}
+
+.bottom{
+  height: 110rpx;
+}
+.tags{
+  height: 23rpx;
+  width: 77rpx;
+  @include bg('baoyou.png')
+}

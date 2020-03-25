@@ -1,0 +1,202 @@
+@charset "utf-8";
+@import "../../utils/rpx/rpx";
+  .shop-list {
+    padding:0 rpx(12px);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .s-item {
+      width: rpx(170px);
+      background: #FFFFFF;
+      box-shadow: 0 rpx(1px) rpx(6px) 0 rgba(0, 0, 0, 0.2);
+      border-radius: rpx(4px);
+      margin-bottom: rpx(12px);
+
+      .shop-img {
+        width: 100%;
+        height: rpx(170px);
+        border-radius: rpx(4px) rpx(4px) 0 0;
+        position: relative;
+
+        .s-img {
+          width: 100%;
+          height: rpx(170px);
+          border-radius: rpx(4px) rpx(4px) 0 0;
+          display: block;
+          border: 0;
+          background-size:100% 100%;
+        }
+
+        .shop-ysw {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: rpx(170px);
+          border-radius: rpx(4px) rpx(4px) 0 0;
+          color: #ED4347;
+          font-size: rpx(22px);
+          text-align: center;
+          background-color: rgba(226, 226, 226, 0.68);
+          font-weight: 700;
+          .title{
+            margin-top: rpx(59px);
+          }
+          .time{
+            margin-top: rpx(6px);
+            font-size:rpx(12px);
+            font-weight:600;
+            color:rgba(51,51,51,1);
+          }
+        }
+
+        .shop-home-use {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: rpx(36px);
+          height: rpx(36px);
+          background: url("https://lantin-me.oss-cn-hangzhou.aliyuncs.com/applet/icon-lhh-tem.png") no-repeat;
+          background-size: 100% 100%;
+        }
+
+        .shop-sy-jf {
+          width: rpx(65px);
+          height: rpx(19px);
+          background: #04040F;
+          border-radius: rpx(10px);
+          text-align: center;
+          line-height: rpx(19px);
+          position: absolute;
+          bottom: rpx(7px);
+          right: rpx(7px);
+          color: #FFFFFF;
+          font-size: rpx(12px);
+          opacity: 0.8;
+        }
+
+      }
+
+      .s-pan {
+        color: #212121;
+        font-size: rpx(12px);
+        display: flex;
+        align-items: center;
+        margin-bottom: rpx(8px);
+
+        .s-head {
+          width: rpx(20px);
+          height: rpx(20px);
+          border-radius: rpx(3px);
+          margin-right: rpx(5px);
+        }
+      }
+
+      .s-introduce {
+        color: #3A3A3A;
+        font-size: rpx(14px);
+        margin-bottom: rpx(3px);
+        height: rpx(39px);
+        font-weight: 600;
+        /*overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        vertical-align:middle;*/
+        .dd-use {
+          width: rpx(32px);
+          height: rpx(16px);
+          background: #FF3B30;
+          border-radius: rpx(11px);
+          color: #FFFFFF;
+          font-size: rpx(10px);
+          line-height: rpx(16px);
+          display: inline-block;
+          text-align: center;
+          margin-right: rpx(3px);
+        }
+
+        text {
+          vertical-align: middle;
+        }
+      }
+
+      .cost {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: rpx(4px);
+
+        .cost-price {
+          color: #999999;
+          font-size: rpx(12px);
+          text-decoration: line-through;
+          text {
+            display: inline-block;
+          }
+
+          .t-price {
+            color: #F04848;
+            font-size: rpx(18px);
+            margin-right: rpx(6px);
+          }
+
+          //.y-price {
+          //  color: #999999;
+          //  font-size: rpx(12px);
+          //  text-decoration: line-through;
+          //}
+        }
+
+        .c-address {
+          color: #C7C7CC;
+          font-size: rpx(10px);
+          border-radius: rpx(4px);
+          border: rpx(1px) solid #C7C7CC;
+          padding: rpx(3px);
+        }
+      }
+
+    }
+
+    .b-bottom {
+      height: rpx(37px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 rpx(8px);
+      border-top: rpx(1px) solid #E5E5EA;
+
+      .b-ys {
+        color: #999999;
+        font-size: rpx(12px);
+      }
+
+      .spe-btn {
+        width: rpx(48px);
+        height: rpx(21px);
+        background: linear-gradient(90deg, rgba(255, 75, 75, 1) 0%, rgba(255, 80, 32, 1) 100%);
+        border-radius: rpx(13px);
+        text-align: center;
+        line-height: rpx(21px);
+        color: #FFFFFF;
+        font-size: rpx(12px);
+      }
+
+      .spe-btn-active {
+        width: rpx(48px);
+        height: rpx(21px);
+        background: #C7C7CC;
+        border-radius: rpx(13px);
+        text-align: center;
+        line-height: rpx(21px);
+        color: #FFFFFF;
+        font-size: rpx(12px);
+      }
+    }
+  }
+
+
