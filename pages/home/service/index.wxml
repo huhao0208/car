@@ -1,3 +1,48 @@
-<!--pages/index/index.wxml -->
+<!--车主服务-->
+<wxs src="../../../utils/filters.wxs" module="filters" />
 
-<!--轮播图-->
+<my-tab plate= "3"
+        bindtabChange="tabc"
+        active="0"
+        showGotop ="{{floorStatus}}"
+        loadType ="{{loadType}}"
+        showLoad ="{{showLoad}}"
+>
+	<block wx:for="{{listData}}"
+	       wx:key="index"
+	       wx:for-item="list">
+		<van-card
+				wx:for="{{list}}"
+				wx:key="{{item.id}}"
+				desc="{{item.category}}"
+				title="{{item.name}}"
+				title-class="title"
+				bindtap="toServiceDetail"
+				data-id="{{item.id}}"
+				thumb-class="card_img"
+				thumb-mode="scaleToFill"
+				thumb="{{ item.showUrl}}"
+		>
+			<view slot="bottom" class="bottom">
+				<view class="progress">
+					{{item.title}}
+				</view>
+				<view class="price"
+				      data-longitude="{{item.longitude}}"
+				      data-latitude="{{item.latitude}}"
+				      catchtap="openMap"
+				>
+					<view class="distance">
+						<block wx:if="{{ShowDistance}}">
+							{{filters.distance(latitude1,longitude1,item.latitude,item.longitude)}}km
+						</block>
+					</view>
+					<view class="daohang" />
+				</view>
+			</view>
+		</van-card>
+	</block>
+</my-tab>
+
+
+

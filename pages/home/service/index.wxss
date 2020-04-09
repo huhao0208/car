@@ -1,3 +1,1 @@
-
-
-/*# sourceMappingURL=index.wxss.map */
+page van-card .price .daohang{width:47rpx;height:47rpx;margin:0 auto;background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/daohang.svg") no-repeat center;background-size:100%}page van-card .title,page van-card .van-card__desc{width:500rpx}.distance{margin-bottom:20rpx;color:#999;font-size:24rpx}

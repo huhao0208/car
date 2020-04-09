@@ -1,0 +1,14 @@
+<block wx:if="{{showLoad|| loadType==3}}">
+	<view class="tui-loadmore-class tui-loadmore" wx:if="{{loadType==1}}">
+		<view class="{{'tui-loading-'+index}} {{(index==3 && type)?'tui-loading-'+type:''}}"></view>
+		<view class="tui-loadmore-tips">{{text}}</view>
+	</view>
+
+	<view wx:if="{{loadType==2}}" class="end_text">
+		已 经 到 底 啦 !
+	</view>
+
+	<view wx:if="{{loadType == 3 }}" class="no_data">当前暂无数据</view>
+</block>
+
+<view bindtap="goTop" class="go_top" hidden="{{!showGotop}}"/>

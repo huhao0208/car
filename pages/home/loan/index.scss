@@ -1,0 +1,36 @@
+page {
+  van-card {
+    .van-card__desc{
+      height:80rpx;
+      overflow: hidden;
+      white-space: pre-wrap;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+    .bottom {
+      .progress {
+        width: 250rpx ;
+        color: #DD2928;
+        font-size: 24rpx;
+        text {
+          color: #999
+        }
+      }
+
+      // 修改右侧标签
+      .price{
+       width: 170rpx;
+      }
+      .tag_right {
+        position: relative;
+        margin-top: 20rpx;
+        font-size: 20rpx;
+        color: #FFF;
+        width: 160rpx;
+        height: 45rpx;
+
+      }
+    }
+  }
+}

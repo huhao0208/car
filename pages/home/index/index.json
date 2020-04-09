@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "车生活",
+  "navigationBarBackgroundColor": "#003561",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "van-search": "@vant/weapp/search/index",
     "van-grid": "@vant/weapp/grid/index",

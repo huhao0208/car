@@ -1,0 +1,135 @@
+page {
+  height: auto;
+  padding: 0 30rpx;
+  color: #020202;
+  margin-bottom: 240rpx; }
+
+.swiper_wrap {
+  width: 100vw;
+  margin-left: -30rpx;
+  height: 661rpx;
+  position: relative; }
+
+swiper {
+  height: 100%; }
+  swiper .swiper_item_image {
+    width: 100%;
+    height: 100%; }
+
+.dots {
+  position: absolute;
+  bottomn: 0;
+  margin-left: 50%;
+  transform: translate(-50%, -20rpx); }
+
+.dot {
+  width: 36rpx;
+  height: 5rpx;
+  background-color: #FFF;
+  opacity: 0.5;
+  margin: 5rpx;
+  float: left; }
+
+.active {
+  opacity: 1; }
+
+van-card .van-card__header {
+  border-bottom: 1rpx solid #EEE;
+  justify-content: space-between; }
+van-card .title {
+  font-size: 25rpx; }
+van-card .van-card__content {
+  padding-left: 40rpx; }
+van-card .van-card {
+  background: #FFF; }
+
+.buy_now {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  bottom: 0;
+  background: #FFF;
+  z-index: 999; }
+  .buy_now .bottom {
+    display: flex;
+    justify-content: space-between; }
+    .buy_now .bottom van-button {
+      flex: 1; }
+  .buy_now .btns {
+    display: flex;
+    justify-content: space-between; }
+    .buy_now .btns van-button {
+      flex: 1; }
+  .buy_now van-icon {
+    font-size: 50rpx;
+    margin-right: 40rpx; }
+  .buy_now .buy_now_btn {
+    flex: 1;
+    background: #DD1A22;
+    border-radius: 36rpx;
+    color: #FFF;
+    box-shadow: 1rpx 1rpx 3rpx 3rpx #ccc;
+    border: none; }
+  .buy_now .buy_btn_zx {
+    background: #FFF;
+    overflow: hidden;
+    display: flex; }
+    .buy_now .buy_btn_zx .zc_btn {
+      width: 100%; }
+    .buy_now .buy_btn_zx .zc_kf {
+      color: #DD1A22; }
+      .buy_now .buy_btn_zx .zc_kf .van-button__icon {
+        font-size: 40rpx;
+        vertical-align: middle; }
+
+.car_name {
+  font-size: 28rpx;
+  padding: 20rpx 0;
+  line-height: 35rpx; }
+
+.car_price {
+  font-size: 20rpx; }
+  .car_price text {
+    float: right; }
+
+.car_price_now {
+  position: relative;
+  font-size: 32rpx;
+  padding: 20rpx 0; }
+  .car_price_now text {
+    color: #FF5501; }
+  .car_price_now .tuihuo {
+    width: 77rpx;
+    height: 22rpx;
+    background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/baoyou.png") no-repeat center;
+    background-size: 100%; }
+  .car_price_now .share {
+    position: absolute;
+    bottom: 20rpx;
+    right: 0rpx;
+    width: 45rpx;
+    height: 45rpx;
+    background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/share.png") no-repeat center;
+    background-size: 100%; }
+
+.progress {
+  font-size: 24rpx; }
+  .progress .van-progress {
+    margin: 10rpx 0; }
+  .progress .progress_text {
+    cololr: #999; }
+    .progress .progress_text text {
+      float: right; }
+
+.go_top {
+  bottom: 270rpx; }
+
+.number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 50rpx 30rpx; }
+
+/*# sourceMappingURL=index.wxss.map */

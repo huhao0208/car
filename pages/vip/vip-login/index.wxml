@@ -1,0 +1,99 @@
+<!--pages/vip/index.wxml -->
+<wxs src="../../../utils/filters.wxs" module="filters"/>
+
+<!--轮播图-->
+<view class="swiper_wrap">
+	<swiper indicator-dots="{{false}}"
+	        autoplay=" {{true}}"
+	        interval="{{5000}}"
+	        duration="{{500}}"
+	        circular="{{true}}"
+	        bindchange="swiperChange"
+	        bindtap="priviweImg"
+	>
+		<block wx:for="{{indexSwiperData}}" wx:key="index" data-url="{{item.url}}">
+			<swiper-item>
+				<image src="{{item.picUrl}}"
+				       mode="scaleToFill"
+				       class="swiper_item_image"
+				/>
+			</swiper-item>
+		</block>
+	</swiper>
+	<!--重置小圆点的样式 -->
+	<view class="dots">
+		<view wx:for="{{indexSwiperData}}" wx:key="index"
+		      class="dot{{index == swiperActive ? ' active' : ''}}"
+		/>
+	</view>
+</view>
+<view class="cards_content">
+	<text class="title">您即将进入会员专享页面</text>
+
+	<view class="card"
+	      bindtap="openVip"
+	      data-vip="1"
+	>
+		<view class="text">
+			<view class="text_ch">青铜会员</view>
+			<view class="text_en">BRONZE MEMBER</view>
+		</view>
+		<view class="status" wx:if="{{!userInfo.vip || userInfo.vip <= 1}}">
+			{{userInfo.vip==1?'正在使用':'立即申请'}}
+		</view>
+		<!-- <view class="status" wx:if="{{userInfo.vip == 1}}">{{userInfo.vip==1?'正在使用':'立即申请'}}</view> -->
+	</view>
+
+	<view class="card"
+	      bindtap="openVip"
+	      data-vip="2"
+	>
+		<view class="text">
+			<view class="text_ch">白银会员</view>
+			<view class="text_en">SILVER MEMBER</view>
+		</view>
+		<view class="status" wx:if="{{userInfo.vip ==1 ||userInfo.vip ==2 }}">
+			{{userInfo.vip ==2 ?'正在使用':'立即申请'}}
+			<button open-type="{{userInfo.vip==2?'':'contact'}}" style="position: absolute;top:0;left: 0;right: 0;bottom: 0;opacity: 0;"/>
+		</view>
+	
+		<!-- <view class="status" wx:if="{{userInfo.vip == 2}}">{{userInfo.vip ==2 ?'正在使用':'立即申请'}}</view> -->
+	</view>
+
+	<view class="card"
+	      bindtap="openVip"
+	      data-vip="3"
+	>
+		<view class="text">
+			<view class="text_ch">黄金会员</view>
+			<view class="text_en">GOLD MEMBER</view>
+		</view>
+		<view class="status" wx:if="{{userInfo.vip >=2}}">
+			{{userInfo.vip==3?'正在使用':'立即申请'}}
+			<button open-type="{{userInfo.vip==3?'':'contact'}}" style="position: absolute;top:0;left: 0;right: 0;bottom: 0;opacity: 0;"/>
+		</view>
+		<!-- <view class="status" wx:if="{{userInfo.vip == 3}}">{{userInfo.vip==3?'正在使用':'立即申请'}}</view> -->
+	</view>
+</view>
+
+<view class="buy_now">
+	<view class="buy_now_btn buy_btn_zx">
+		<van-button
+				icon="{{filters.imgUrl('kefu-1.png')}}"
+				custom-class="zc_btn zc_kf"
+				bindtap="{{isLogin?'':'toLogin'}}"
+				open-type="{{isLogin?'contact':''}}"
+				color="#DD1A22"
+				show-message-card
+		>
+			升级会员
+		</van-button>
+		<van-button
+				bindtap="toVip"
+				custom-class="zc_btn">
+			立即进入
+		</van-button>
+	</view>
+</view>
+
+<login bindhasLogin="hasLogin"/>

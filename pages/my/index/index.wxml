@@ -1,82 +1,93 @@
 <!--pages/my/index.wxml-->
+<wxs src="../../../utils/filters.wxs" module="filters"/>
 <view class="top">
 	<view class="user_info"
-	      wx:if="{{isLogin}}"
+	      wx:if="{{userInfo.id}}"
 	>
-		<image class="avator"/>
+		<image class="avator" src="{{userInfo.head}}"/>
 		<view class="user_info_right">
 			<view class="name">
 				<view>
-					胡歌
-					<van-icon name="{{imgUrl}}anzhuo-2.png"/>
+					{{userInfo.username}}
+					<van-icon name="{{filters.imgUrl('anzhuo-2.png')}}"/>
 				</view>
-				<view class="detaile_user_info">完善个人信息 ＞</view>
+<!--				<view class="detaile_user_info" bindtap="improveInof">完善个人信息 ＞</view>-->
 			</view>
 			<view class="account ">
-				帐号：189 0656 8888
+				帐号：{{userInfo.phone}}
 			</view>
-			<view class="grade">
-				<view class="grade_name" style="background: #FFEFD4 url('{{imgUrl}}hg-vip.png') no-repeat 0 center ;background-size: contain;">
-					 黄金会员
+			<view class="grade" wx:if="{{userInfo.expireDays>0}}">
+				<view class="grade_name grade_name_vip{{userInfo.vip}}" >
+					{{vipArr[userInfo.vip]}}
 				</view>
-				<text class="term"> 还有183天到期</text>
+				<text class="term" > 还有{{userInfo.expireDays}}天到期</text>
 			</view>
 		</view>
 	</view>
 
-	<navigator class="login"
-               url="/pages/login/index"
+	<view class="login"
+               bindtap="loginTap"
 	            wx:else
 	>
 		<view class="avator"></view>
 		<view>未登录</view>
-	</navigator>
+	</view>
 </view>
 
-<van-cell-group custom-class="cell_group" bindtap="islogin">
+<van-cell-group custom-class="cell_group" >
 	<van-cell title="我的订单"
               custom-class="cell"
 	          is-link
-	          icon="{{imgUrl}}wodedingdan.png"
-	          link-type="navigateTo"
-	          url="/pages/my/{{isLogin?'order':'login'}}/index"
+	          icon="{{filters.imgUrl('wodedingdan.png')}}"
+	          bindtap="jumpHandle"
+	          data-url="/pages/my/order/index?type=1"
 	/>
 	<van-cell title="我的众筹"
 	          border="{{ false }}"
-	          icon="{{imgUrl}}wodezhongchou-.png"
+	          icon="{{filters.imgUrl('wodezhongchou-.png')}}"
 	          is-link
-	          link-type="navigateTo"
-	          url="/pages/my/{{isLogin?'crowdfunding':'login'}}/index"
+	          bindtap="jumpHandle"
+	          data-url="/pages/my/order/index?type=2"
 	/>
 </van-cell-group>
 
 <van-cell-group custom-class="cell_group">
 	<van-cell title="抽奖列表"
-	          icon="{{imgUrl}}choujiang1.png"
+	          icon="{{filters.imgUrl('choujiang1.png')}}"
 	          is-link
-	          link-type="navigateTo"
-	          url="/pages/my/{{isLogin?'raffle':'login'}}/index"
+	          bindtap="jumpHandle"
+	          data-url="/pages/my/prize/index"
 	/>
 	<van-cell title="收货地址"
-	          icon="{{imgUrl}}shouhuodizhi-2.png"
+	          icon="{{filters.imgUrl('shouhuodizhi-2.png')}}"
 	          border="{{ false }}"
 	          is-link
-	          link-type="navigateTo"
-	          url="/pages/my/{{isLogin?'r-address':'login'}}/index"
+	          bindtap="jumpHandle"
+	          data-url="/pages/my/deliveryList/deliveryList"
+	/>
+	<van-cell title="我的收藏"
+	          icon="{{filters.imgUrl('favorite1.png')}}"
+	          border="{{ false }}"
+	          is-link
+	          bindtap="jumpHandle"
+	          data-url="/pages/my/favorite/index"
 	/>
 </van-cell-group>
 <van-cell-group custom-class="cell_group">
 	<van-cell title="在线客服"
-	          icon="{{imgUrl}}kefu-2.png"
+	          icon="{{filters.imgUrl('kefu-2.png')}}"
 	          is-link
-              link-type="navigateTo"
-              url="{{isLogin?'':'/pages/login/index'}}"
+	          bindtap="jumpHandle"
 	>
-        <button open-type="{{isLogin?'contact':''}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0)"></button>
+        <button open-type="{{userName?'contact':''}}"
+                show-message-card
+                style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0)" />
+
     </van-cell>
 
 
 </van-cell-group>
 
+<login bindhasLogin="hasLogin"/>
 
 

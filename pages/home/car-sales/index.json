@@ -1,4 +1,13 @@
 {
-  "navigationBarTitleText": "会员",
-  "usingComponents": {}
+  "navigationBarTitleText": "汽车销售",
+  "navigationBarBackgroundColor": "#003561",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "load-more": "../../../components/load-more",
+    "van-search": "@vant/weapp/search/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
 }

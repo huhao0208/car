@@ -1,0 +1,20 @@
+<van-tabs active="{{ tabActive}}"
+          sticky
+          swipeable
+          bind:change="tabChange"
+>
+	<van-tab wx:for="{{list}}"
+	         wx:key="{{item.id}}"
+			title="{{item.name}}" />
+
+	<slot></slot>
+
+	<loadmore
+			loadType="{{loadType}}"
+			showLoad="{{showLoad}}"
+			showGotop="{{showGotop}}"
+	/>
+
+
+</van-tabs>
+

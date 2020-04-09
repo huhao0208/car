@@ -1,0 +1,33 @@
+<wxs src="../../../utils/filters.wxs" module="filters" />
+
+<my-info/>
+
+<block wx:for="{{listData}}" wx:for-item="list" wx:key="index">
+	<view wx:for="{{list}}"
+	      wx:key="{{item.id}}"
+	      data-proId="{{item.proId}}"
+	      data-type="{{item.type}}"
+	      bindtap="toDetail"
+	      class="cards"
+	>
+		<image src="{{item.url}}"/>
+		<view class="center_card">
+			<view>{{item.name}}</view>
+			<view class="number">X1</view>
+		</view>
+		<button catchtap="delete"
+		        data-proId="{{item.proId}}"
+		        data-type="{{item.type}}"
+		        class="confirm_btn"
+		>移除
+		</button>
+	</view>
+</block>
+
+<load-more
+		loadType="{{loadType}}"
+		showGotop="{{floorStatus}}"
+/>
+
+
+

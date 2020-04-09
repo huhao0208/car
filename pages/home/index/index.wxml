@@ -2,6 +2,7 @@
 <!--搜索-->
 <van-search value="{{ search }}"
             bind:search="onSearch"
+            bindchange="onChange"
             background="#003561"
             shape="round"
             placeholder="请输入搜索关键词"
@@ -12,13 +13,16 @@
 <!--轮播图-->
 <swiper indicator-dots="{{false}}"
         autoplay=" {{true}}"
-		interval="{{2000}}"
-		duration="{{500}}"
+		interval="{{5000}}"
+		duration="{{800}}"
 		circular="{{true}}"
 >
 <block wx:for="{{indexSwiperData}}" wx:key="index">
 	<swiper-item >
-		<image src="{{item.url}}"
+		<image src="{{item.picUrl}}"
+		       data-id="{{item.advertId}}"
+		       data-type="{{item.kind}}"
+		       bindtap="swiperToDetail"
 		       mode="scaleToFill"
 		       class="swiper_item_image"
 		/>
@@ -28,11 +32,28 @@
 
 <!--卡片-->
 <view class="cards">
-	<navigator class=card_item"
-	           url="{{'/pages/home/'+item.navigatorUrl+'/index'}}"
+	<!-- <navigator class= "card_item"
+	           url="{{(item.name!='会员专享'?'/pages/home/':'/pages/vip/')+item.navigatorUrl+'/index'}}"
+	           open-type="{{item.name!='会员专享'?'navigate':'switchTab'}}"
+	           bindtap="{{item.name=='更多精彩'?'unopened':''}}"
 	           wx:for="{{cardsData}}" >
+
 		<image class="icon" src="http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/{{item.bg}}"></image>
 		{{item.name}}
+	</navigator> -->
 
-	</navigator>
+	<!-- <navigator class="card_item"
+	           url="{{(item.name!='会员专享'?'/pages/home/': ueserInfo.vip? '/pages/vip/')+item.navigatorUrl+'/index'}}"
+	           open-type="{{item.name!='会员专享'?'navigate':'switchTab'}}"
+	           bindtap="{{item.name=='更多精彩'?'unopened':''}}"
+	           wx:for="{{cardsData}}" >
+
+		<image class="icon" src="http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/{{item.bg}}"></image>
+		{{item.name}}
+	</navigator> -->
+
+	<view class="card_item" bindtap="toPage" data-item="{{item}}"  wx:for="{{cardsData}}">
+		<image class="icon" src="http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/{{item.bg}}"></image>
+		{{item.name}}
+	</view>
 </view>

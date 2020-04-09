@@ -1,89 +1,121 @@
 // pages/my/index.js
-import { jump } from "../../../utils/util";
+import {jump} from "../../../utils/util";
+import {getOrderList} from "../../../api"
 
 const app = getApp()
-
+let page = 1
+let type =1  // 页面状态 1 普通 2众筹
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    listData:[1,1,1,1,1,1,1],
-    status:2,     // 订单状态
-  },
-  login(){
-    jump('/pages/login/index')
-  },
+	/**
+	 * 页面的初始数据
+	 */
+	data: {
+		loadType: 1,
+		showLoad: true,
+		floorStatus: false,  // 返回顶部
+		listData: [],     // 渲染列表用数据
+		state:123
+	},
+	tabChange(e){
+		page=1
+		this.setData({
+			state:e.detail.index==0?123:5,
+			type:1
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    console.log( app.globalData)
-    this.setData({
-      imgUrl: app.globalData.imgUrl,
-      userName:  app.globalData.userInfo.trueName,
-      userHead:  app.globalData.userInfo.head
-    })
-  },
+		},_=>{
+			this.getListData()
+		})
+
+	},
+
+	getListData() {
+		if(page==1) this.setData({
+			listData:[],
+			type:1
+		})
+		getOrderList({page, type:type/1,state:this.data.state})
+			.then(res => {
+				wx.stopPullDownRefresh()
+				let ltype = (!res.total) ? 3 : (res.page == res.pages) ? 2 : 1
+				if (page > res.pages)  return
+				this.setData({
+					loadType: ltype,
+					[`listData[${this.data.listData.length}]`]: res.list,
+				})
+				page = res.page + 1
+				
+			})
+
+	},
+
+	toOrderDetail(e) {
+		// console.log(e)
+		// console.log(e.currentTarget.dataset.orderid)
+		wx.navigateTo({
+			url: '/pages/three-level/order-details/index?orderId='+ e.currentTarget.dataset.orderid
+		})
+	},
+	/**
+	 * 生命周期函数--监听页面加载
+	 */
+	onLoad: function (options) {
+		type= options.type
+		wx.setNavigationBarTitle({
+			title:type==1?'我的订单':'我的众筹'
+		})
+		page = 1
+		this.getListData()
+	},
 
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+	/**
+	 * 生命周期函数--监听页面初次渲染完成
+	 */
+	onReady: function () {
 
-  },
+	},
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+	/**
+	 * 生命周期函数--监听页面显示
+	 */
+	onShow: function () {
 
-  },
+	},
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+	/**
+	 * 生命周期函数--监听页面隐藏
+	 */
+	onHide: function () {
 
-  },
+	},
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
+	/**
+	 * 生命周期函数--监听页面卸载
+	 */
+	onUnload: function () {
 
-  },
+	},
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+	/**
+	 * 页面相关事件处理函数--监听用户下拉动作
+	 */
+	onPullDownRefresh: function () {
+      page = 1
+      this.getListData()
+	},
 
-  },
+	/**
+	 * 页面上拉触底事件的处理函数
+	 */
+	onReachBottom: function () {
+      this.getListData()
+	},
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    console.log('触底了')
-    console.log(this.data.listData)
-    this.setData({
-      [`listData[${this.data.listData.length}]`]: this.data.listData.length,
-      [`listData[${this.data.listData.length+1}]`]: this.data.listData.length+1,
-      [`listData[${this.data.listData.length+2}]`]: this.data.listData.length+2,
-      [`listData[${this.data.listData.length+3}]`]: this.data.listData.length+3,
-      [`listData[${this.data.listData.length+4}]`]: this.data.listData.length+4,
-      [`listData[${this.data.listData.length+5}]`]: this.data.listData.length+5
-    })
-  },
+	/**
+	 * 用户点击右上角分享
+	 */
+	onShareAppMessage: function () {
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+	}
 })

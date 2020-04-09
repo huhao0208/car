@@ -2,7 +2,10 @@
   background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) no-repeat center;
   background-size: 100%;
 };
-
+page{
+  background: rgba(233,233,233,.6);
+  position:absolute;
+}
 .top{
   margin: 0 17rpx;
   height: 115rpx;
@@ -25,7 +28,7 @@
 
 .card{
   height: 300rpx;
-  background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/card-bg-l.png") no-repeat center,linear-gradient(129deg,rgba(226,186,130,1),rgba(243,218,166,1)),;
+  background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/card-bg-l.png") no-repeat center,linear-gradient(129deg,rgba(226,186,130,1),rgba(243,218,166,1));
   background-size: cover;
   border-radius:11rpx;
   margin: 80rpx 60rpx ;
@@ -58,11 +61,98 @@
     color: #FFF;
   }
 }
-
+.card_vip1{
+  background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/card-bg-l.png") no-repeat center, linear-gradient(129deg, #e2894d, #bb703e)
+}
+.card_vip2{
+  background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/card-bg-l.png") no-repeat center,linear-gradient(129deg, #9bb2c4, #738594)
+}
+.card_vip3{
+  background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/card-bg-l.png") no-repeat center,linear-gradient(129deg,rgba(226,186,130,1),rgba(243,218,166,1))
+}
 .qr_code{
   text-align: center;
   image{
-    width: 400rpx;
-    height: 400rpx;
+    width: 300rpx;
+    height: 300rpx;
+  }
+}
+
+
+.address{
+  background: #FFF;
+  padding: 0 30rpx;
+  .title{
+    padding: 27rpx 0 25rpx;
+    text{
+      color:red;
+    }
+  }
+  .select_address{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1rpx solid #EEE;
+    border-top: 1rpx solid #EEE;
+    .item{
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      padding: 25rpx 10rpx 25rpx 20rpx;
+      font-size: 24rpx;
+    }
+    .item:nth-child(2){
+      border-left: 1rpx solid #EEE;
+      border-right: 1rpx solid #EEE;
+    }
+  }
+}
+input{
+  padding: 25rpx 0;
+}
+.ueserInfo{
+  background: #FFF;
+  margin: 30rpx 0;
+  padding: 0 30rpx;
+  width: 100%;
+  overflow: hidden;
+  van-radio-group{
+    border-bottom: 1rpx solid #EEE;
+    border-top: 1rpx solid #EEE;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+  }
+  .radio_item{
+    float: left;
+    margin: 24rpx 40rpx 24rpx 0;
+  }
+
+}
+page .save_btn{
+  margin: auto;
+  width: 80%;
+  margin: auto;
+  padding:20rpx 0;
+  border-radius: 15rpx;
+  font-size: 40rpx;
+}
+
+.select_level{
+  background: #FFF;
+  margin-bottom: 80rpx;
+  .title{
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0 30rpx;
+    border-bottom:  1rpx solid #EEE;;
+  }
+
+  van-radio-group{
+    display: flex;
+    van-radio{
+      margin:50rpx 30rpx;
+    }
   }
 }

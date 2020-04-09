@@ -1,0 +1,62 @@
+<!--pages/vip/index.wxml -->
+<wxs src="../../../utils/filters.wxs" module="filters" />
+
+<!--轮播图-->
+<view class="swiper_wrap">
+	<swiper indicator-dots="{{false}}"
+	        autoplay=" {{true}}"
+	        interval="{{5000}}"
+	        duration="{{500}}"
+	        circular="{{true}}"
+	        bindchange = "swiperChange"
+	        bindtap="priviweImg"
+	>
+		<block wx:for="{{carInfo.carousel}}" wx:key="index" data-url="{{item}}">
+			<swiper-item >
+				<image src="{{item}}"
+				       mode="scaleToFill"
+				       class="swiper_item_image"
+				/>
+			</swiper-item>
+		</block>
+	</swiper>
+	<!--重置小圆点的样式 -->
+	<view class="dots">
+			<view wx:for="{{carInfo.carousel}}" wx:key="index"
+					class="dot{{index == swiperActive ? ' active' : ''}}"
+			/>
+	</view>
+</view>
+
+<view class="car_name">{{carInfo.name}}</view>
+<view class="car_price">厂家指导价¥{{carInfo.guidePrice}}元</view>
+<view class="car_price_now">现价：<text>¥{{carInfo.currentPrice}}元 </text> <icon class="tuihuo"/>
+	<view class="share">
+		<button open-type="share" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0" />
+	</view>
+</view>
+
+<van-tabs active="{{ tabActive }}"
+          sticky
+          swipeable
+          bind:change="tabChange"
+>
+	<van-tab title="商品详情" >
+
+
+		<rich-text nodes="{{carInfo.details}}"></rich-text>
+
+	</van-tab>
+	<van-tab title="商品评价" >
+			<comment type="{{'类型'}}"/>
+	</van-tab>
+</van-tabs>
+
+<view class="buy_now">
+	<collect type="4" proid="{{carInfo.id}}"/>
+	<button class="buy_now_btn" hover-class="buy_now_hover" bindtap="buyNow">立即咨询购车</button>
+</view>
+
+<login showLogin="{{showLogin}}"/>
+
+<view bindtap="goTop" class="go_top" hidden="{{!floorStatus}}"/>

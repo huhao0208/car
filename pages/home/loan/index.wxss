@@ -1,3 +1,1 @@
-
-
-/*# sourceMappingURL=index.wxss.map */
+page van-card .van-card__desc{height:80rpx;overflow:hidden;white-space:pre-wrap;text-overflow:ellipsis;-webkit-line-clamp:2;line-clamp:2}page van-card .bottom .progress{width:250rpx;color:#DD2928;font-size:24rpx}page van-card .bottom .progress text{color:#999}page van-card .bottom .price{width:170rpx}page van-card .bottom .tag_right{position:relative;margin-top:20rpx;font-size:20rpx;color:#FFF;width:160rpx;height:45rpx}

@@ -1,18 +1,93 @@
 // 预支付
+import {getProductDetail,crowdFunding,directPurchase} from "../../../api"
+const app = getApp()
+let onloadData = {}
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    currentAddress:'',
+    number:1
+  },
+  // 选择地址
+  addAddress(){
+    // if(!this.data.currentAddress){
+      wx.navigateTo({
+        url: `/pages/my/deliveryList/deliveryList`
+      })
+    // }else{
+    //   let {address,area, city, contact, createTime, id, phone, province} = this.data.currentAddress
+    //   wx.navigateTo({
+    //     url: `/pages/my/r-address/index?address=${address}&area=${area}&contact=${contact}&createTime=${createTime}&city=${city}&id=${id}&phone=${phone}&province=${province}`
+    //   })
+    // }
   },
 
+  // 获取商品详情
+  getProductDetail(e){
+    getProductDetail({id:onloadData.id})
+        .then(res=>{
+          console.log(res)
+          this.setData({
+            details:res
+          })
+        })
+  },
+
+  // 提交支付
+  submit(){
+    if(!this.data.currentAddress || !this.data.currentAddress.id) return  wx.showToast({
+      title:'请选择收获地址',
+      icon:'none'
+    })
+    let reqData= {
+      proId:this.data.details.id,
+      quantity:this.data.number||1,
+      addressId:this.data.currentAddress.id
+    }
+    let sel = this.data.details.type
+
+    // 众筹
+   if(sel==2)  crowdFunding(reqData).then(res=>{
+
+     // 调用微信支付 成功后返回
+    // wx.requestPayment({
+    //   timeStamp: 'String1',
+    //   nonceStr: 'String2',
+    //   package: 'String3',
+    //   signType: 'MD5',
+    //   paySign: 'String4',
+    //   success: function(res){
+    //     // success
+    //   },
+    //   fail: function() {
+    //     // fail
+    //   },
+    //   complete: function() {
+    //     // complete
+    //   }
+
+    // })
+
+      wx.navigateBack({delta:-1})
+   })
+
+    if(sel==1) directPurchase(reqData).then(res=>{
+
+      // 调用微信支付 成功后返回
+      wx.navigateBack({delta:-1})
+    })
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad(options) {
+    onloadData = options
+    this.setData({...options})
+     this.getProductDetail()
   },
 
   /**
@@ -26,7 +101,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 获取收货地址
+    let address = wx.getStorageSync("currentAddress") || app.globalData.currentAddress
+    this.setData({
+      currentAddress:address
+    })
   },
 
   /**

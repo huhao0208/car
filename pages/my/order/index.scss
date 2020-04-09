@@ -5,42 +5,16 @@
 page{
   //background: rgba(233,233,233,.6);
   position:absolute;
-  .user_info{
-    background: #FFF;
-    padding: 30rpx 50rpx;
-    display: flex;
-  }
-  .avator{
-    width: 99rpx;
-    height: 99rpx;
-    background: #1989fa;
-    border-radius: 50%;
-    margin-right: 20rpx;
-  }
-  .user_info_right{
-    .account{
-      font-size: 37rpx;
-      color:#666
-    }
-    .grade_name{
-        display: inline-block;
-        color: #FDA701;
-        height: 36rpx;
-        line-height: 36rpx;
-        border-radius: 18rpx 11rpx 11rpx 18rpx;
-        background-size:  contain;
-        padding: 0 13rpx 0 40rpx;
-        font-size: 20rpx;
-      }
-  }
+
 }
 
 .order_info_top{
   display: flex;
   justify-content: space-between;
   padding: 25rpx 40rpx;
-  font-size: 28rpx;
+  font-size: 24rpx;
   .order_time{
+    min-width: 380rpx;
     color:#999
   }
 }

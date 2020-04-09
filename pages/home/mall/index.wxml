@@ -1,31 +1,35 @@
-<van-tabs active="{{ tabActive }}"
-          sticky
-          swipeable
-          bind:change="tabChange"
+<!--贷款-->
+<my-tab plate= "4"
+        bindtabChange="tabc"
+        active="0"
+        showGotop ="{{floorStatus}}"
+        loadType ="{{loadType}}"
+        showLoad ="{{showLoad}}"
 >
-	<van-tab title="标签 1" >
+	<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
 		<van-card
-				wx:for="1111111111111111111111111111111111111111111111111111111111111111111111111111111111"
-				desc="原生态的绿色美味，颗颗饱满。"
-				title="洞藏香米 50kg装 原价108元"
+				bindtap="toDetail"
+				data-productId="{{item.id}}"
+				wx:for="{{list}}"
+				wx:key="{{item.id}}"
+				desc="{{item.details}}"
+				title="{{item.name}}"
 				title-class="title"
 				thumb-class="card_img"
 				thumb-mode="scaleToFill"
-				thumb="{{ 'https://dss0.baidu.com/73x1bjeh1BF3odCf/it/u=1668627244,3741646552&fm=85&s=159AAF77C0B8799A888C81620300F063' }}"
+				thumb="{{ item.showUrl }}"
 		>
 			<view slot="tags" class="tags"></view>
 			<view slot="bottom" class="bottom">
 				<view class="progress">
-					厂家直邮 包邮到家
+					{{item.introduce}}
 				</view>
 				<view class="price">
-					<view class="price_true">¥50</view>
-					<view class="price_show">¥60</view>
+					<view class="price_true">¥{{item.currentPrice}}</view>
+					<view class="price_show">¥{{item.originalPrice}}</view>
 				</view>
 			</view>
 		</van-card>
+	</block>
+</my-tab>
 
-	</van-tab>
-	<van-tab title="标签 2" >内容 2</van-tab>
-	<van-tab title="标签 3" >内容 3</van-tab>
-</van-tabs>

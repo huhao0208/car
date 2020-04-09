@@ -1,3 +1,33 @@
-<!--pages/index/index.wxml -->
+<!--贷款-->
+<my-tab plate= "2"
+        bindtabChange="tabc"
+        active="0"
+        showGotop ="{{floorStatus}}"
+        loadType ="{{loadType}}"
+        showLoad ="{{showLoad}}"
+>
+	<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
+		<van-card
+				wx:for="{{list}}"
+				wx:key="{{item.id}}"
+				desc="{{item.introduce}}"
+				title="{{item.name}}"
+				data-id="{{item.id}}"
+				bindtap="toLoanDetail"
+				title-class="title"
+				thumb-class="card_img"
+				thumb-mode="scaleToFill"
+				thumb="{{ item.showUrl}}"
+		>
+			<view slot="bottom" class="bottom">
+				<view class="progress">
+					最高{{item.loanAmount}}万 <text>最高{{item.loanPeriod}}期</text>
+				</view>
+				<view class="price">
+					<view class="tag_right"> {{item.label}}</view>
+				</view>
+			</view>
+		</van-card>
+	</block>
+</my-tab>
 
-<!--轮播图-->

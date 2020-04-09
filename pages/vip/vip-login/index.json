@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "会员",
+  "usingComponents": {
+    "login": "../../../components/login",
+    "load-more": "../../../components/load-more",
+    "comment": "../../../components/comment/index",
+    "login": "../../../components/login/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-progress": "@vant/weapp/progress/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-button": "@vant/weapp/button/index"
+  }
+}

@@ -1,0 +1,40 @@
+@mixin bg($name){
+  background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) no-repeat center;
+  background-size: 100%;
+};
+page{
+  //background: rgba(233,233,233,.6);
+  position:absolute;
+}
+
+.cards {
+  margin: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(233,233,233,.6);
+  image{
+    width: 143rpx;
+    height: 143rpx;
+    margin: 20rpx;
+  }
+  .center_card{
+    flex: 1;
+    color: #999;
+    .number{
+      color: #333;
+      padding: 30rpx;
+    }
+  }
+  .confirm_btn{
+    width: 150rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin: 20rpx;
+    font-size: 30rpx;
+    border-radius: 15rpx;
+    background: #FF6A21;
+    color: #EEE
+  }
+
+}

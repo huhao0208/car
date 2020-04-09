@@ -1,0 +1,23 @@
+.comment {
+  padding: 20rpx;
+  box-sizing: border-box; }
+  .comment .user_info .avator {
+    width: 60rpx;
+    height: 60rpx;
+    vertical-align: middle;
+    margin-right: 10rpx; }
+  .comment .user_info .user_name {
+    display: inline-block;
+    vertical-align: middle; }
+  .comment .user_info .time {
+    float: right;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    color: #999;
+    vertical-align: middle; }
+  .comment .content {
+    font-size: 28rpx;
+    color: #666;
+    line-height: 40rpx; }
+
+/*# sourceMappingURL=index.wxss.map */

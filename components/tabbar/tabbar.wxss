@@ -1,5 +1,0 @@
-van-tabbar-item image {
-  width: 44rpx !important;
-  height: 44rpx !important; }
-
-/*# sourceMappingURL=tabbar.wxss.map */

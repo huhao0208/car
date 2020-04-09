@@ -1,0 +1,76 @@
+<!--汽车维修-->
+<wxs src="../../../utils/filters.wxs" module="filters" />
+
+<!--轮播图-->
+<view class="swiper_wrap">
+	<swiper indicator-dots="{{false}}"
+	        autoplay=" {{true}}"
+	        interval="{{5000}}"
+	        duration="{{500}}"
+	        circular="{{true}}"
+	        bindchange = "swiperChange"
+	        bindtap="priviweImg"
+	>
+		<block wx:for="{{details.carousel}}" wx:key="index" data-url="{{item}}">
+			<swiper-item >
+				<image src="{{item}}"
+				       mode="scaleToFill"
+				       class="swiper_item_image"
+				/>
+			</swiper-item>
+		</block>
+	</swiper>
+	<!--重置小圆点的样式 -->
+	<view class="dots">
+			<view wx:for="{{details.carousel}}" wx:key="index"
+					class="dot{{index == swiperActive ? ' active' : ''}}"
+			/>
+	</view>
+</view>
+
+<view class="car_name">{{detail.name}}</view>
+
+<view class="car_price">{{detail.title}}</view>
+
+<view class="car_price_now distance">
+	<icon class="dingwei"/>
+	<view class="center">
+		<block wx:if="{{ShowDistance}}">
+			距离{{filters.distance(latitude1,longitude1,details.latitude,details.longitude)}}公里
+		</block>
+		<block wx:else>
+			{{details.detailAddress}}
+		</block>
+	</view>
+	<view class="daohang" bindtap="openMap"><icon class="share"/> 到这里去</view>
+</view>
+<view class="car_price_now"
+      data-phone="{{details.phone}}"
+      catchtap="call">
+	<icon class="dingwei dianhua"/>  联系电话: {{details.phone}}
+</view>
+<view class="car_price_now">
+	<icon class="dingwei shijian"/>  营业时间: {{details.businessHours}}
+</view>
+
+<van-tabs active="{{ tabActive }}"
+          sticky
+          swipeable
+          bind:change="tabChange"
+>
+	<van-tab title="店铺详情" >
+<!--		富文本内容区域-->
+		<rich-text nodes="{{details.details}}"/>
+	</van-tab>
+
+	<van-tab title="店铺评价" >
+			<comment
+					page="{{commentPage}}"
+					type="{{commentType}}"
+					showGotop="{{floorStatus}}"
+			/>
+	</van-tab>
+</van-tabs>
+
+
+

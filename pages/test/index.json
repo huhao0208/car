@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "login": "../../components/login-prompt/index",
-    "pulltorefresh-view": "../../components/wx-pulltorefresh-view/wx-pulltorefresh-view"
-  }
-}

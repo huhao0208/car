@@ -1,4 +1,9 @@
 {
-  "navigationBarTitleText": "会员",
-  "usingComponents": {}
+  "enablePullDownRefresh": true,
+  "navigationBarTitleText": "车主服务",
+  "usingComponents": {
+    "my-tab": "../../../components/my-tab/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-icon": "@vant/weapp/icon/index"
+  }
 }

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "商家详情",
+  "usingComponents": {
+    "comment": "../../../components/comment/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index"
+  }
+}

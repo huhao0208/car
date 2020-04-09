@@ -1,0 +1,28 @@
+.comment{
+  padding: 20rpx;
+  box-sizing: border-box;
+  .user_info{
+    .avator{
+      width: 60rpx;
+      height: 60rpx;
+      vertical-align: middle;
+      margin-right: 10rpx;
+    }
+    .user_name{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .time{
+      float: right;
+      line-height: 60rpx;
+      font-size: 24rpx;
+      color:#999;
+      vertical-align: middle;
+    }
+  }
+  .content{
+    font-size: 28rpx;
+    color: #666;
+    line-height: 40rpx;
+  }
+}

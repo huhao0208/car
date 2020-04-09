@@ -13,7 +13,7 @@
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
-		"autoAudits": false,
+		"autoAudits": true,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
 		"uglifyFileName": true,
@@ -25,11 +25,11 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": false
+		"bundle": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.3",
-	"appid": "wx7c693ed472b9cd5d",
+	"libVersion": "2.10.4",
+	"appid": "wxc9f9c7ef81ff1fe1",
 	"projectname": "lt_project",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -48,7 +48,71 @@
 		},
 		"plugin": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "pages/home/service/index",
+					"pathName": "pages/home/service/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/service-details/index",
+					"pathName": "pages/three-level/service-details/index",
+					"query": "id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "众筹",
+					"pathName": "pages/home/cooperation/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员专享",
+					"pathName": "pages/vip/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "产品详情",
+					"pathName": "pages/three-level/good-details/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/good-details/index",
+					"pathName": "pages/three-level/good-details/index",
+					"query": "id=4&productType=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "合作专区",
+					"pathName": "pages/home/cooperation/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/index/index",
+					"pathName": "pages/my/index/index",
+					"query": "",
+					"scene": null
+				}
+			]
 		},
 		"game": {
 			"currentL": -1,
@@ -104,10 +168,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "pages/my/r-address/index",
 					"pathName": "pages/my/r-address/index",
-					"query": "",
+					"query": "type=loan&id=1",
 					"scene": null
 				},
 				{
@@ -128,6 +192,223 @@
 					"id": -1,
 					"name": "pages/my/raffle/index",
 					"pathName": "pages/my/raffle/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "汽车销售",
+					"pathName": "pages/home/car-sales/index",
+					"query": "id=2",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "汽车销售详情",
+					"pathName": "pages/three-level/car-details/index",
+					"query": "id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "金融贷款",
+					"pathName": "pages/home/loan/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 13,
+					"name": "金融贷款详情",
+					"pathName": "pages/three-level/loan-details/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "车主服务",
+					"pathName": "pages/home/service/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 15,
+					"name": "汽车维修",
+					"pathName": "pages/three-level/service-details/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "合作专区",
+					"pathName": "pages/home/cooperation/index",
+					"query": "汽车维修",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商家详情",
+					"pathName": "pages/three-level/cooperation-details/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "每日活动",
+					"pathName": "pages/home/activity/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "每日活动",
+					"pathName": "pages/home/activity/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "预支付页面",
+					"pathName": "pages/goods/prepayment/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 21,
+					"name": "商品详情",
+					"pathName": "pages/three-level/good-details/index",
+					"query": "productType=1&id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员专享登录",
+					"pathName": "pages/home/exclusive/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员码",
+					"pathName": "pages/vip-code/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/three-level/order-details/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的奖品",
+					"pathName": "pages/my/prize/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/my/favorite/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/vip/index/index",
+					"pathName": "pages/vip/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/mall/index",
+					"pathName": "pages/home/mall/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/prepayment/index",
+					"pathName": "pages/goods/prepayment/index",
+					"query": "id=2&number=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/deliveryList/deliveryList",
+					"pathName": "pages/my/deliveryList/deliveryList",
+					"query": "id=2&number=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/r-address/index",
+					"pathName": "pages/my/r-address/index",
+					"query": "address=%E4%BA%94%E5%B8%B8%E8%A5%BF%E6%BA%AA%E8%BD%AF%E4%BB%B6%E5%9B%ADB1&area=%E4%BD%99%E6%9D%AD%E5%8C%BA&contact=%E4%BA%AE&createTime=2020-04-02%2021%3A46%3A31&city=%E6%9D%AD%E5%B7%9E%E5%B8%82&id=2&phone=13588306547&province=%E6%B5%99%E6%B1%9F%E7%9C%81",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/cooperation-details/index",
+					"pathName": "pages/three-level/cooperation-details/index",
+					"query": "id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/prize/index",
+					"pathName": "pages/my/prize/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 35,
+					"name": "我的订单",
+					"pathName": "pages/my/order/index",
+					"query": "type=1&id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/deliveryList/deliveryList",
+					"pathName": "pages/my/deliveryList/deliveryList",
+					"query": "type=1&id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/r-address/index",
+					"pathName": "pages/my/r-address/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/prize/index",
+					"pathName": "pages/my/prize/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/r-address/index",
+					"pathName": "pages/my/r-address/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/vip/vip-login/index",
+					"pathName": "pages/vip/vip-login/index",
 					"scene": null
 				}
 			]

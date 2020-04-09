@@ -1,0 +1,4 @@
+collect{
+    display: flex;
+    align-items: center;
+}

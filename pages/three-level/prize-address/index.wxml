@@ -1,0 +1,69 @@
+<!--收货地址-->
+<view wx:if="{{pageType=='car-details'||pageType=='loan-details'}}" class="tips">提交信息,稍候会有工作人员和您联系</view>
+
+<!-- 选择已有收货地址 -->
+<button class="address_list" bindtap="toAddressList">
+	选择其他收货地址 <van-icon name="arrow" />
+</button>
+<view class="address" >
+	<view class="title"><text>*</text>所在地区</view>
+	<view class="select_address">
+		<view class="item" >{{currentAddress.province||"请选择"}} <van-icon name="arrow" /></view>
+		<view class="item" >{{currentAddress.city||"请选择"}} <van-icon name="arrow" /></view>
+		<view class="item" >{{currentAddress.area||"请选择"}} <van-icon name="arrow" /></view>
+		<button bindtap="toSelectAddress"
+				style="position: absolute;left:0;right:0;top:0;bottom:0;opacity: 0.1"
+		/>
+	</view>
+	<input type="text"
+	       value="{{currentAddress.address}}"
+	       bindconfirm = "iptAddressHandle"
+	       bindblur = "iptAddressHandle"
+	       placeholder=" 请输入详细地址"/>
+</view>
+
+<view class="ueserInfo">
+	<input type="text"
+	       value="{{currentAddress.contact}}"
+	       bindconfirm = "iptNameHandle"
+	       bindblur = "iptNameHandle"
+	       placeholder="您的名字" />
+	<van-radio-group
+	wx:if="{{pageType=='car-details'||pageType=='loan-details'|| pageType=='prize'}}"
+			custom-class = "radio_group"
+			value="{{currentAddress.sex||'1'}}"
+			bind:change="selcetSexHandle"
+			label-position ="left"
+			checked-color="#FF6A21"
+	>
+		<van-radio custom-class="radio_item" name="1" icon-size="30rpx">男士</van-radio>
+		<van-radio custom-class="radio_item" name="2" icon-size="30rpx">女士</van-radio>
+	</van-radio-group>
+	<input type="number"
+	       value="{{currentAddress.phone}}"
+	       bindconfirm = "iptPhoneHandle"
+	       bindblur = "iptPhoneHandle"
+	       placeholder="您的联系方式" />
+</view>
+
+	<van-button custom-class="save_btn"
+	            block
+	            bindtap="submitHandle"
+	            color="#FF6A21">
+		提交
+	</van-button>
+
+
+<van-popup
+		show="{{ isShowAera }}"
+		position="bottom"
+		bind:close="onCloseAera"
+>
+	<van-area
+			bind:cancel="onCloseAera"
+			bind:confirm = "addressSelected"
+			area-list="{{ areaList }}"
+			columns-placeholder="{{ ['请选择省', '请选择市', '请选择区'] }}"
+			title="请选择地址"
+	/>
+</van-popup>

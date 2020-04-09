@@ -1,5 +1,5 @@
 <!--pages/vip/index.wxml -->
-
+<wxs src="../../../utils/filters.wxs" module="filters" />
 <!--轮播图-->
 <view class="swiper_wrap">
 	<swiper indicator-dots="{{false}}"
@@ -10,8 +10,9 @@
 	        bindchange = "swiperChange"
 	>
 		<block wx:for="{{indexSwiperData}}" wx:key="index">
-			<swiper-item >
-				<image src="{{item.url}}"
+			<swiper-item  >
+				<image src="{{item.picUrl}}"
+				       data-id="{{item.id}}"
 				       mode="scaleToFill"
 				       class="swiper_item_image"
 				/>
@@ -26,39 +27,41 @@
 	</view>
 </view>
 
-<van-tabs active="{{ tabActive }}"
-          sticky
-          swipeable
-          bind:change="tabChange"
+<!--众筹-->
+
+<my-tab plate= "5"
+        bindtabChange="tabc"
+        active="0"
+        showGotop ="{{floorStatus}}"
+        loadType ="{{loadType}}"
+        showLoad ="{{true}}"
 >
-	<van-tab title="标签 1" >
+	<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
 		<van-card
-				wx:for="1111111111111111111111111111111111111111111111111111111111111111111111111111111111"
-				desc="原生态的绿色美味，颗颗饱满。"
-				title="洞藏香米 50kg装 原价108元"
+				bindtap="toDetail"
+				wx:for="{{list}}"
+				wx:key="{{item.id}}"
+				desc="{{item.details}}"
+				title="{{item.name}}"
+				data-id="{{item.id}}"
+				data-product-type="{{item.type}}"
 				title-class="title"
 				thumb-class="card_img"
 				thumb-mode="scaleToFill"
-				thumb="{{ 'https://dss0.baidu.com/73x1bjeh1BF3odCf/it/u=1668627244,3741646552&fm=85&s=159AAF77C0B8799A888C81620300F063' }}"
+				thumb="{{ item.showUrl }}"
 		>
 			<view slot="tags" class="tags"></view>
 			<view slot="bottom" class="bottom">
 				<view class="progress">
-					参与众筹，众筹进度80%
+					参与众筹，众筹进度{{filters.progress(item.activityNum,item.totalNum)}}%
 					<view class="progess_background">
-						<view class="progress_value" style="width: 80%;"></view>
+						<view class="progress_value" style="width: {{filters.progress(item.activityNum,item.totalNum)}}%;"></view>
 					</view>
 				</view>
 				<view class="price">
-					¥50
+					¥{{item.currentPrice}}
 				</view>
 			</view>
 		</van-card>
-
-	</van-tab>
-	<van-tab title="标签 2" >内容 2</van-tab>
-	<van-tab title="标签 3" >内容 3</van-tab>
-</van-tabs>
-
-
-
+	</block>
+</my-tab>

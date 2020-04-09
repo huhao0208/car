@@ -1,3 +1,69 @@
-<!--pages/index/index.wxml -->
+<!--汽车销售-->
+<wxs src="../../../utils/filters.wxs" module="filters" />
+<!--搜索-->
+<van-search value="{{ search }}"
+            bindchange="onChange"
+            bind:search="onSearch"
+            background="#003561"
+            shape="round"
+            placeholder="请输入搜索关键词"
+            use-action-slot
+>
+	<view slot="action" bind:tap="onSearch" style="color:#FFF;padding: 0 10rpx">搜索</view>
+</van-search>
+<!--精选品牌-->
+<view class="brands_title">精选品牌</view>
 
-<!--轮播图-->
+<van-row class="brands">
+
+	<van-col
+			span="6"
+			wx:for="{{brandList}}"
+			wx:key="{{item.id}}"
+			data-search="{{item.name}}"
+			bindtap="onSearch"
+	>
+		<van-icon name="{{filters.apiImg(item.icon)}}"/>{{item.name}}
+	</van-col>
+
+</van-row>
+
+<view class="brands_title">新车优选</view>
+<block wx:for="{{listData}}" wx:for-item="list">
+	<navigator
+			wx:for="{{list}}"
+			wx:key="{{item.id}}"
+			open-type="navigate"
+			url="/pages/three-level/car-details/index?id={{item.id}}"
+	>
+		<van-card
+				desc="{{item.vehicleType}}"
+				title="{{item.name}}"
+				title-class="title"
+				thumb-class="card_img"
+				thumb-mode="scaleToFill"
+				thumb="{{filters.apiImg(item.showImage) }}"
+		>
+			<!--	<view slot="tags" class="tags"></view>-->
+			<view slot="bottom" class="bottom">
+				<view class="progress">
+					<view class="price_title">厂家指导价: {{item.guidePrice}}</view>
+					<view class="price_value">首付{{item.firstPayment}}元 <text>月供{{item.monthly}}元</text></view>
+				</view>
+				<view class="price">
+					<view class="zhixiao">{{item.label}}</view>
+				</view>
+			</view>
+		</van-card>
+	</navigator>
+</block>
+
+<load-more
+		showGotop="{{showGotop}}"
+		loadType="{{loadType}}"
+		showLoad="{{showLoad}}"
+
+/>
+
+
+

@@ -1,4 +1,12 @@
 {
   "navigationBarTitleText": "会员码",
-  "usingComponents": {}
+  "usingComponents": {
+    "login": "../../../components/login/index",
+    "van-button": "@vant/weapp/button",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-area": "@vant/weapp/area/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-radio": "@vant/weapp/radio/index",
+    "van-radio-group": "@vant/weapp/radio-group/index"
+  }
 }

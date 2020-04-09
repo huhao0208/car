@@ -1,0 +1,19 @@
+
+<van-popup
+		z-index="999999"
+		show="{{ !isLogin && showLogin}}"
+		position="bottom"
+>
+	<view class="title">cccc申请获取得以下授权</view>
+
+	<view class="content">
+		获取您的{{openType=='getUserInfo'?'公开信息(昵称、头像等)':'手机号码'}}
+	</view>
+
+	<view class="bts">
+		<button bindtap="_loginCancel" class="cancel">拒绝</button>
+		<button open-type="getUserInfo" wx:if="{{openType=='getUserInfo'}}" type="primary" lang="zh_CN" bindgetuserinfo="getUserInfo">允许</button>
+		<button open-type="getPhoneNumber" wx:else type="primary" lang="zh_CN" bindgetphonenumber="getPhoneNumber">允许</button>
+	</view>
+</van-popup>
+

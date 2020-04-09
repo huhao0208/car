@@ -1,3 +1,1 @@
-
-
-/*# sourceMappingURL=index.wxss.map */
+.van-search__action--hover{background:rgba(0,0,0,0.2) !important}.brands_title{padding:20rpx;font-weight:600;font-size:37rpx}.brands van-col{text-align:center}.brands van-col van-icon{margin-bottom:10rpx;font-size:70rpx;vertical-align:middle}page van-card .progress .price_title{color:#999}page van-card .progress .price_value text{color:#999}page van-card .zhixiao{width:100rpx;height:30rpx;color:#FFF;text-align:center;font-size:20rpx;margin-top:50rpx;background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/bg3.png") no-repeat center;background-size:100%}

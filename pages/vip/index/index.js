@@ -1,19 +1,15 @@
-// pages/index/index.js
+const app = getApp();
+import{getProductList,getAdvertList} from "../../../api"
+let page  = 1;
+let categoryId = '' ;   // 分类id
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    indexSwiperData: [
-      {
-        id: 1,
-        url: 'http://img5.imgtn.bdimg.com/it/u=1699290070,1429634299&fm=26&gp=0.jpg'
-      }, {
-        id: 2,
-        url: 'http://img3.imgtn.bdimg.com/it/u=1075925060,2199011497&fm=11&gp=0.jpg'
-      }
-    ], //轮播图数据
+    floorStatus:false,  // 返回顶部
+    indexSwiperData: [ ], //轮播图数据
     swiperActive: 0,
     tabActive: 0,
   },
@@ -22,11 +18,48 @@ Page({
       swiperActive:e.detail.current,
     })
   },
+  // 去详情页
+  toDetail(e){
+    console.log(e)
+    let {id,productType} = e.currentTarget.dataset
+      wx.navigateTo({
+        url:'/pages/three-level/good-details/index?id='+id+'&productType='+productType,
+      })
+  },
+
+  // 获取轮播图
+  getAdvertListData(){
+    getAdvertList({type:2})
+        .then(res=>{
+          console.log(res)
+          this.setData({
+            indexSwiperData:res.list
+          })
+        })
+  },
+  //屏幕滚动  返回顶部用
+  onPageScroll(e){
+    if (e.scrollTop >= 400 &&e.scrollTop <1000 ) {
+      if (this.data.floorStatus) return
+      this.setData({
+        floorStatus: true
+      });
+    } else if(e.scrollTop < 400) {
+      if (!this.data.floorStatus) return
+      this.setData({
+        floorStatus: false
+      })
+    }
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    categoryId=""
+    this.getListData()
+    this.getAdvertListData()
   },
 
   /**
@@ -56,19 +89,51 @@ Page({
   onUnload: function () {
 
   },
+// tab栏切换
+  tabc(e){
+//    console.log(e.detail.categoryId,'mmmm')
+    page =1
+    categoryId = e.detail.categoryId
+    this.getListData()
+  },
+
+  // 获取列表数据
+  getListData(){
+    if(page == 1){
+      this.setData({
+        listData: [],
+        loadType:1
+      })
+    }
+    // 获取众筹 type2
+    getProductList({page,type:2,categoryId})
+        .then(res=>{
+          wx.stopPullDownRefresh()
+          page = res.page
+          let ltype = (!res.total)?3:( res.page == res.pages )?2:1
+          page++
+          if(page>res.pages+1) return
+            this.setData({
+              [`listData[${this.data.listData.length}]`]:res.list,
+              loadType: ltype
+            })
+        })
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
 
+    page=1
+    this.getListData()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.getListData()
   },
 
   /**

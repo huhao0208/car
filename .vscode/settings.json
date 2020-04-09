@@ -1,0 +1,16 @@
+{
+    "easysass.formats": [
+    {
+        "format": "compressed",  // 没有缩进的、扩展的css代码  compressed// 压缩后的
+        "extension": ".wxss"  //转化的后缀名
+    }
+],
+"files.associations": {
+    "*.vue": "vue",
+    "*.wpy": "vue",
+    "*.cjson": "jsonc",
+    "*.wxss": "css",
+    "*.wxs": "javascript",
+    "*.wxml": "html"
+}
+}

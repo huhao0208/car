@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "汽车详情",
+  "usingComponents": {
+    "collect": "../../../components/collect/index",
+    "comment": "../../../components/comment/index",
+    "login": "../../../components/login/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-tabs": "@vant/weapp/tabs/index"
+  }
+}

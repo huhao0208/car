@@ -1,0 +1,42 @@
+
+<view class="container">
+	<view class="welcome_img"></view>
+	<view class="title">海量好货 抽奖即得</view>
+	<!--九宫格大转盘-->
+	<view id="lottery">
+		<block wx:for="{{Jack_pots_val}}" wx:key="index">
+			<view class="lottery-unit lottery-unit-{{index}} {{Jack_pots_select[index]?'select':''}}">
+					<image mode="scaleToFill" src="{{item.url}}"></image>
+					<text>{{item.name}}</text>
+			</view>
+		</block>
+
+		<view class="start lottery-unit" id="start" >
+<!--			<image mode="scaleToFill" src="https://dss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=1823385320,1322595627&fm=85&app=2&f=JPEG?w=121&h=75&s=61B21CD7529189903E09C0F40300C0B3"></image>-->
+		</view>
+	</view>
+	<!--九宫格大转盘-->
+	<view class="start_btn_box">
+		<button bindtap="go" class="start_btn {{is_play?'start_btn_hover':''}}" hover-class="start_btn_hover" >点击抽奖</button>
+	</view>
+<!--	<view>-->
+<!--		获奖结果：{{result_val}}-->
+<!--	</view>-->
+<!--	<view>-->
+<!--		剩余抽奖次数：{{available_num}}-->
+<!--	</view>-->
+</view>
+
+<view class="result_bg" wx:if="{{result_val}}" bindtap="closeResult">
+	<view class="result_box" catchtap="resultDetail">
+		<image  src="{{result_val.url}}"/>
+		<text >{{result_val.name}}</text>
+		<view class="my_prize">
+			<text >查看我的奖品</text>
+			<icon catchtap="closeResult" type="cancel" color="rgba(255,255,255,.7)"/>
+		</view>
+	</view>
+
+</view>
+
+<login showLogin="{{showLogin}}" />

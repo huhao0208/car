@@ -1,0 +1,202 @@
+@mixin bg($name){
+  background-image: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+$name);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+@mixin  font_f(){
+  font-family:HappyZcool-2016
+}
+$imgUrl: 'http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/';
+
+page{
+  overflow: hidden;
+  background: linear-gradient(0deg,rgba(254,183,55,1),rgba(255,121,39,1));
+
+}
+.container{
+  margin-top: 50vh;
+ transform: translateY(-50%);
+  padding-bottom: 174rpx;
+
+}
+$box_h: 171rpx;
+$box_w: 200rpx;
+$box_padding: 15rpx;
+
+.welcome_img{
+  background:url($imgUrl+"welcome.png") no-repeat center top;
+  background-size:589rpx 231rpx;
+  width: 100%;
+  height: 231rpx;
+}
+.title{
+  text-align: center;
+  margin: 28rpx;
+  color:#FFF;
+  font-size: 33rpx;
+}
+
+
+
+/*九宫格大转盘  */
+#lottery{
+  width:640rpx;
+  height:550rpx;
+  margin:20rpx auto 0;
+  position:relative;
+  border-radius: 15rpx;
+  //#FF7927
+  background: linear-gradient(0deg,rgba(255,133,30,1),rgba(223,41,2,1));
+ // border: 10rpx solid #CCC;
+
+}
+
+.lottery-unit{
+  background: #FFF;
+  width: $box_w;
+  height: $box_h;
+  position: absolute;
+  text-align: center;
+  border:10rpx solid rgba(0,0,0,0);
+  box-sizing: border-box;
+  border-radius: 15rpx;
+  image{
+      max-width: 60%;
+      height: 60%;
+      margin: 10rpx auto 8rpx;
+      display: block;
+  }
+  text{
+    font-size: 20rpx;
+    @include font_f()
+  }
+}
+.lottery-unit-0{
+  left: $box_padding;
+  top: $box_padding;
+}
+.lottery-unit-0{
+  left: $box_padding;
+  top: $box_padding;
+}
+.lottery-unit-1{
+  left: 50%;
+  top: $box_padding;
+  transform: translateX(-50%);
+}
+.lottery-unit-2{
+  right: $box_padding;
+  top: $box_padding;
+}
+.lottery-unit-3{
+  right: $box_padding;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lottery-unit-4{
+  right: $box_padding;
+  bottom: $box_padding;
+}
+.lottery-unit-5{
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: $box_padding;
+}
+.lottery-unit-6{
+  left: $box_padding;
+  bottom: $box_padding;
+}
+.lottery-unit-7{
+  top: 50%;
+  transform: translateY(-50%);
+  left: $box_padding;
+}
+.select{
+  //#FFEC14
+  border: 10rpx solid rgba(0,0,0,0);
+  box-shadow: 0 0 10rpx 6rpx #FFEC14;
+}
+.start{
+  left: 50%;
+  top: 50%;
+  border-radius: 0;
+  border: none;
+  background: url($imgUrl+"baoxiang.png") no-repeat center;
+  background-size: 200%;
+  transform: translate(-50%,-50%);
+
+}
+
+/*九宫格大转盘  */
+
+.start_btn{
+  margin-top: 50rpx;
+  width: 50%;
+  height: 113rpx;
+  line-height: 113rpx;
+  font-size: 61rpx;
+  color: #FFF;
+  font-family:PingFang SC;
+  text-shadow:1px 3px 0px rgba(181,3,0,1);
+  font-weight: 600;
+  background:linear-gradient(180deg,rgba(255,108,94,1),rgba(245,97,75,1),rgba(249,82,50,1));
+  box-shadow:2px 3px 0px 0px rgba(186,19,10,1), 0px 1px 3px 0px rgba(255,172,160,1);
+  border-radius:13px;
+  transform: skew(-10deg);
+}
+button.start_btn_hover{
+  color: rbga(200,200,200,.8);
+  text-shadow:1px 2px 0px rgba(181,3,0,1);
+  box-shadow:1px 2px 0px 0px rgba(186,19,10,1), 0px 1px 3px 0px rgba(255,172,160,1);
+}
+
+.result_bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background:rgba(0,0,0,.7) url($imgUrl+"lucky.png") no-repeat center;
+  background-size: 160%;
+  box-sizing: border-box;
+  .result_box{
+    width: 400rpx;
+    height: 400rpx;
+    background: #FFF;
+   position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20rpx;
+    box-shadow: 0 0 22rpx 3rpx #FFF203;
+    image{
+      width: 220rpx;
+      height: 204rpx;
+      margin-bottom: 40rpx;
+    }
+    text{
+      font-weight: 600;
+      @include font_f()
+    }
+    .my_prize{
+      position: absolute;
+      left: 0;
+      color: #FFF;
+      font-size: 43rpx;
+      bottom: -90rpx;
+      width: 100%;
+      text-align: center;
+      icon{
+        position: absolute;
+        left: 50%;
+        bottom: -90rpx;
+        transform: translateX(-50%);
+      }
+    }
+  }
+}

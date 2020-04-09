@@ -53,9 +53,9 @@ van-card {
 .progress{
   display: inline-block;
   width: 303rpx;
-  padding-top:20rpx;
   font-size: 24rpx;
   color: #DD2928;
+  margin-bottom: 10rpx;
   .progess_background{
     width: 307rpx;
     margin-top: 5rpx;
@@ -74,9 +74,7 @@ van-card {
   line-height: 90rpx;
 }
 
-.bottom{
-  height: 110rpx;
-}
+
 .tags{
   height: 23rpx;
   width: 77rpx;

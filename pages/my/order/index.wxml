@@ -1,68 +1,82 @@
-<!--pages/my/index.wxml-->
-<view class="user_info"
->
-	<image class="avator"/>
-	<view class="user_info_right">
-		<view class="account ">
-			189 0656 8888
-		</view>
-		<view class="grade_name"
-		      style="background: #FFEFD4 url('{{imgUrl}}hg-vip.png') no-repeat 0 center ;background-size: contain;">
-			黄金会员
-		</view>
-	</view>
-</view>
+
+<my-info/>
 
 <van-tabs
 		nav-class="tab_item"
 		color="#FF6A21"
 		swipeable
 		sticky
+		bindchange="tabChange"
 		type="card">
-	<van-tab title="标签 1">
-		<block wx:for="{{listData}}">
+	<van-tab title="进行中" />
+	<van-tab title="已完成"/>
+
+	<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
+		<view wx:for="{{list}}"
+		      wx:key="{{item.id}}"
+		      data-orderId="{{item.id}}"
+		      bindtap="toOrderDetail"
+		>
 			<view class="order_info_top">
-				<text class="order_number">订单号：3260134858374</text>
-				<text class="order_time">2020-3-24 16:46:00</text>
+				<view class="order_number">订单号：{{item.orderNumber}}</view>
+				<view class="order_time">{{item.createTime}}</view>
 			</view>
 			<van-card
+
 					desc=""
-					title="洞藏香米 50kg装 原价108元"
+					title="{{item.proName}}"
 					title-class="title"
 					thumb-class="card_img"
 					thumb-mode="scaleToFill"
-					thumb="{{ 'https://dss0.baidu.com/73x1bjeh1BF3odCf/it/u=1668627244,3741646552&fm=85&s=159AAF77C0B8799A888C81620300F063' }}"
+					thumb="{{ item.url}}"
 			>
 				<view slot="tags" class="tags">
 
 				</view>
 				<view slot="bottom" class="bottom">
 					<view class="progress">
-						<view>5.0kg</view>
-						X2
+<!--						<view>5.0kg</view>-->
+						X{{item.quantity}}
 					</view>
 					<view class="price">
-						<view class="price_true">¥50</view>
-						<view class="price_show">¥60</view>
+						<view class="price_true">¥{{item.unitPrice}}</view>
+						<view class="price_show">¥{{item.price}}</view>
 					</view>
 				</view>
 			</van-card>
 			<view class="steps">
-				<text class="status {{status>=1?'status_active':'' }}">确认</text>
-				<text class="line {{status>=1?'line_active':'' }}"></text>
-				<text class="status {{status>=2?'status_active':'' }}">发货</text>
-				<text class="line {{status>=2?'line_active':'' }}"></text>
-				<text class="status {{status>=3?'status_active':'' }}">验收</text>
-				<text class="line {{status>=3?'line_active':'' }}"></text>
-				<text class="status {{status>=4?'status_active':'' }}">完成</text>
+<!--众筹订单 -->
+				<block wx:if="{{item.type==2}}">
+					<text style="width: 90rpx;border-radius: 30rpx" class="status {{item.state>=1?'status_active':'' }}">众筹中</text>
+					<text class="line {{(item.state>=1|| item.state==-1)?'line_active':'' }}"></text>
+					<text wx:if="{{item.state!=-1}}" style="width: 120rpx;border-radius: 30rpx" class="status {{item.state>=2?'status_active':'' }}">众筹成功</text>
+					<text wx:if="{{item.state!=-1}}" class="line {{item.state>=2?'line_active':'' }}"></text>
+
+					<text wx:if="{{item.state==-1}}" style="width: 120rpx;border-radius: 30rpx" class="status status_active">众筹失败</text>
+				</block>
+
+<!--普通订单-->
+				<block wx:if="{{item.type==1 && item.state!=-1}}">
+					<text class="status {{item.state>=2?'status_active':'' }}">确认</text>
+					<text class="line {{item.state>=2?'line_active':'' }}"></text>
+				</block>
+				<text class="status {{item.state>=3?'status_active':'' }}">发货</text>
+				<text class="line {{item.state>=3?'line_active':'' }}"></text>
+				<text class="status {{item.state>=4?'status_active':'' }}">验收</text>
+				<text class="line {{item.state>=4?'line_active':'' }}"></text>
+				<text class="status {{item.state>=5?'status_active':'' }}">完成</text>
 			</view>
-			<view class="order_address"> 地址：河南省郑州市十八区政治路南汇小区9组团7栋604室</view>
-			<view class="order_user_info">电话：189 0788 0688 胡歌 <button>确认</button></view>
+			<view class="order_address"> 地址：{{item.province}}{{item.city}}{{item.area}}{{item.address}}</view>
+			<view class="order_user_info">电话：{{item.phone}} {{item.contact}} <button wx:if="{{item.state==3||item.state==4 }}">确认</button></view>
 			<view class="line_1"/>
-		</block>
-	</van-tab>
-	<van-tab title="标签 2">内容 2</van-tab>
+		</view>
+	</block>
 </van-tabs>
+
+<load-more showGotop="{{floorStatus}}"
+           loadType="{{loadType}}"
+           showLoad="{{showLoad}}"
+/>
 
 
 

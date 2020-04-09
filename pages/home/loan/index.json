@@ -1,4 +1,9 @@
 {
-  "navigationBarTitleText": "会员",
-  "usingComponents": {}
+  "navigationBarTitleText": "金融贷款",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "my-tab": "../../../components/my-tab/index",
+    "load-more": "../../../components/load-more/index",
+    "van-card": "@vant/weapp/card/index"
+  }
 }

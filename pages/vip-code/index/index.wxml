@@ -1,20 +1,83 @@
 <!--pages/vip-code/index.wxml -->
 
-<view class="top">
-	<icon />  胡歌的会员卡
-	<text >会员使用规则 》</text>
-</view>
-
-<view class="card">
-	<view class="grade">
-		<view class="text_ch">黄金会员</view>
-		<view class="text_en">GOLD MEMBER</view>
+<block wx:if="{{userInfo.vip}}">
+	<view class="top">
+		<icon /> {{userInfo.fullName}}的会员卡
+		<text>会员使用规则 》</text>
 	</view>
-	<view class="to_use">立即使用</view>
-	<view class="card_number">3069 10005 28223 4863</view>
-</view>
 
-<view class="qr_code">
-	<image  src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1584991338421&di=0e3efec1a7cae95cfc9f4119d404c314&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F01%2F42%2F52%2F49573d7f1e77c60.jpg"></image>
+	<view class="card card_vip1">
+		<view class="grade" wx:if="{{userInfo.vip ==3}}">
+			<view class="text_ch">黄金会员</view>
+			<view class="text_en">GOLD MEMBER</view>
+		</view>
+		<view class="grade" wx:elif="{{userInfo.vip ==2}}">
+			<view class="text_ch">白银会员</view>
+			<view class="text_en">SILVER MEMBER</view>
+		</view>
+		<view class="grade" wx:else>
+			<view class="text_ch">青铜会员</view>
+			<view class="text_en">BRONZE MEMBER</view>
+		</view>
+		<!--		<view class="to_use">立即使用</view>-->
 
-</view>
+		<view class="card_number">{{userInfo.memberCode}}</view>
+	</view>
+
+	<view class="qr_code">
+		<image src="{{userInfo.qrCodeUrl}}"></image>
+	</view>
+
+</block>
+
+<block wx:else>
+	<view class="address">
+		<view class="title"><text>*</text>所在地区</view>
+		<view class="select_address">
+			<view class="item">{{formData.province|| '请选择'}}
+				<van-icon name="arrow" />
+			</view>
+			<view class="item">{{formData.city ||  '请选择'}}
+				<van-icon name="arrow" />
+			</view>
+			<view class="item">{{formData.area|| '请选择'}}
+				<van-icon name="arrow" />
+			</view>
+			<button bindtap="toSelectAddress" style="position: absolute;left:0;right:0;top:0;bottom:0;opacity: 0.1" />
+		</view>
+		<input type="text" bindconfirm="iptAddressHandle" bindblur="iptAddressHandle" placeholder=" 请输入详细地址" />
+	</view>
+
+	<view class="ueserInfo">
+		<input type="text" bindconfirm="iptNameHandle" bindblur="iptNameHandle" placeholder="您的名字" />
+		<van-radio-group custom-class="radio_group" value="{{formData.gender}}" bind:change="selcetSexHandle"
+			label-position="left" checked-color="#FF6A21">
+			<van-radio custom-class="radio_item" name="1" icon-size="30rpx">男士</van-radio>
+			<van-radio custom-class="radio_item" name="2" icon-size="30rpx">女士</van-radio>
+		</van-radio-group>
+		<input type="number" bindconfirm="iptPhoneHandle" bindblur="iptPhoneHandle" placeholder="您的联系方式" />
+	</view>
+
+	<view class="select_level">
+		<view class="title">开通服务</view>
+		<van-radio-group custom-class="radio_group" bind:change="selcetSexHandle" label-position="left"
+			checked-color="#FF6A21" value="vip3" style="justify-content: center">
+			<!--			<van-radio custom-class="radio_item" name="vip1" icon-size="30rpx">黄金会员 ¥999/年</van-radio>-->
+			<!--			<van-radio custom-class="radio_item" name="vip2" icon-size="30rpx">白银会员 ¥666/年</van-radio>-->
+			<van-radio selected custom-class="radio_item" name="vip3" icon-size="30rpx">¥299/年</van-radio>
+		</van-radio-group>
+	</view>
+
+	<van-button custom-class="save_btn" block type="primary" bindtap="submitHandle">
+		立即开通会员
+	</van-button>
+
+
+	<van-popup show="{{ isShowAera }}" position="bottom" bind:close="onCloseAera">
+		<van-area bind:cancel="onCloseAera" bind:confirm="addressSelected" area-list="{{ areaList }}"
+			columns-placeholder="{{ ['请选择省', '请选择市', '请选择区'] }}" title="请选择地址" />
+	</van-popup>
+
+</block>
+
+<login bindhasLogin="hasLogin" />

@@ -1,3 +1,7 @@
+page {
+  background: rgba(233, 233, 233, 0.6);
+  position: absolute; }
+
 .top {
   margin: 0 17rpx;
   height: 115rpx;
@@ -43,10 +47,83 @@
     font-size: 29rpx;
     color: #FFF; }
 
+.card_vip1 {
+  background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/card-bg-l.png") no-repeat center, linear-gradient(129deg, #e2894d, #bb703e); }
+
+.card_vip2 {
+  background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/card-bg-l.png") no-repeat center, linear-gradient(129deg, #9bb2c4, #738594); }
+
+.card_vip3 {
+  background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/card-bg-l.png") no-repeat center, linear-gradient(129deg, #e2ba82, #f3daa6); }
+
 .qr_code {
   text-align: center; }
   .qr_code image {
-    width: 400rpx;
-    height: 400rpx; }
+    width: 300rpx;
+    height: 300rpx; }
+
+.address {
+  background: #FFF;
+  padding: 0 30rpx; }
+  .address .title {
+    padding: 27rpx 0 25rpx; }
+    .address .title text {
+      color: red; }
+  .address .select_address {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1rpx solid #EEE;
+    border-top: 1rpx solid #EEE; }
+    .address .select_address .item {
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      padding: 25rpx 10rpx 25rpx 20rpx;
+      font-size: 24rpx; }
+    .address .select_address .item:nth-child(2) {
+      border-left: 1rpx solid #EEE;
+      border-right: 1rpx solid #EEE; }
+
+input {
+  padding: 25rpx 0; }
+
+.ueserInfo {
+  background: #FFF;
+  margin: 30rpx 0;
+  padding: 0 30rpx;
+  width: 100%;
+  overflow: hidden; }
+  .ueserInfo van-radio-group {
+    border-bottom: 1rpx solid #EEE;
+    border-top: 1rpx solid #EEE;
+    display: block;
+    width: 100%;
+    overflow: hidden; }
+  .ueserInfo .radio_item {
+    float: left;
+    margin: 24rpx 40rpx 24rpx 0; }
+
+page .save_btn {
+  margin: auto;
+  width: 80%;
+  margin: auto;
+  padding: 20rpx 0;
+  border-radius: 15rpx;
+  font-size: 40rpx; }
+
+.select_level {
+  background: #FFF;
+  margin-bottom: 80rpx; }
+  .select_level .title {
+    height: 90rpx;
+    line-height: 90rpx;
+    padding: 0 30rpx;
+    border-bottom: 1rpx solid #EEE; }
+  .select_level van-radio-group {
+    display: flex; }
+    .select_level van-radio-group van-radio {
+      margin: 50rpx 30rpx; }
 
 /*# sourceMappingURL=index.wxss.map */

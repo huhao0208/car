@@ -1,0 +1,29 @@
+van-popup {
+  width: 100vw; }
+  van-popup .title {
+    padding: 30rpx 50rpx;
+    font-size: 35rpx; }
+  van-popup .content {
+    padding: 50rpx;
+    font-size: 30rpx;
+    color: #999;
+    border: 1rpx solid #EEE; }
+  van-popup .bts {
+    display: flex;
+    margin: 60rpx auto 70rpx;
+    width: 80%;
+    border: 1rpx solid #1AAD19;
+    border-radius: 36rpx;
+    overflow: hidden; }
+    van-popup .bts .cancel {
+      color: #999; }
+    van-popup .bts button {
+      height: 75rpx;
+      line-height: 75rpx;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      border: none;
+      flex: 1; }
+
+/*# sourceMappingURL=index.wxss.map */

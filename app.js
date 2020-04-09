@@ -1,13 +1,9 @@
 const http = require('utils/http');
 const config = require('./utils/config');
-
-
+import {getUserDetail,collectProduct} from "./api"
 let isLocation = true
 
 App({
-	isLogin(){
-		return 	Boolean(wx.getStorageSync('unionId'))     // 登录状态 false || true 需要页面直接调用 正常似乎用不到?
-	},
 	onLaunch: function () {
 		//版本更新
 		if (wx.canIUse('getUpdateManager')) {
@@ -41,12 +37,37 @@ App({
 				}
 			})
 		}
+
+		// 获取本地存储的token
+		this.globalData.unionId = wx.getStorageSync('unionId')|| ''
+		this.globalData.userInfo = wx.getStorageSync('userInfo')|| {}
+		// 如果有token 直接获取用户信息
+		if(this.globalData.unionId) {
+			this.getUserDetailInfo()
+		}
+
+
 	},
 	globalData: {
 		logo:config.LOGO,
 		imgUrl: config.IMG_URL,
-		userInfo:  wx.getStorageSync('userInfo')|| '',
-		unionId: wx.getStorageSync('unionId')|| '',
+		apiImg: config.API_IMG,
+		userInfo: '',
+		unionId: '',
+		showLogin:false,   // 用来控制登录弹窗开关
+		latitude:0, //我的定位数据
+		longitude:0,
+	},
+	// 登录验证 在需要验证地方调用  用来控制所在页面login弹窗 ,传入的参数是 登录后要执行的方法
+	isLogin(handle){
+		if(!this.globalData.unionId) {
+			this.globalData.showLogin = true
+
+			return false
+		}else{
+			if(handle) handle()
+			return true
+		}
 	},
 
 	// 监听器 用来监听globalData中某个数据变化
@@ -54,17 +75,8 @@ App({
 	watchCallBack: {},
 	watchingKeys: [],
 
+	// 同步修改数据
 	setGlobalData(name,data) {
-		// let res = null
-		// // 为了便于管理，应通过此方法修改全局变量
-		// if(data.constructor === Object ) {
-		// 	Object.keys(data).map(key => {
-		// 		this.globalData[key] = data[key]
-		// 	})
-		// 	this.globalData.name = data
-		// 	wx.setStorageSync(name, data)// 加入缓存
-		// }
-
 		this.globalData[name] = data
 		wx.setStorageSync(name, data)// 加入缓存
 
@@ -94,56 +106,73 @@ App({
 		}
 	},
 	// 获取定位
-	getLocation() {
+	getLocation({successFn,failFn}) {
 		let app = getApp()
-		return new Promise(function (resolve, reject) {
-			// 判断有定位数据 且时间间隔少于10s 才能重新获取数据
-			if (isLocation && app.globalData.latitude && app.globalData.longitude) return resolve(true)
-			isLocation = false
-			wx.getLocation({
-				type: 'gcj02',
-				// isHighAccuracy: true,
-				//   highAccuracyExpireTime: 3100,
-				success: res => {
-					let {latitude, longitude} = res
-					app.globalData.latitude = latitude
-					app.globalData.longitude = longitude
-					resolve(true)
-					setTimeout(_ => isLocation = true, 10000)
-				},
-				fail: err => {
-					wx.hideLoading();
-					wx.getSetting({
-						success: function (res) {
-							if (!res.authSetting['scope.userLocation']) {
-								wx.showModal({
-									title: '',
-									content: '请允许澜庭公社获取您的定位',
-									confirmText: '授权',
-									success: function (res) {
-										if (res.confirm) {
-											wx.openSetting();
-										} else {
-											console.log('get location fail');
-										}
+		if (app.globalData.latitude && app.globalData.longitude) return successFn({latitude:app.globalData.latitude,longitude:app.globalData.longitude})
+		wx.getLocation({
+			type: 'gcj02',
+			// isHighAccuracy: true,
+			//   highAccuracyExpireTime: 3100,
+			success: res => {
+				let {latitude, longitude} = res
+				app.globalData.latitude = latitude
+				app.globalData.longitude = longitude
+				successFn({latitude,longitude})
+			},
+			fail: err => {
+				wx.getSetting({
+					success: function (res) {
+						if (!res.authSetting['scope.userLocation']) {
+							wx.showModal({
+								title: '',
+								content: '请允许获取您的定位',
+								confirmText: '授权',
+								success: function (res) {
+									if (res.confirm) {
+										wx.openSetting({
+											success(res) {
+												console.log('定位授权结果')
+												if (res.authSetting.scope.userLocation)  successFn({latitude:app.globalData.latitude,longitude:app.globalData.longitude})
+											}
+										});
+									} else {
+										console.log('get location fail');
 									}
-								})
-							} else {
-								//用户已授权，但是获取地理位置失败，提示用户去系统设置中打开定位
-								wx.showModal({
-									title: '',
-									content: '请在系统设置中打开定位服务',
-									confirmText: '确定',
-									success: function (res) {
-										res.confirm && that.getNearbyProduct()
-									}
-								})
-							}
-						},
-						fail: reject
-					})
-				}
-			})
+								}
+							})
+						} else {
+							//用户已授权，但是获取地理位置失败，提示用户去系统设置中打开定位
+							wx.showModal({
+								title: '',
+								content: '请在系统设置中打开定位服务',
+								confirmText: '确定',
+								success: function (res) {
+									console.log(res,'系统定位开启')
+									app.getLocation()
+								}
+							})
+						}
+					},
+					fail: _=>{
+						console.log(_)
+						failFn(_)
+					}
+				})
+			}
 		})
-	}
+
+	},
+
+	// 获取最新用户信息
+	getUserDetailInfo(successFn){
+		//console.log("获取用户信息")
+		// Authorization
+		getUserDetail({})
+			.then(res=>{
+			//	console.log(res,'从后台获取的个人信息')
+				this.setGlobalData("userInfo",res)
+				if(typeof(successFn)=='function') successFn(res)
+			}).catch()
+	},
+	
 })

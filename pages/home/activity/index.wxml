@@ -1,3 +1,36 @@
-<!--pages/index/index.wxml -->
 
-<!--轮播图-->
+<wxs src="../../../utils/filters.wxs" module="filters" />
+
+<block wx:for="{{listData}}"
+       wx:key="index"
+       wx:for-item="list">
+	<van-card
+			wx:for="{{list}}"
+			wx:key="{{item.id}}"
+			desc="{{item.title}}"
+			title="{{item.name}}"
+			title-class="title"
+			thumb-class="card_img"
+			thumb-mode="scaleToFill"
+			thumb="{{ item.url}}"
+			data-type="{{item.type}}"
+			data-id="{{item.id}}"
+			bindtap="toDetail"
+	>
+		<!--	<view slot="tags" class="tags"></view>-->
+		<view slot="bottom" class="bottom">
+			<view class="progress">
+				{{item.label}}
+			</view>
+			<view class="price" wx:if="{{item.type}}">
+				<view class="price_true">¥{{item.currentPrice}}</view>
+				<view class="price_show">¥{{item.originalPrice}}</view>
+			</view>
+		</view>
+	</van-card>
+</block>
+
+<load-more showGotop="{{floorStatus}}"
+           loadType="{{loadType}}"
+
+/>

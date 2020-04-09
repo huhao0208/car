@@ -1,0 +1,36 @@
+van-popup{
+  width: 100vw;
+  .title{
+    padding: 30rpx 50rpx;
+    font-size: 35rpx;
+
+  }
+  .content{
+    padding: 50rpx;
+    font-size: 30rpx;
+    color: #999;
+    border: 1rpx solid #EEE;
+  }
+  .bts{
+    display: flex;
+    margin: 60rpx auto 70rpx;
+    width: 80%;
+    border:1rpx solid #1AAD19;
+    border-radius: 36rpx;
+    overflow: hidden;
+    .cancel{
+      color: #999
+    }
+    button{
+      height: 75rpx;
+      line-height: 75rpx;
+      margin: 0;
+      padding: 0;
+      border-radius: 0;
+      border: none;
+      flex: 1;
+    }
+  }
+
+}
+

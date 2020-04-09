@@ -1,0 +1,12 @@
+<canvas canvas-id="canvasdrawer"
+        style="width:{{width}}px;height:{{height}}px;"
+        class="board"
+        wx:if="{{showCanvas}}">
+</canvas>
+
+<view wx:if="{{resImg && visible}}"
+      bindtap="closeHandle"
+      class="preview_img">
+	<image src="{{resImg}}" catchtap="12313"></image>
+	<button catchtap="savePhoto">保存图片</button>
+</view>

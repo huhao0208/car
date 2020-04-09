@@ -1,0 +1,45 @@
+<wxs src="../../utils/filters.wxs" module="filters" />
+<block wx:for="{{listData}}"
+       wx:key="index"
+       wx:for-item="list"
+>
+	<view wx:for="{{list}}"
+	      wx:key="{{item.id}}"
+	      class="comment"
+	>
+		<view class="user_info">
+			<image class="avator"
+			       src="{{filters.apiImg('car.png')}}"/>
+			<text class="user_name">{{'张三'}}</text>  <text class="time">{{filters.formatDate('2020年3月28日10:24:04')}}</text>
+		</view>
+		<text class="content">的开发撒酒疯回款客户dsgsdgsdg s十多个十多个帝国时代给第三方单身狗但是师傅看见爱上 </text>
+	</view>
+	<view wx:for="{{list}}"
+	      wx:key="{{item.id}}"
+	      class="comment"
+	>
+		<view class="user_info">
+			<image class="avator"
+			       src="{{filters.apiImg('car.png')}}"/>
+			<text class="user_name">{{'张三'}}</text>  <text class="time">{{filters.formatDate('2020年3月28日10:24:04')}}</text>
+		</view>
+		<text class="content">的开发撒酒疯回款客户dsgsdgsdg s十多个十多个帝国时代给第三方单身狗但是师傅看见爱上 </text>
+	</view>
+	<view wx:for="{{list}}"
+	      wx:key="{{item.id}}"
+	      class="comment"
+	>
+		<view class="user_info">
+			<image class="avator"
+			       src="{{filters.apiImg('car.png')}}"/>
+			<text class="user_name">{{'张三'}}</text>  <text class="time">{{filters.formatDate('2020年3月28日10:24:04')}}</text>
+		</view>
+		<text class="content">的开发撒酒疯回款客户dsgsdgsdg s十多个十多个帝国时代给第三方单身狗但是师傅看见爱上 </text>
+	</view>
+</block>
+
+<load-more
+		loadType="{{ 3 ||loadType}}"
+		showLoad="{{true}}"
+		showGotop="{{showGotop}}"
+/>

@@ -1,0 +1,110 @@
+// 布局用静态图片
+var imgUrl = function (url) {
+	if (toString(url).indexOf('http') == 0) return url
+	return 'http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/' + url
+}
+// api 获取动态图片
+var apiImg = function (imgurl) {
+	if (toString(imgurl).indexOf('http') == 0) return imgurl
+	console.log(imgurl)
+	return 'http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/' + imgurl
+}
+var moneyFormat = function (money) {
+	return money.toFixed(2);
+}
+
+// 距离计算
+var distance = function (la1, lo1, la2, lo2) {
+	console.log(la1+"/"+lo1, la2+"/"+lo2)
+	var La1 = la1 * Math.PI / 180.0;
+	var La2 = la2 * Math.PI / 180.0;
+	var La3 = La1 - La2;
+	var Lb3 = lo1 * Math.PI / 180.0 - lo2 * Math.PI / 180.0;
+	var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
+	s = s * 6378.137;
+	console.log(s,'计算出来的距离')
+	s = Math.round(s * 10000) / 10000;
+	s = s.toFixed(2);
+	return s;
+}
+
+// 众筹进度换算
+var progress = function (num,total) {
+	return (num/total*100).toFixed(2)
+}
+var formatDate = function (timestamp, type) {
+	// timestamp 时间戳
+	// type 显示类型
+	//  0: 2020-3-26 11:22:03
+	//  1: 2020/03/26 11:22:03
+	//  2: 2020年3月26日11:22:26
+	//  3:11:22:03
+	//  4: 11时22分03秒
+	//  5:2020-3-26
+	//  6:2020年3月26日
+	//  7:2020/03/26
+	var year = 0
+	var month = 0
+	var day = 0
+	var hour = 0
+	var minute = 0
+	var second = 0
+	// 判断时间戳中是否包含 年
+	if (timestamp.indexOf('年') != -1) {
+		year = timestamp.split("年")[0]
+		month = timestamp.split("年")[1].split("月")[0]
+		day = timestamp.split("年")[1].split("月")[1].split("日")[0]
+		hour = timestamp.split("年")[1].split("月")[1].split("日")[1].split(":")[0]
+		minute = timestamp.split("年")[1].split("月")[1].split("日")[1].split(":")[1]
+		second = timestamp.split("年")[1].split("月")[1].split("日")[1].split(":")[2]
+	} else if (timestamp.indexOf('-') != -1) {
+		year = timestamp.split("-")[0]
+		month = timestamp.split("-")[1]
+		day = timestamp.split("-")[2].split(' ')[0]
+		hour = timestamp.split("-")[2].split(' ')[1].split(":")[0]
+		minute = timestamp.split("-")[2].split(' ')[1].split(":")[1]
+		second = timestamp.split("-")[2].split(' ')[1].split(":")[2]
+	} else {
+		var date = getDate(parseInt(timestamp));
+		year = date.getFullYear()
+		month = date.getMonth() + 1
+		day = date.getDate()
+		hour = date.getHours()
+		minute = date.getMinutes()
+		second = date.getSeconds()
+	}
+
+	// 加0
+	if (month < 10) month = "0" + month / 1
+	if (day < 10) day = "0" + day / 1
+	if (hour < 10) hour = "0" + hour / 1
+	if (minute < 10) minute = "0" + minute / 1
+	if (second < 10) second = "0" + second / 1
+	if (type == 7) {
+		return year + '/' + month + '/' + day;
+	} else if (type == 6) {  //不需要时间
+		return year + '年' + month + '月' + day + '日';
+		//
+	} else if (type == 5) {
+		return year + '-' + month + '-' + day;
+	} else if (type == 4) {
+		return hour() + '时' + minute() + "分" + second() + "秒"
+	} else if (type == 3) {
+		return hour() + ':' + minute() + ":" + second
+	} else if (type == 2) {
+		return year + '年' + month + '月' + day + '日' + ' ' + hour + ':' + minute + ":" + second;
+	} else if (type == 1) {
+		return year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ":" + second;
+	} else {
+		return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ":" + second;
+	}
+}
+
+
+module.exports = {
+	progress:progress,
+	distance:distance,
+	apiImg: apiImg,
+	imgUrl: imgUrl,
+	formatDate: formatDate,
+};

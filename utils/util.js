@@ -16,31 +16,45 @@ const formatNumber = n => {
 }
 
 
-const sT = (title,duration=2000,icon='none') =>{
-  wx.showToast({
-    title,
-    icon,
-    duration
-  })
+
+const sT = (title,type) =>{
+ let options = {
+   title:title+'',
+   icon:'none',
+   duration:1500
+ }
+  if(type=='error') {
+    options.image='/images/error.png'
+  }else if(type='warning'){
+    options.image='/images/warning.png'
+  }else if(type="success"){
+    icon:'success'
+  }
+  wx.showToast(options)
 }
 
 let isShowLoading = true
+
+const hL = () =>{
+  wx.hideLoading()
+  isShowLoading = true
+}
+
 const sL = (title,mask=false)=> {
   isShowLoading && wx.showLoading({
     title,
     mask,
     success:()=>{
       isShowLoading = false
+     let time= setInterval(_=>{
+       clearInterval(time)
+       time=null
+        hL()
+      },7000)
     }
   })
 }
 
-const hL = () =>{
-  isShowLoading = false
-  wx.hideLoading()
-
-
-}
 
 const jump = (e)=>{
   let url = e.startsWith('/')?e:'/'+e
@@ -53,7 +67,9 @@ const jump = (e)=>{
           wx.redirectTo({
             url,
             fail(res) {
-              sT('目标页面不存在!')
+             wx.showToast({
+               title:'目标页面不存在'
+             })
               console.log(url+'跳转失败')
             }
           })
@@ -63,12 +79,27 @@ const jump = (e)=>{
   })
 }
 
-
+// 距离计算
+const distance = (la1, lo1, la2, lo2)=>{
+  const app = getApp()
+  app.globalData.getLocation()
+  let La1 = la1 * Math.PI / 180.0;
+  let La2 = la2 * Math.PI / 180.0;
+  let La3 = La1 - La2;
+  let Lb3 = lo1 * Math.PI / 180.0 - lo2 * Math.PI / 180.0;
+  let s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
+  s = s * 6378.137;
+  console.log(s,'计算出来的距离util')
+  s = Math.round(s * 10000) / 10000;
+  s = s.toFixed(2);
+  return s;
+}
 
 module.exports = {
   formatTime,
   sT,
   sL,
   hL,
-  jump,
+  distance,
+  jump
 }
