@@ -43,6 +43,7 @@ Page({
   },
   // 进入会员专区
   toVip(){
+    // 先判断登录
     app.isLogin(_=>{
       // 如果是会员进入专区/pages/vip/index/index 不是去开通页面 pages/vip-code/index/index
       let userInfo = app.globalData.userInfo || wx.getStorageSync('userInfo')
