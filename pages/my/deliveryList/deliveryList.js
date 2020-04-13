@@ -31,7 +31,7 @@ Page({
 
 	//编辑--修改地址信息
 	editAddress(e) {
-		console.log(e.currentTarget.dataset.info)
+	//	console.log(e.currentTarget.dataset.info)
 		if (!e.currentTarget.dataset.info) {
 			wx.navigateTo({
 				url: `/pages/my/r-address/index`
@@ -53,7 +53,7 @@ Page({
 		// console.log(e)
 		// const instance = e.detail
 		let that = this
-		console.log(e.currentTarget.dataset)
+	//	console.log(e.currentTarget.dataset)
 		if (e.detail == 'right') {
 			// 判断当前要删除的地址是否为默认 如果默认 则无法删除\
 			let currentAddress = wx.getStorageSync("currentAddress") || app.globalData.currentAddress
@@ -89,7 +89,7 @@ Page({
 		} else if (e.detail == 'left') {
 			// 选择地址
 			app.setGlobalData("currentAddress", e.currentTarget.dataset.info)
-			console.log(e.currentTarget.dataset.info);
+		//	console.log(e.currentTarget.dataset.info);
 
 			this.setData({
 				selctedId: e.currentTarget.dataset.info.id
@@ -98,16 +98,34 @@ Page({
 
 			let time = setInterval(_ => {
 				clearInterval(time)
-				time = ''
+				time =null
 				try {
 					wx.navigateBack()
 				} catch (error) {
 
 				}
-			}, 1000)
+			}, 500)
 			// instance.close()
 		} else {
-			// instance.close()
+			// 选择地址
+			app.setGlobalData("currentAddress", e.currentTarget.dataset.info)
+		//	console.log(e.currentTarget.dataset.info);
+
+			this.setData({
+				selctedId: e.currentTarget.dataset.info.id
+			})
+			wx.showToast({ title: '设置成功', icon: 'success' })
+
+			let time = setInterval(_ => {
+				clearInterval(time)
+				time =null
+				try {
+					wx.navigateBack()
+				} catch (error) {
+
+				}
+			}, 500)
+		
 		}
 	},
 

@@ -15,7 +15,6 @@ Page({
   },
   // 去详情页
   toDetail(e){
-    console.log(e.currentTarget.dataset)
     // 1 去商品详情 0去抽奖 2众筹
     let url = ''
     let type = e.currentTarget.dataset.type

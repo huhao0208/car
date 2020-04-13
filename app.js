@@ -3,6 +3,33 @@ const config = require('./utils/config');
 import {getUserDetail,collectProduct} from "./api"
 let isLocation = true
 
+
+// const app = getApp()
+const oldPage =Page
+Page = function(app){
+	
+	// 不能用 卡爆了
+	// app.onPageScroll =function(options){
+	// 	console.log('屏幕滚动了');
+		
+	// 	if (options.scrollTop >= 400 &&options.scrollTop <1000 ) {
+	// 		if (this.data.floorStatus) return
+	// 		options.floorStatus = true
+			
+	// 	  } else if(options.scrollTop < 400) {
+	// 		if (!this.data.floorStatus) return
+			
+	// 		options.floorStatus = false
+	// 	  }
+
+	// 	  if (typeof app.onPageScroll === 'function') {
+
+    //         app.onPageScroll.call(this, options);
+    //     }
+	// }
+
+	return oldPage(app)
+}
 App({
 	onLaunch: function () {
 		//版本更新
@@ -61,11 +88,12 @@ App({
 	// 登录验证 在需要验证地方调用  用来控制所在页面login弹窗 ,传入的参数是 登录后要执行的方法
 	isLogin(handle){
 		if(!this.globalData.unionId) {
+			// 弹出登录框
 			this.globalData.showLogin = true
-
 			return false
 		}else{
-			if(handle) handle()
+			// 执行回调函数
+			if(typeof(handle)=="function") handle(this.globalData.userInfo)
 			return true
 		}
 	},
@@ -131,7 +159,7 @@ App({
 									if (res.confirm) {
 										wx.openSetting({
 											success(res) {
-												console.log('定位授权结果')
+											//	console.log('定位授权结果')
 												if (res.authSetting.scope.userLocation)  successFn({latitude:app.globalData.latitude,longitude:app.globalData.longitude})
 											}
 										});
@@ -167,7 +195,7 @@ App({
 	getUserDetailInfo(successFn){
 		//console.log("获取用户信息")
 		// Authorization
-		getUserDetail({})
+		getUserDetail({hideLoading:true})
 			.then(res=>{
 			//	console.log(res,'从后台获取的个人信息')
 				this.setGlobalData("userInfo",res)

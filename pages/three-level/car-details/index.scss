@@ -63,7 +63,7 @@ van-card {
   position: fixed;
   left: 0;
   width: 100%;
-  padding: 20rpx 30rpx;
+  padding: 20rpx 30rpx 40rpx;
   box-sizing: border-box;
   bottom: 0;
   background: #FFF;
@@ -112,7 +112,7 @@ van-card {
   .tuihuo{
     width: 77rpx;
     height: 22rpx;
-    @include bg('zhichituihuo.png')
+    @include bg('baoyou.png')
   }
   .share{
     position: absolute;

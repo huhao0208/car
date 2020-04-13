@@ -21,8 +21,8 @@ Component({
 	},
 	observers:{
 		proid(nval,oval){
-			console.log(nval,oval)
-			console.log('proid')
+		//	console.log(nval,oval)
+		//	console.log('proid')
 			if(nval){
 				this.judgeCollect()
 			}
@@ -62,7 +62,7 @@ Component({
 		judgeCollect(){
 			judgeCollect({type:this.data.type,proId:this.data.proid})
 				.then(res=>{
-					console.log(res,'获取的收藏状态')
+				//	console.log(res,'获取的收藏状态')
 					this.setData({
 						isCollelected: Boolean(res)
 					})

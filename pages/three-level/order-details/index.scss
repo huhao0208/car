@@ -7,7 +7,13 @@ page{
   position:absolute;
 
 }
-
+.total_price{
+  color:#DD1A22;
+  text-align: right;
+  font-size: 30rpx;
+  font-weight: 500;
+  padding: 25rpx 40rpx;
+}
 .order_info_top{
   color:#666;
   padding: 25rpx 40rpx;
@@ -15,6 +21,7 @@ page{
   view{
     line-height: 40rpx;
   }
+ 
 }
 
 
@@ -147,7 +154,10 @@ page van-card  .price{
   .buy_now_btn{
     border-radius: 40rpx;
     color: #FFF;
-    border:1rpx solid #DD1A22;
+    border:1rpx solid rgba(221, 26, 34,.2);
+    .van-button{
+      border-radius: 0;
+    }
   }
   .buy_btn_zx{
     background: #FFF;

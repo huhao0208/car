@@ -11,6 +11,7 @@ Page({
     indexSwiperData: [], //轮播图数据
     swiperActive: 0,
     tabActive: 0,
+    showLogin:false
   },
   swiperChange(e){
     this.setData({
@@ -21,7 +22,7 @@ Page({
   priviweImg(){
     const urls = this.data.indexSwiperData.map(item =>item.url)
     const current = this.data.indexSwiperData[this.data.swiperActive].url
-    console.log(urls,current)
+
 
    wx.previewImage({
      // urls:[],
@@ -35,7 +36,7 @@ Page({
   getAdvertList(){
     getAdvertList({ type:2 })
         .then(res=>{
-          console.log(res)
+     
           this.setData({
             indexSwiperData:res.list
           })
@@ -62,7 +63,7 @@ Page({
 
   // 升级会员
   openVip(e){
-    console.log(e.currentTarget.dataset.type)
+
     let vipType = app.globalData.userInfo.vip || ''
     if(!vipType) {
       // 如果未登录或者没有vip 则只能点击第一个
@@ -74,7 +75,7 @@ Page({
         })
       }
     }else{
-      console.log(e.currentTarget.dataset.vip,vipType);
+
       
       if(e.currentTarget.dataset.vip ==vipType){
 
@@ -138,12 +139,13 @@ Page({
   onShow: function () {
     // 这里判断登录状态 用来改变客服按钮属性
     if(app.globalData.unionId){
-      this.setData({
-        isLogin:true,
-        userInfo: app.globalData.userInfo
+      app.getUserDetailInfo(res=>{
+        this.setData({
+          isLogin:true,
+          userInfo: res
+        })
       })
     }
-
   },
 
   /**

@@ -28,9 +28,9 @@
 	</view>
 </view>
 
-<view class="car_name">{{detail.name}}</view>
+<view class="car_name">{{details.name}}</view>
 
-<view class="car_price">{{detail.title}}</view>
+<view class="car_price">{{details.title}}</view>
 
 <view class="car_price_now distance">
 	<icon class="dingwei"/>

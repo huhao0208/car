@@ -25,7 +25,6 @@ Page({
   priviweImg(){
     const urls = this.data.details.carousel.map(item =>item)
     const current = this.data.details.carousel[this.data.swiperActive]
-    console.log(urls,current)
 
    wx.previewImage({
      current,
@@ -83,9 +82,11 @@ Page({
   getDetail(id){
     getVehicleOwnerDetail({id})
         .then(res=>{
-          console.log(res)
+         
+          let detailsData = res
+          detailsData.details = res.details? res.details.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block" ') : '等待商家添加'//防止富文本图片过大
           this.setData({
-            details:res
+            details:detailsData
           })
         })
   },
@@ -94,7 +95,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+
     let {id} = options
     this.getDetail(id)
 

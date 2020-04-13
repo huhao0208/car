@@ -13,7 +13,8 @@
 
 	<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
 		<view wx:for="{{list}}"
-		      wx:key="{{item.id}}"
+			  wx:key="{{item.id}}"
+			  data-item = "{{item}}"
 		      data-orderId="{{item.id}}"
 		      bindtap="toOrderDetail"
 		>
@@ -23,16 +24,16 @@
 			</view>
 			<van-card
 
-					desc=""
+					desc="{{item.introduce}}"
 					title="{{item.proName}}"
 					title-class="title"
 					thumb-class="card_img"
 					thumb-mode="scaleToFill"
 					thumb="{{ item.url}}"
 			>
-				<view slot="tags" class="tags">
+				<!-- <view slot="tags" class="tags">
 
-				</view>
+				</view> -->
 				<view slot="bottom" class="bottom">
 					<view class="progress">
 <!--						<view>5.0kg</view>-->

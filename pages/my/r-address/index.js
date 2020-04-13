@@ -35,7 +35,7 @@ Page({
 	// 选择地址
 	addressSelected(e) {
 		let address = e.detail.values
-		console.log(address)
+	
 		this.setData({
 			[`options.province`]: address[0].name,
 			[`options.city`]: address[1].name,
@@ -44,7 +44,7 @@ Page({
 		})
 	},
 	iptAddressHandle(e) {
-		console.log(e.detail.value)
+	
 		this.setData({
 			[`options.address`]: e.detail.value,
 			iptAddress: e.detail.value
@@ -52,7 +52,7 @@ Page({
 	},
 	// // 性别 选择
 	selcetSexHandle(e) {
-		console.log(e)
+	
 		this.setData({
 			'options.sex': e.detail,
 			sex: e.detail,
@@ -71,7 +71,7 @@ Page({
 	},
 	// 提交
 	submitHandle() {
-		if (!this.data.options.contact || !this.data.options.province || !this.data.options.phone || !this.data.options.city || !this.data.options.area)  return wx.showToast({title:'请输入完整信息',icon:'none'})
+		if (!this.data.options.contact || !this.data.iptAddress ||!this.data.options.address || !this.data.options.province || !this.data.options.phone || !this.data.options.city || !this.data.options.area)  return wx.showToast({title:'请输入完整信息',icon:'none'})
 
 		// 手机号码验证
 		let reg =  /^[1]([3-9])[0-9]{9}$/
@@ -96,16 +96,20 @@ Page({
 			this.data.options.sex = this.data.sex
 			let fn = this.data.pageType == 'car-details' ? consultCarInfo : this.data.pageType == 'loan-details' ? applyFinancialLoan : usePrize
 
+			
+
+			console.log(fn,'fn');
+			
 
 			if (this.data.pageType == 'prize') {
-				console.log(this.data.options);
+			
 				this.data.options.id = this.data.pageData.id
 				let { contact, phone, province, city, area, address } = this.data.options
 
 			}
 			fn(this.data.options)
 				.then(res => {
-					console.log(res)
+				
 					wx.showToast({
 						title: '提交成功',
 						success(res) {
@@ -122,7 +126,7 @@ Page({
 			// 修改新增地址
 			saveOrUpdateAddress(this.data.options)
 				.then(res => {
-					console.log(res)
+				
 					wx.navigateBack()
 				})
 		}
@@ -132,12 +136,12 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		console.log(options)
+	
 		let pages = getCurrentPages()
 		let page = pages[pages.length - 2] || ''
 		// 如果是从 汽车销售过来的
 		if (page && page.route == 'pages/three-level/car-details/index') {
-			console.log(page.data.carInfo)
+	
 			this.setData({
 				pageType: 'car-details',
 				pageData: page.data.carInfo

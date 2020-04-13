@@ -38,25 +38,31 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title:'请稍候...'
+    })
    // 获取上一页数据 order.js
     let pages = getCurrentPages()
     let fpage = pages[pages.length-2]
-    console.log(fpage.data.listData)
-    let res = ''
-    fpage.data.listData.forEach(item=>{
+    // console.log(fpage.data.listData)
+    // let res = ''
+    // fpage.data.listData.forEach(item=>{
     
-      if(item instanceof Array ){
-        res =item.find(obj=>obj.id == options.orderId)
-        console.log(res)
-      }
-    if(res) return res
-    console.log(item);
+    //   if(item instanceof Array ){
+    //     res =item.find(obj=>obj.id == options.orderId)
+    //   //  console.log(res)
+    //   }
+    // if(res) return res
+   
     
-    })
+    // })
 
+    let result = fpage.data.currentData 
 
     this.setData({
-      ...res
+      ...result
+    },_=>{
+      wx.hideLoading()
     })
     wx.setNavigationBarTitle({
       title:res.type==1?'订单详情':'众筹详情'
@@ -68,7 +74,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   
   },
 
   /**

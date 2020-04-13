@@ -15,7 +15,6 @@ Page({
   },
 // tab栏切换
   tabc(e){
-    console.log(e.detail,'mmmm')
     categoryId = e.detail.categoryId
     this.getListData()
   },
@@ -41,7 +40,6 @@ Page({
   },
   // 去贷款详情页面
   toLoanDetail(e){
-    console.log(e)
     wx.navigateTo({
       url:'/pages/three-level/loan-details/index?id='+e.currentTarget.dataset.id,
     })

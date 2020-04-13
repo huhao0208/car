@@ -84,6 +84,7 @@
 				bindtap="{{isLogin?'':'toLogin'}}"
 				open-type="{{isLogin?'contact':''}}"
 				color="#DD1A22"
+				send-message-title="升级会员,用户名:{{userInfo.username}}"
 				show-message-card
 		>
 			升级会员

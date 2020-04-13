@@ -20,7 +20,7 @@ Page({
   },
   // 去详情页
   toDetail(e){
-    console.log(e)
+
     let {id,productType} = e.currentTarget.dataset
       wx.navigateTo({
         url:'/pages/three-level/good-details/index?id='+id+'&productType='+productType,
@@ -31,12 +31,27 @@ Page({
   getAdvertListData(){
     getAdvertList({type:2})
         .then(res=>{
-          console.log(res)
+      
           this.setData({
             indexSwiperData:res.list
           })
         })
   },
+  	// 轮播图跳转
+	swiperToDetail(e) {
+		// 判断类型跳转对应页面 1 普通商品 2 众筹商品 3 金融贷款 4 汽车销售 5 合作商家
+		let type = e.currentTarget.dataset.type
+		let id = e.currentTarget.dataset.id
+		// `/pages/three-level/good-details/index?productType=${type}&id=${e.currentTarget.dataset.id}`
+		let url = (type == 1 || type == 2) ? `/pages/three-level/good-details/index?productType=${type}&id=${id}` : type == 3 ? '/pages/three-level/loan-details/index?id=' + id : type == 4 ? '/pages/three-level/car-details/index?id=' + id : type == 5 ? '/pages/three-level/cooperation-details/index?id=' + id : ''
+
+		wx.navigateTo({
+			url
+		})
+
+
+  },
+  
   //屏幕滚动  返回顶部用
   onPageScroll(e){
     if (e.scrollTop >= 400 &&e.scrollTop <1000 ) {
@@ -58,7 +73,9 @@ Page({
    */
   onLoad: function (options) {
     categoryId=""
+    page=1
     this.getListData()
+
     this.getAdvertListData()
   },
 
@@ -109,14 +126,13 @@ Page({
     getProductList({page,type:2,categoryId})
         .then(res=>{
           wx.stopPullDownRefresh()
-          page = res.page
-          let ltype = (!res.total)?3:( res.page == res.pages )?2:1
-          page++
-          if(page>res.pages+1) return
+         if( res.pages && page>res.pages) return
+          let ltype = (!res.total)?3:( res.page == res.pages )?2:1    
             this.setData({
               [`listData[${this.data.listData.length}]`]:res.list,
               loadType: ltype
             })
+            page = res.page+1
         })
   },
 

@@ -5,7 +5,7 @@
 	<view class="name">{{currentAddress.contact}}</view>
 	<view>
 		{{currentAddress.phone}}
-		<text  catchtap="addAddress" >点击修改地址》</text>
+		<text  catchtap="addAddress" >修改地址>></text>
 	</view>
 </view>
 <view class="address"
@@ -17,14 +17,14 @@
 
 <van-card
 		bindtap="toProductDetail"
-		desc="{{details.details}}"
+		desc="{{details.introduce}}"
 		title="{{details.name}}"
 		title-class="title"
 		thumb-class="card_img"
 		thumb-mode="scaleToFill"
 		thumb="{{ details.showUrl}}"
 >
-	<view slot="tags" class="tags"></view>
+	<view slot="tags" class="tags" wx:if="{{details.label}}">{{details.label}}</view>
 	<view slot="bottom" class="bottom">
 		<view class="progress">
 			数量*{{number}}

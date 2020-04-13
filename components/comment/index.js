@@ -17,7 +17,7 @@ Component({
 	},
 	observers:{
 		page(val){
-			console.log(val+"/"+this.data.type,'评论组件请求参数')
+		//	console.log(val+"/"+this.data.type,'评论组件请求参数')
 			// -------linshi -------
 			this.setData({loadType:3})
 			return  // 暂时无接口
@@ -25,7 +25,7 @@ Component({
 			if(val>=1){
 				getCarList({page:val})
 					.then(res=>{
-						console.log(res,'获取的评价列表')
+				//		console.log(res,'获取的评价列表')
 						// 如果页码是1 则 直接赋值
 						if(res.page==1){
 							this.setData({

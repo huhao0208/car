@@ -41,7 +41,7 @@ Page({
 	// 选择地址
 	addressSelected(e) {
 		let address = e.detail.values
-		console.log(address)
+		//console.log(address)
 		this.setData({
 			[`currentAddress.province`]: address[0].name,
 			[`currentAddress.city`]: address[1].name,
@@ -50,7 +50,7 @@ Page({
 		})
 	},
 	iptAddressHandle(e) {
-		console.log(e.detail.value)
+	
 		this.setData({
 			[`currentAddress.address`]: e.detail.value,
 			iptAddress: e.detail.value
@@ -58,7 +58,7 @@ Page({
 	},
 	// // 性别 选择
 	selcetSexHandle(e) {
-		console.log(e)
+	
 		this.setData({
 			'currentAddress.sex': e.detail,
 			sex: e.detail,

@@ -52,7 +52,6 @@ Page({
 
   // 去详情页面
   toDetail(e){
-    console.log(e)
     let productid = e.currentTarget.dataset.productid
     wx.navigateTo({
       url:'/pages/three-level/good-details/index?productType=1&id='+productid,

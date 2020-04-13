@@ -11,13 +11,11 @@ Page({
     isLogin:false,
     isCollection:false,     // 是否收藏
     detailsData:{},
-
   },
 
   // 立即申请
   applying(){
     app.isLogin(_=>{
-      console.log(this.data,this)
       wx.navigateTo({
         url:'/pages/my/r-address/index?type=loan&id='+id
       })
@@ -26,7 +24,6 @@ Page({
   // 收藏
   collection(){
     app.isLogin(_=>{
-      console.log('立即收藏')
       this.setData({
         isCollection:!this.data.isCollection
       })
@@ -49,9 +46,11 @@ Page({
   getFinancialLoan(e){
     getFinancialLoanDetail(e)
         .then(res=>{
+          let detailsData = res
+          detailsData.details = res.details? res.details.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block" ') : '等待商家添加'//防止富文本图片过大       
             this.setData({
-              details:res,
-              html: `<img src='${res.showUrl}'>`
+              details:detailsData,
+          //   html: `<img src='${res.showUrl}'  style="max-width:100%;height:auto;float:left;display:block">`
             })
         })
   },
@@ -63,7 +62,7 @@ Page({
    */
   onLoad: function (options) {
 
-      id = options.id/1
+      id = Number(options.id)
     this.getFinancialLoan({id})
 
   },
@@ -109,3 +108,5 @@ Page({
 
   }
 })
+
+

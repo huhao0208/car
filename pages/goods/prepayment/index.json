@@ -1,6 +1,7 @@
 {
-  "navigationBarTitleText": "会员",
+  "navigationBarTitleText": "订单支付",
   "usingComponents": {
+    "van-icon":"@vant/weapp/icon/index",
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "van-card": "@vant/weapp/card/index",

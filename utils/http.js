@@ -25,11 +25,15 @@ const request = function (method,url,data) {
 		// 判断请求api是否完整 并补全
 		let reqUrl = url.startsWith('http') ? url : base_url +url
 
-		// 发送请求 当获取分页数据时不显示loading
+		// 发送请求 当获取分页数据时不显示loading  如果不需显示loading 则在请求的参数中添加hideLoading即可
 		try{
 			console.log(data.page,'dataPage')
-			if(data.page && data.page ==1) sL('请稍候...')
-		}catch(e) {}
+			if((data.page && data.page ==1 || !data.page ) && !data.hideLoading) sL('请稍候...')
+
+			if(data.showLoading) delete data.showLoading
+		}catch(e) {
+			
+		}
 
 		wx.request({
 			url: encodeURI(reqUrl),
@@ -78,10 +82,10 @@ const request = function (method,url,data) {
 		})
 	})
 }
-const get =function (url,data) {
+const get =function (url,data={}) {
     return 	new request("GET",url,data)
 }
-const post = function (url,data) {
+const post = function (url,data={}) {
 	return new request("POST",url,data)
 }
 module.exports = {

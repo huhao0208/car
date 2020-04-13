@@ -10,12 +10,12 @@ var apiImg = function (imgurl) {
 	return 'http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/' + imgurl
 }
 var moneyFormat = function (money) {
-	return money.toFixed(2);
+	return (money/10000).toFixed(2);
 }
 
 // 距离计算
 var distance = function (la1, lo1, la2, lo2) {
-	console.log(la1+"/"+lo1, la2+"/"+lo2)
+	// console.log(la1+"/"+lo1, la2+"/"+lo2)
 	var La1 = la1 * Math.PI / 180.0;
 	var La2 = la2 * Math.PI / 180.0;
 	var La3 = La1 - La2;
@@ -24,6 +24,7 @@ var distance = function (la1, lo1, la2, lo2) {
 	s = s * 6378.137;
 	console.log(s,'计算出来的距离')
 	s = Math.round(s * 10000) / 10000;
+	if(s.isNaN) return false
 	s = s.toFixed(2);
 	return s;
 }
@@ -107,4 +108,5 @@ module.exports = {
 	apiImg: apiImg,
 	imgUrl: imgUrl,
 	formatDate: formatDate,
+	moneyFormat:moneyFormat
 };

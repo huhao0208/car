@@ -13,10 +13,10 @@ Page({
 	},
 	// 页面跳转
 	jumpHandle(e) {
-		console.log(app.isLogin())
 		// console.log(e.target.dataset.url)
 		app.isLogin(_ => {
 				console.log('可以跳转到:' + e.target.dataset.url)
+				if(!e.target.dataset.url) return
 				wx.navigateTo({
 					url: e.target.dataset.url
 				})
@@ -67,7 +67,6 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-		console.log(app.globalData)
 		this.getUserInfo()
 	},
 

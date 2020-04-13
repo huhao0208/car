@@ -13,7 +13,7 @@
 		<image src="{{item.url}}"/>
 		<view class="center_card">
 			<view>{{item.name}}</view>
-			<view class="number">X1</view>
+			<view class="number">{{item.introduce}}</view>
 		</view>
 		<button catchtap="delete"
 		        data-proId="{{item.proId}}"

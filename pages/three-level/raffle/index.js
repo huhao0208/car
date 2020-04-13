@@ -19,7 +19,7 @@ Page({
     Jack_pots_select: [false, false, false, false, false, false, false, false],
     Jack_pots_val: ["一等奖", "二等奖", "三等奖", "一等奖", "三等奖", "参与奖电脑", "二等奖", "谢谢参与"],
     is_play: false,//是否在运动中，避免重复启动bug
-    available_num: 9999,//可用抽奖的次数，可自定义设置或者接口返回
+    available_num: 0, //可用抽奖的次数，可自定义设置或者接口返回
     start_position: 0,//转动开始时首次点亮的位置，可自定义设置
     base_circle_num: 5,//基本圈数，就是在转到（最后一圈）结束圈之前必须转够几圈 ，可自定义设置
     low_circle_num: 4,//在第几圈开始进入减速圈（必须小于等于基本圈数），可自定义设置
@@ -45,12 +45,29 @@ Page({
           })
         })
   },
+  // 登录后触发
+  hasLogin(e){
 
+    this.setData({
+      available_num: e.detail.freeNumber || 0  
+    })
+    
+  },
+  // 点击抽奖
   go(){
-    app.isLogin(_=>{
-    //  this.getAddress()
+    let that =this
+    // 主动触发
+    app.isLogin(res=>{
 
-      this.start()
+
+      
+      // 先获取用户信息 中的中奖次数
+      that.setData({
+        available_num: res.freeNumber || 0    ,   //用户信息中的中奖次数
+      },_=>{
+        that.start()
+      })
+      
 
     })
   },
@@ -64,7 +81,7 @@ Page({
       wx.showModal({
         showCancel: false,
         title: '提示',
-        content: '今日抽奖次数已经用完，明日再战',
+        content: '您的抽奖次数已用尽',
         success: function (res) {
           if (res.confirm) {
             console.log('用户点击确定')
@@ -122,7 +139,7 @@ Page({
     if (that.data.change_num > that.data.base_circle_num * that.data.Jack_pots_val.length + that.data.random_number) {//已经到达结束位置
       //提示中奖，
       // console.log(that.data.Jack_pots_val[that.data.random_number])
-      that.setData({ result_val: that.data.Jack_pots_val[that.data.random_number] })
+     
       //code
       // wx.showModal({
       //   showCancel: false,
@@ -158,11 +175,16 @@ Page({
   },
   //运动结束设置可用抽奖的次数和激活状态设置可用
   endset: function () {
+   setTimeout(() => {
+    that.setData({ result_val: that.data.Jack_pots_val[that.data.random_number] })
+   }, 500);
     var that = this;
     //是否在运动中，避免重复启动bug
     that.setData({ is_play: false })
     //可用抽奖的次数，可自定义设置
     that.setData({ available_num: that.data.available_num - 1 });
+
+    app.getUserDetailInfo()
 
   },
   //重置参数
@@ -188,7 +210,7 @@ Page({
       result_val:''
     })
     console.log('关闭结果')
-    // 在此处判断有无地址 无地址则跳转
+  
 
   },
   resultDetail(){
@@ -217,7 +239,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+     app.getUserDetailInfo(res=>{
 
+       this.setData({
+        available_num:res.freeNumber
+      })
+     })
   },
 
   /**
@@ -227,7 +254,7 @@ Page({
     clearTimeout(timer)
     timer = null
     this.reset()
-    console.log('页面隐藏了')
+
 
   },
 

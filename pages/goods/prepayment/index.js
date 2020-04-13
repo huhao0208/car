@@ -1,5 +1,5 @@
 // 预支付
-import {getProductDetail,crowdFunding,directPurchase} from "../../../api"
+import { getProductDetail, crowdFunding, directPurchase } from "../../../api"
 const app = getApp()
 let onloadData = {}
 Page({
@@ -8,15 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    currentAddress:'',
-    number:1
+    currentAddress: '',
+    number: 1
   },
   // 选择地址
-  addAddress(){
+  addAddress() {
     // if(!this.data.currentAddress){
-      wx.navigateTo({
-        url: `/pages/my/deliveryList/deliveryList`
-      })
+    wx.navigateTo({
+      url: `/pages/my/deliveryList/deliveryList`
+    })
     // }else{
     //   let {address,area, city, contact, createTime, id, phone, province} = this.data.currentAddress
     //   wx.navigateTo({
@@ -26,59 +26,50 @@ Page({
   },
 
   // 获取商品详情
-  getProductDetail(e){
-    getProductDetail({id:onloadData.id})
-        .then(res=>{
-          console.log(res)
-          this.setData({
-            details:res
-          })
+  getProductDetail(e) {
+    getProductDetail({ id: onloadData.id })
+      .then(res => {
+     //   console.log(res)
+        this.setData({
+          details: res
         })
+      })
   },
 
   // 提交支付
-  submit(){
-    if(!this.data.currentAddress || !this.data.currentAddress.id) return  wx.showToast({
-      title:'请选择收获地址',
-      icon:'none'
+  submit() {
+    if (!this.data.currentAddress || !this.data.currentAddress.id) return wx.showToast({
+      title: '请选择收获地址',
+      icon: 'none'
     })
-    let reqData= {
-      proId:this.data.details.id,
-      quantity:this.data.number||1,
-      addressId:this.data.currentAddress.id
+    let reqData = {
+      proId: this.data.details.id,
+      quantity: this.data.number || 1,
+      addressId: this.data.currentAddress.id
     }
     let sel = this.data.details.type
 
-    // 众筹
-   if(sel==2)  crowdFunding(reqData).then(res=>{
+    let fn = sel == 2 ? crowdFunding : directPurchase
+    // 1普通订单 2众筹
+    fn(reqData)
+      .then(_ => {
 
-     // 调用微信支付 成功后返回
-    // wx.requestPayment({
-    //   timeStamp: 'String1',
-    //   nonceStr: 'String2',
-    //   package: 'String3',
-    //   signType: 'MD5',
-    //   paySign: 'String4',
-    //   success: function(res){
-    //     // success
-    //   },
-    //   fail: function() {
-    //     // fail
-    //   },
-    //   complete: function() {
-    //     // complete
-    //   }
+        wx.showToast({
+          title: '支付成功'
+        })
 
-    // })
+        let time = setInterval(_=> {
+          clearInterval(time)
+          time = null
 
-      wx.navigateBack({delta:-1})
-   })
+          // 调用微信支付 成功后返回
+          // wx.navigateBack({delta:-1})
 
-    if(sel==1) directPurchase(reqData).then(res=>{
-
-      // 调用微信支付 成功后返回
-      wx.navigateBack({delta:-1})
-    })
+          wx.redirectTo({
+            url: '/pages/my/order/index?type=' + sel
+          })
+        }, 1000)
+      })
 
   },
   /**
@@ -86,8 +77,8 @@ Page({
    */
   onLoad(options) {
     onloadData = options
-    this.setData({...options})
-     this.getProductDetail()
+    this.setData({ ...options })
+    this.getProductDetail()
   },
 
   /**
@@ -104,7 +95,7 @@ Page({
     // 获取收货地址
     let address = wx.getStorageSync("currentAddress") || app.globalData.currentAddress
     this.setData({
-      currentAddress:address
+      currentAddress: address
     })
   },
 

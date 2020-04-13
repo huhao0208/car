@@ -2,250 +2,58 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5412adc3-33cc-4be7-9816-dc0790d099d7" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/canvasdrawer/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/canvasdrawer/canvasdrawer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/canvasdrawer/canvasdrawer.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/canvasdrawer/canvasdrawer.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/collect/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/comment/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/comment/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/comment/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/comment/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/load-more/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/load-more/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/load-more/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/load-more/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/login/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/login/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/login/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/login/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/login/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/my-info/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/my-info/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/my-info/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/my-info/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/my-info/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/my-tab/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/my-tab/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/my-tab/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/my-tab/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/error.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/success.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/warning.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/deliveryList/deliveryList.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/deliveryList/deliveryList.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/deliveryList/deliveryList.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/deliveryList/deliveryList.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/deliveryList/deliveryList.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/deliveryList/deliveryList.wxss.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/favorite/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/favorite/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/favorite/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/favorite/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/favorite/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/prize/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/prize/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/prize/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/my/prize/index.wxss.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/car-details/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/car-details/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/car-details/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/car-details/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/car-details/index.wxss.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/cooperation-details/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/cooperation-details/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/cooperation-details/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/cooperation-details/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/cooperation-details/index.wxss.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.wxss.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/loan-details/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/loan-details/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/loan-details/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/loan-details/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/loan-details/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/loan-details/index.wxss.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.wxss.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/service-details/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/service-details/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/service-details/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/service-details/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/service-details/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/three-level/service-details/index.wxss.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/vip/vip-login/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/vip/vip-login/index.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/vip/vip-login/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/vip/vip-login/index.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/vip/vip-login/index.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/filters.wxs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/area.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/area.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/group-shop-card/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/group-shop-card/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/collect/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/group-shop-card/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/group-shop-card/index.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/group-shop-card/index.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/image-cropper/image-cropper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/image-cropper/image-cropper.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/canvasdrawer/canvasdrawer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/image-cropper/image-cropper.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/image-cropper/image-cropper.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/login-prompt/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/login-prompt/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/components/comment/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/login-prompt/index.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/login-prompt/index.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/navbar/navbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/navbar/navbar.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/navbar/navbar.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/navbar/navbar.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tabbar/tabbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tabbar/tabbar.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tabbar/tabbar.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tabbar/tabbar.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tabbar/tabbar.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/tabbar/tabbar.wxss.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wx-pulltorefresh-view/wx-pulltorefresh-view.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wx-pulltorefresh-view/wx-pulltorefresh-view.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wx-pulltorefresh-view/wx-pulltorefresh-view.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wx-pulltorefresh-view/wx-pulltorefresh-view.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wxParse/html2json.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wxParse/htmlparser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wxParse/showdown.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wxParse/wxDiscode.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wxParse/wxParse.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wxParse/wxParse.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/wxParse/wxParse.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/goods/goods-detail/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/goods/goods-detail/index.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/goods/goods-detail/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/goods/goods-detail/index.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/goods/goods-detail/index.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/goods/goods-detail/index.wxss.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/login/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/goods/prepayment/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/goods/prepayment/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/goods/prepayment/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/goods/prepayment/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/goods/prepayment/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/goods/prepayment/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/goods/prepayment/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/goods/prepayment/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/activity/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/activity/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/activity/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/activity/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/activity/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/activity/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/activity/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/activity/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/activity/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/activity/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/home/car-sales/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/car-sales/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/car-sales/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/car-sales/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/home/car-sales/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/car-sales/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/home/car-sales/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/car-sales/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/home/car-sales/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/car-sales/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/cooperation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/cooperation/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/cooperation/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/cooperation/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/cooperation/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/cooperation/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/cooperation/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/cooperation/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/cooperation/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/cooperation/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/exclusive/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/exclusive/index.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/exclusive/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/exclusive/index.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/exclusive/index.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/index/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/loan/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/loan/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/loan/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/loan/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/loan/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/loan/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/loan/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/loan/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/loan/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/loan/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/mall/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/mall/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/mall/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/mall/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/home/mall/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/mall/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/home/mall/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/mall/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/home/mall/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/mall/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/mall/index.wxss.map" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/mall/index.wxss.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/home/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/service/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/service/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/service/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/service/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/service/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/service/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/service/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home/service/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/home/service/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home_1/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/cooperation-details/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home_1/index.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home_1/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home_1/index.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home_1/index.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/home_1/index.wxss.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login/index.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login/index.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login/index.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login/index.wxss.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/model/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/car-details/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/model/index.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/model/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/components/collect/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/model/index.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/model/index.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/crowdfunding/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/order-details/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/crowdfunding/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/order-details/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/crowdfunding/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/order-details/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/crowdfunding/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/order-details/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/crowdfunding/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/order-details/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/crowdfunding/index.wxss.map" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/order-details/index.wxss.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/index/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/index/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/index/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/index/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/index/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/index/index.wxss.map" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/index/index.wxss.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/order/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/order/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/order/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/order/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/my/deliveryList/deliveryList.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/deliveryList/deliveryList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/my/favorite/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/favorite/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/my/order/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/order/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/my/order/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/order/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/my/order/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/order/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/order/index.wxss.map" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/order/index.wxss.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/my/prize/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/prize/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/my/prize/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/prize/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/my/r-address/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/r-address/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/r-address/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/r-address/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/r-address/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/r-address/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/r-address/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/r-address/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/r-address/index.wxss.map" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/r-address/index.wxss.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/raffle/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/prize/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/raffle/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/my/prize/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/raffle/index.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/raffle/index.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/raffle/index.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/my/raffle/index.wxss.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/test/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/test/index.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/test/index.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/test/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/components/collect/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/car-details/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/car-details/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/car-details/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/car-details/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/good-details/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/good-details/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/good-details/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/good-details/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/good-details/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/loan-details/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/loan-details/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/loan-details/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/loan-details/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/order-details/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/order-details/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/order-details/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/order-details/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/order-details/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/order-details/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/raffle/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/raffle/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/raffle/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/raffle/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/raffle/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/service-details/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/service-details/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/three-level/service-details/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/three-level/service-details/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/vip-code/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip-code/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/vip-code/index/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip-code/index/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/vip-code/index/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip-code/index/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/vip-code/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip-code/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/vip-code/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip-code/index/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/vip-code/index/index.wxss.map" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip-code/index/index.wxss.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/vip/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/vip/index/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip/index/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/vip/index/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip/index/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/vip/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip/index/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/vip/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip/index/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/vip/index/index.wxss.map" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip/index/index.wxss.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/vip/vip-login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/vip/vip-login/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nodata/nodata.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/nodata/nodata.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/poplogin/poplogin.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/poplogin/poplogin.wxss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/filters.wxs" beforeDir="false" afterPath="$PROJECT_DIR$/utils/filters.wxs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -354,6 +162,7 @@
       <workItem from="1586052471217" duration="41743000" />
       <workItem from="1586238484677" duration="762000" />
       <workItem from="1586246895518" duration="241000" />
+      <workItem from="1586502405515" duration="9000" />
     </task>
     <servers />
   </component>
@@ -406,7 +215,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/components/login/index.js</url>
-          <line>80</line>
+          <line>79</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -421,7 +230,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/pages/three-level/raffle/index.js</url>
-          <line>82</line>
+          <line>99</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -431,7 +240,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/pages/goods/prepayment/index.js</url>
-          <line>111</line>
+          <line>104</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>

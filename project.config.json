@@ -13,7 +13,7 @@
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
-		"autoAudits": true,
+		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
 		"uglifyFileName": true,
@@ -185,13 +185,6 @@
 					"id": -1,
 					"name": "pages/my/crowdfunding/index",
 					"pathName": "pages/my/crowdfunding/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/my/raffle/index",
-					"pathName": "pages/my/raffle/index",
 					"query": "",
 					"scene": null
 				},
@@ -409,6 +402,49 @@
 					"id": -1,
 					"name": "pages/vip/vip-login/index",
 					"pathName": "pages/vip/vip-login/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/raffle/index",
+					"pathName": "pages/three-level/raffle/index",
+					"query": "id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/car-sales/index",
+					"pathName": "pages/home/car-sales/index",
+					"query": "id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/mall/index",
+					"pathName": "pages/home/mall/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/good-details/index",
+					"pathName": "pages/three-level/good-details/index",
+					"query": "productType=1&id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/mall/index",
+					"pathName": "pages/home/mall/index",
+					"query": "productType=1&id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/good-details/index",
+					"pathName": "pages/three-level/good-details/index",
+					"query": "id=4&productType=2",
 					"scene": null
 				}
 			]

@@ -1,50 +1,49 @@
-
 import {get,post} from "./utils/http"
+
 module.exports = {
 	// 登录
-
-	// api/xcxLogin
 	xcxLogin:data=>post('api/xcxLogin',data),
+
 	// 获取用户信息getUserDetail
 	getUserDetail:data=>post('api/getUserDetail',data),
+
 	//获取收货地址信息
 	getAddressList:data=>post('api/getAddressList',data),
 
 	//删除地址
 	deleteAddress:data=>post('api/deleteAddress',data),
+
 	//修改地址 新增地址
 	saveOrUpdateAddress:data=>post('api/saveOrUpdateAddress',data),
 
 	// 公用
+	// 获取轮播图数据  api/getAdvertList
+	getAdvertList: data => post('api/getAdvertList',data),
+
+	// 分类列表
+	getCategoryList: data => post('api/getCategoryList',data),
+
 	// 获取产品列表
 	getProductList:data=>post('api/getProductList',data),
 
 	// 获取产品详情
 	getProductDetail:data=>post('api/getProductDetail',data),
+
 	// 评价
 
-	// 分类列表
-	getCategoryList: data => post('api/getCategoryList',data),
 
-
-	// test
-	postList: data => post('/weixin/index/getRecommendCommunity.html',data),
-
-	// 获取首页轮播图数据  api/getAdvertList
-	getAdvertList: data => post('api/getAdvertList',data),
-
-	/*
-	汽车销售
-	 */
-	//  精选品牌 api/getBrandList
+	// 汽车销售 精选品牌 汽车品牌
 	getBrandList: data => post('api/getBrandList',data),
+
 	// 汽车列表 api/getCarList
 	getCarList: data => post('api/getCarList',data),
+
 	// 车辆详细信息 getCarDetail
 	getCarDetail: data => post('api/getCarDetail',data),
 
 	// 金融贷款列表
 	getFinancialLoanList:data=>post('api/getFinancialLoanList',data),
+
 	// 金融贷款获取详情
 	getFinancialLoanDetail:data=>post('api/getFinancialLoanDetail',data),
 
@@ -76,7 +75,7 @@ module.exports = {
 	consultCarInfo:data=>post('api/consultCarInfo',data),
 
 	// 金融贷款  申请咨询
-	applyFinancialLoan:data=>post('api/consultCarInfo',data),
+	applyFinancialLoan:data=>post('api/applyFinancialLoan',data),
 
 	// 开通会员
 	openMembership:data=>post('api/openMembership',data),
@@ -102,6 +101,9 @@ module.exports = {
 
 	// 众筹商品下单
 	crowdFunding:data=>post('api/crowdFunding',data),
+
+	// 判断众筹资格
+	judgeInCrowdFunding:data=>post('api/judgeInCrowdFunding',data),
 
 	// 获取订单列表
 	getOrderList:data=>post('api/getOrderList',data),

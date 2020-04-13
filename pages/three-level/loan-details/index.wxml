@@ -1,7 +1,7 @@
 <!--金融贷款详情-->
 <wxs src="../../../utils/filters.wxs" module="filters" />
 
-<rich-text nodes ="{{html}}" space></rich-text>
+<rich-text nodes ="{{details.details}}" space></rich-text>
 
 <view class="footer">
 	<view class="kefu" >
@@ -9,9 +9,12 @@
 				open-type="{{isLogin?'contact':''}}"
 				bindcontact="handleContact"
 				show-message-card
+				send-message-title="{{details.name}}"
+				send-message-path="/pages/three-level/loan-details/index?id={{details.id}}"
 				bindtap="kefuClick"
 				style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0)"></button>
 	</view>
+	<!-- send-message-path="/pages/three-level/loan-details/index.wxml?id={{details.id}}" -->
 	<collect type="3" proid="{{details.id}}"/>
 	<button class="buy_now" hover-class="buy_now_hover" bindtap="applying">立即申请</button>
 </view>

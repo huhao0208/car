@@ -14,9 +14,13 @@ page{
   padding: 25rpx 40rpx;
   font-size: 24rpx;
   .order_time{
-    min-width: 380rpx;
+    display: inline-block;
     color:#999
   }
+  .order_number{
+    flex: 1;
+  }
+
 }
 
 

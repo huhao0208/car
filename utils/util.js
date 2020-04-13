@@ -37,11 +37,11 @@ let isShowLoading = true
 
 const hL = () =>{
   wx.hideLoading()
-  isShowLoading = true
 }
 
 const sL = (title,mask=false)=> {
-  isShowLoading && wx.showLoading({
+  hL()
+  wx.showLoading({
     title,
     mask,
     success:()=>{
@@ -49,8 +49,9 @@ const sL = (title,mask=false)=> {
      let time= setInterval(_=>{
        clearInterval(time)
        time=null
+      //  超时自动关闭
         hL()
-      },7000)
+      },5000)
     }
   })
 }

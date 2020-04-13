@@ -29,8 +29,9 @@
 </view>
 
 <view class="car_name">{{carInfo.name}}</view>
-<view class="car_price">厂家指导价¥{{carInfo.guidePrice}}元</view>
-<view class="car_price_now">现价：<text>¥{{carInfo.currentPrice}}元 </text> <icon class="tuihuo"/>
+<view class="car_price">厂家指导价¥{{filters.moneyFormat(carInfo.guidePrice)}}万</view>
+<view class="car_price_now">现价：<text>¥{{filters.moneyFormat(carInfo.currentPrice)}}万 </text> 
+	<!-- <icon class="tuihuo"/> -->
 	<view class="share">
 		<button open-type="share" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0" />
 	</view>
@@ -42,10 +43,7 @@
           bind:change="tabChange"
 >
 	<van-tab title="商品详情" >
-
-
 		<rich-text nodes="{{carInfo.details}}"></rich-text>
-
 	</van-tab>
 	<van-tab title="商品评价" >
 			<comment type="{{'类型'}}"/>
@@ -58,5 +56,3 @@
 </view>
 
 <login showLogin="{{showLogin}}"/>
-
-<view bindtap="goTop" class="go_top" hidden="{{!floorStatus}}"/>

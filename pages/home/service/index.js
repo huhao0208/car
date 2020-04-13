@@ -24,17 +24,16 @@ Page({
 
   // 打开地图
   openMap(e){
-    console.log(e)
+    const {latitude,longitude} = e.currentTarget.dataset
     wx.openLocation({
-      latitude:39.92,
-      longitude:116.50,
+      latitude,
+      longitude,
       scale: 18
     })
   },
 
   // 去汽车服务详情页
   toServiceDetail(e){
-    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url:'/pages/three-level/service-details/index?id='+e.currentTarget.dataset.id,
     })
@@ -51,13 +50,13 @@ Page({
     getVehicleOwnerList({page,categoryId})
         .then(res=>{
           wx.stopPullDownRefresh()
-          let type = (!res.total)?3:( page == res.pages )?2:1
-          page = res.page+1
-          if(page> res.pages+1) return
+          let type = (!res.total)?3:( page == res.pages )?2:1  
+          if(res.pages && page> res.pages) return
             this.setData({
               [`listData[${this.data.listData.length}]`]:res.list,
               loadType: type
             })
+            page = res.page+1
         })
   },
 
@@ -81,6 +80,7 @@ Page({
    */
   onLoad: function (options) {
     categoryId =''
+    page=1
     this.getListData()
 
   },
@@ -96,11 +96,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(app.globalData)
+  //  console.log(app.globalData)
     let that =this
       app.getLocation({
         successFn(e){
-          console.log(e,'我的定位')
+      //    console.log(e,'我的定位')
           // 控制显示距离
           that.setData({
             ShowDistance:true,

@@ -1,13 +1,14 @@
 <!--pages/my/index.wxml-->
 
-<wxs src="../../../utils/filters.wxs" module="filters"/>
+<wxs src="../../../utils/filters.wxs" module="filters" />
 
 <view class="steps">
 	<!--众筹订单 -->
 	<block wx:if="{{type==2}}">
 		<text style="width: 90rpx;border-radius: 30rpx" class="status {{state>=1?'status_active':'' }}">众筹中</text>
 		<text class="line {{(state>=1|| state==-1)?'line_active':'' }}"></text>
-		<text wx:if="{{state!=-1}}" style="width: 120rpx;border-radius: 30rpx" class="status {{state>=2?'status_active':'' }}">众筹成功</text>
+		<text wx:if="{{state!=-1}}" style="width: 120rpx;border-radius: 30rpx"
+			class="status {{state>=2?'status_active':'' }}">众筹成功</text>
 		<text wx:if="{{state!=-1}}" class="line {{state>=2?'line_active':'' }}"></text>
 
 		<text wx:if="{{state==-1}}" style="width: 120rpx;border-radius: 30rpx" class="status status_active">众筹失败</text>
@@ -25,58 +26,49 @@
 	<text class="status {{state>=5?'status_active':'' }}">完成</text>
 </view>
 
-	<view class="order_user_info user_name">收货人：{{contact}} </view>
+<view class="order_user_info user_name">收货人：{{contact}} </view>
 
-	<view class="order_user_info">电话：{{phone}} </view>
+<view class="order_user_info">电话：{{phone}} </view>
 
-	<view class="order_address"> 地址：{{province}}{{city}}{{area}}{{addresss}}</view>
+<view class="order_address"> 地址：{{province}}{{city}}{{area}}{{addresss}}</view>
 
-	<van-card
-			desc=""
-			title="{{proName}}"
-			title-class="title"
-			thumb-class="card_img"
-			thumb-mode="scaleToFill"
-			thumb="{{ url}}"
-			bindtap="goodsDetail"
-	>
-<!--		<view slot="tags" class="tags"/>-->
+<van-card desc="{{item.introduce}}" title="{{proName}}" title-class="title" thumb-class="card_img"
+	thumb-mode="scaleToFill" thumb="{{ url}}" bindtap="goodsDetail">
+	<!--		<view slot="tags" class="tags"/>-->
 
-		<view slot="bottom" class="bottom">
-			<view class="progress">
-<!--				<view >5.0kg</view>-->
-				X{{quantity}}
-			</view>
-			<view class="price">
-				<view class="price_true">¥{{unitPrice}}</view>
-				<view class="price_show">¥{{price}}</view>
-			</view>
+	<view slot="bottom" class="bottom">
+		<view class="progress">
+			<!--				<view >5.0kg</view>-->
+			X{{quantity}}
 		</view>
-	</van-card>
-	<view class="line_1"/>
-
-
+		<view class="price">
+			<view class="price_true">¥{{unitPrice}}</view>
+			<view class="price_show">¥{{price}}</view>
+		</view>
+	</view>
+</van-card>
+<view class="total_price">
+	合计: {{unitPrice*quantity}} 元
+</view>
+<view class="line_1" />
 <view class="order_info_top">
+
 	<view class="order_number">订单编号：{{orderNumber}}</view>
 	<view class="order_time">交易时间：{{createTime}}</view>
 </view>
 
 <view class="buy_now" wx:if="{{state!=5}}">
 	<view class="buy_now_btn buy_btn_zx">
-		<van-button
-				icon="{{filters.imgUrl('kefu-2.png')}}"
-				custom-class="zc_btn zc_kf"
-				open-type="contact"
-				show-message-card
-
-		>
+		<van-button 
+		icon="{{filters.imgUrl('kefu-2.png')}}" 
+		custom-class="zc_btn zc_kf" 
+		open-type="contact"
+		send-message-title="订单编号：{{orderNumber}}"
+		send-message-img="{{url}}"
+		show-message-card>
 			联系客服
 		</van-button>
-		<van-button
-				disabled="{{state < 3}}"
-				color="#DD1A22"
-				bindtap="confireBtn"
-				custom-class="zc_btn">
+		<van-button disabled="{{state < 3}}" color="#DD1A22" bindtap="confireBtn" custom-class="zc_btn">
 			确认收货
 		</van-button>
 	</view>

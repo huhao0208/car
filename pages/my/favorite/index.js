@@ -15,7 +15,7 @@ Page({
   },
   // 移除收藏
   delete(e){
-    console.log(e)
+    //console.log(e)
     let opt = e.currentTarget.dataset
     removeCollect({proId:opt.proid,type:opt.type})
         .then(_=>{
@@ -26,7 +26,6 @@ Page({
   },
   // 去详情页
   toDetail(e){
-    console.log(e,'详情页')
     let url =''
     let opt = e.currentTarget.dataset
     if(!opt.proid || !opt.type)  return wx.showToast({

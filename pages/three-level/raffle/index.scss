@@ -115,7 +115,7 @@ $box_padding: 15rpx;
 .select{
   //#FFEC14
   border: 10rpx solid rgba(0,0,0,0);
-  box-shadow: 0 0 10rpx 6rpx #FFEC14;
+  box-shadow: 0 0 5rpx 8rpx rgb(245, 225, 5);
 }
 .start{
   left: 50%;
@@ -129,6 +129,11 @@ $box_padding: 15rpx;
 }
 
 /*九宫格大转盘  */
+
+.raffle_number{
+  padding-top:20rpx;
+  text-align: center;
+}
 
 .start_btn{
   margin-top: 50rpx;

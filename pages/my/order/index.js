@@ -17,6 +17,21 @@ Page({
 		listData: [],     // 渲染列表用数据
 		state:123
 	},
+
+	  //屏幕滚动  返回顶部用
+	  onPageScroll(e){
+		if (e.scrollTop >= 400 &&e.scrollTop <1000 ) {
+		  if (this.data.floorStatus) return
+		  this.setData({
+			floorStatus: true
+		  });
+		} else if(e.scrollTop < 400) {
+		  if (!this.data.floorStatus) return
+		  this.setData({
+			floorStatus: false
+		  })
+		}
+	  },
 	tabChange(e){
 		page=1
 		this.setData({
@@ -51,7 +66,10 @@ Page({
 
 	toOrderDetail(e) {
 		// console.log(e)
-		// console.log(e.currentTarget.dataset.orderid)
+		 console.log(e.currentTarget.dataset.item)
+		 this.setData({
+			 currentData:e.currentTarget.dataset.item
+		 })
 		wx.navigateTo({
 			url: '/pages/three-level/order-details/index?orderId='+ e.currentTarget.dataset.orderid
 		})

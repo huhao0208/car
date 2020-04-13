@@ -51,7 +51,6 @@ Page({
 	_getAdvertList() {
 		getAdvertList({ type: 1 })
 			.then(res => {
-				console.log(res)
 				this.setData({
 					indexSwiperData: res.list
 				})
@@ -59,7 +58,6 @@ Page({
 	},
 	// 轮播图跳转
 	swiperToDetail(e) {
-		console.log(e.currentTarget.dataset);
 
 		// 判断类型跳转对应页面 1 普通商品 2 众筹商品 3 金融贷款 4 汽车销售 5 合作商家
 		let type = e.currentTarget.dataset.type
@@ -74,21 +72,14 @@ Page({
 
 	},
 	onChange(e) {
-		console.log(e)
 		this.setData({
 			search: e.detail
 		})
 	},
-	//轮播图跳转
-	jump(e) {
-		console.log(e)
-		let url = ''
-		wx.navigateTo({ url })
-	},
 	// 跳转到汽车销售页面
 	onSearch() {
 		wx.navigateTo({
-			url: '/pages/home/car-sales/index?search=' + this.data.search
+			url: '/pages/home/car-sales/index?keyword=' + this.data.search
 		})
 	},
 	// 未开放
@@ -106,7 +97,6 @@ Page({
 
 	// 页面跳转
 	toPage(e) {
-		console.log(e.currentTarget.dataset.item);
 		let item = e.currentTarget.dataset.item
 		if (item.name == '会员专享') {
 		
@@ -123,6 +113,10 @@ Page({
 					url: '/pages/vip-code/index/index'
 				})
 			}
+		}else if(item.name=='更多精彩'){
+
+			this.unopened()
+
 		} else {
 			wx.navigateTo({
 				url: '/pages/home/' + item.navigatorUrl + '/index'

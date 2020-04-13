@@ -33,7 +33,7 @@ Page({
       isShowAera:false})
   },
   iptAddressHandle(e){
-    console.log(e.detail.value)
+  
     this.setData({
       'formData.address':e.detail.value
     })
@@ -56,7 +56,6 @@ Page({
   },
   // 提交
   submitHandle(){
-
     // province	是	string	省
     // city	是	string	市
     // area	是	string	区
@@ -79,13 +78,10 @@ Page({
               that.setData({
                 userInfo:app.globalData.userInfo
               },_=>{
-
               })
             })
-
           })
     })
-
   },
 
   // 登录成功重新获取用户信息
@@ -102,9 +98,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.globalData.userInfo)
   
-
   },
 
   /**
@@ -117,11 +111,21 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.setData({
-      areaList:areaList,
-      userInfo:app.globalData.userInfo
-    })
+  onShow: function () { 
+    let that =this
+      // 登录成功刷新用户信息
+      if(app.globalData.unionId){
+        app.getUserDetailInfo(res=>{
+          this.setData({
+            userInfo: res
+          })
+          if(!res.vip) that.setData({
+            areaList:areaList
+          })
+        })
+        
+      }
+   
   },
 
   /**

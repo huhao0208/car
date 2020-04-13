@@ -18,7 +18,8 @@ Page({
   },
 // tab栏切换
   tabc(e){
-    console.log(e.detail,'mmmm')
+    page=1
+    // console.log(e.detail,'tab切换')
     categoryId= e.detail.categoryId
     this.getListData()
 
@@ -36,8 +37,9 @@ Page({
           wx.stopPullDownRefresh()
           page = res.page
           let type = (!res.total)?3:( res.page ==res.pages )?2:1
+          if(!res.page && page>res.pages) return
           if(page == 1){
-            console.log(res.list)
+         //   console.log(res.list)
             this.setData({
               listData: [res.list],
               loadType: type
@@ -48,6 +50,8 @@ Page({
               loadType: type
             })
           }
+
+          page = res.page+1
 
         })
   },
@@ -81,12 +85,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    page =1
+    categoryId = ''
     this.getListData()
 
     let that =this
     app.getLocation({
       successFn(e){
-        console.log(e,'我的定位')
+       // console.log(e,'我的定位')
         // 控制显示距离
         that.setData({
           ShowDistance:true,
@@ -142,7 +148,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    page++ ;
     this.getListData()
 
 

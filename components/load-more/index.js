@@ -36,7 +36,7 @@ Component({
 	methods:{
 		// 返回顶部
 		goTop(){
-			console.log('返回顶部')
+		//	console.log('返回顶部')
 			if (wx.pageScrollTo) {
 				wx.pageScrollTo({
 					duration: 0,

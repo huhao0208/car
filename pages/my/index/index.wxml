@@ -76,10 +76,10 @@
 <van-cell-group custom-class="cell_group">
 	<van-cell title="在线客服"
 	          icon="{{filters.imgUrl('kefu-2.png')}}"
-	          is-link
-	          bindtap="jumpHandle"
+			  is-link
+			  bindtap="jumpHandle"
 	>
-        <button open-type="{{userName?'contact':''}}"
+        <button open-type="{{userInfo.username?'contact':''}}"
                 show-message-card
                 style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0)" />
 

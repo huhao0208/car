@@ -1,5 +1,5 @@
 
-import{postList,getBrandList,getWinningRecordList,usePrize} from "../../../api"
+import { postList, getBrandList, getWinningRecordList, usePrize } from "../../../api"
 
 let page = 1;
 
@@ -11,48 +11,46 @@ Page({
    * 页面的初始数据
    */
   data: {
-    floorStatus:false,  // 返回顶部
-    loadType:1,
-    listData:[],     // 渲染列表用数据
-    state:0,        // tablan 索引
+    floorStatus: false,  // 返回顶部
+    loadType: 1,
+    listData: [],     // 渲染列表用数据
+    state: 0,        // tablan 索引
   },
-  tabChange(e){
-    page=1
+  tabChange(e) {
+    page = 1
     this.setData({
-      state:e.detail.index
-    },_=>{
+      state: e.detail.index
+    }, _ => {
       this.getListData()
     })
 
   },
-  // 使用  二选一
-  toUse(e){
-    let that =this
-    let id=e.currentTarget.dataset.id
-    usePrize({id})
-    .then(res=>{
-      page =1
-      that.getListData()
-    })
-  },
-
-  // 选择收货地址 二选一
-  toAddress(e){
-    console.log(e.currentTarget.dataset)
-    // pages/my/deliveryList/deliveryList
-    wx.navigateTo({
-      url:'/pages/three-level/prize-address/index?id='+e.currentTarget.dataset.id
-    })
+  jumpHandle(e) {
+   let that =this
+    // 判断type
+    let type = e.currentTarget.dataset.type
+    let id = e.currentTarget.dataset.id
+    if (type == 1 || type == 2) {
+      wx.navigateTo({
+        url: '/pages/three-level/prize-address/index?id=' + id
+      })
+    } else {
+      usePrize({ id })
+        .then(res => {
+          page = 1
+          that.getListData()
+        })
+    }
   },
 
   //屏幕滚动  返回顶部用
-  onPageScroll(e){
-    if (e.scrollTop >= 400 &&e.scrollTop <1000 ) {
+  onPageScroll(e) {
+    if (e.scrollTop >= 400 && e.scrollTop < 1000) {
       if (this.data.floorStatus) return
       this.setData({
         floorStatus: true
       });
-    } else if(e.scrollTop < 400) {
+    } else if (e.scrollTop < 400) {
       if (!this.data.floorStatus) return
       this.setData({
         floorStatus: false
@@ -61,29 +59,29 @@ Page({
   },
 
   // 获取列表shuj
-  getListData(e){
-    if(page==1){
+  getListData(e) {
+    if (page == 1) {
       this.setData({
-        listData:[]
+        listData: []
       })
     }
-    getWinningRecordList({page,state:this.data.state+1})
-        .then(res=>{
-          console.log(res)
-          let ltype =!res.total?3: res.pages == res.page? 2:1
-          if(page>res.pages) res.list=''
-          this.setData({
-            [`listData[${this.data.listData.length}]`]:res.list,
-            loadType:ltype
-          })
-          page=res.page+1
+    getWinningRecordList({ page, state: this.data.state + 1 })
+      .then(res => {
+  
+        let ltype = !res.total ? 3 : res.pages == res.page ? 2 : 1
+        if (page > res.pages) res.list = ''
+        this.setData({
+          [`listData[${this.data.listData.length}]`]: res.list,
+          loadType: ltype
         })
+        page = res.page + 1
+      })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    page =1
+    page = 1
     this.getListData()
   },
 
@@ -120,7 +118,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    page =1
+    page = 1
     this.getListData()
   },
 

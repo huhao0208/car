@@ -1,31 +1,20 @@
 <!--pages/vip/index.wxml -->
-<wxs src="../../../utils/filters.wxs" module="filters"/>
+<wxs src="../../../utils/filters.wxs" module="filters" />
 
 <!--轮播图-->
 <view class="swiper_wrap">
-	<swiper indicator-dots="{{false}}"
-	        autoplay=" {{true}}"
-	        interval="{{5000}}"
-	        duration="{{500}}"
-	        circular="{{true}}"
-	        bindchange="swiperChange"
-	        bindtap="priviweImg"
-	>
+	<swiper indicator-dots="{{false}}" autoplay=" {{true}}" interval="{{5000}}" duration="{{500}}" circular="{{true}}"
+		bindchange="swiperChange" bindtap="priviweImg">
 		<block wx:for="{{details.carousel}}" wx:key="index" data-url="{{item}}">
 			<swiper-item>
-				<image src="{{item}}"
-				       mode="scaleToFill"
-				       class="swiper_item_image"
-				/>
+				<image src="{{item}}" mode="scaleToFill" class="swiper_item_image" />
 			</swiper-item>
 		</block>
 
 	</swiper>
 	<!--重置小圆点的样式 -->
 	<view class="dots">
-		<view wx:for="{{indexSwiperData}}" wx:key="index"
-		      class="dot{{index == swiperActive ? ' active' : ''}}"
-		/>
+		<view wx:for="{{indexSwiperData}}" wx:key="index" class="dot{{index == swiperActive ? ' active' : ''}}" />
 	</view>
 </view>
 
@@ -34,111 +23,90 @@
 	<text>库存: {{details.stock}}</text>
 </view>
 <block wx:if="{{productType==1}}">
- <view class="car_price_now">
+	<view class="car_price_now">
 		现价： <text>¥{{details.currentPrice}}元</text>
-		<icon class="tuihuo"/>
+		<view class="tuihuo" wx:if="{{details.label}}">{{details.label}}</view>
 		<view class="share">
 			<button open-type="share"
-			        style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0"/>
+				style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0" />
 		</view>
-  </view>
+	</view>
 </block>
 
-<block wx:else >
+<block wx:else>
 	<view class="car_price_now">
-				众筹价： <text>¥{{details.currentPrice}}元</text>
-				<icon class="tuihuo"/>
-				<view class="share">
-					<button open-type="share"
-					        style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0"/>
-				</view>
+		众筹价： <text>¥{{details.currentPrice}}元</text>
+		<view class="tuihuo" wx:if="{{details.label}}">{{details.label}}</view>
+		<view class="share">
+			<button open-type="share"
+				style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0" />
+		</view>
 	</view>
 	<view class="progress">
-		已筹到:  ¥{{details.activityNum*details.currentPrice}}元
-		<van-progress  percentage="{{filters.progress(details.activityNum,details.totalNum)}}"
-		               pivot-text=""
-		               show-pivot="{{false}}"
-		               color="#DF4241"
-		               pivot-color="#DF4241"
-		/>
+		已筹到: ¥{{details.activityNum*details.currentPrice}}元
+		<van-progress percentage="{{filters.progress(details.activityNum,details.totalNum)}}" pivot-text=""
+			show-pivot="{{false}}" color="#DF4241" pivot-color="#DF4241" />
 		<view class="progress_text">
 			当前进度{{filters.progress(details.activityNum,details.totalNum)}}% <text>{{details.activityNum}}名支持者</text>
 		</view>
 	</view>
 </block>
 
-<van-tabs active="{{ tabActive }}"
-          sticky
-          swipeable
-          bind:change="tabChange"
->
+<van-tabs active="{{ tabActive }}" sticky swipeable bind:change="tabChange">
 	<van-tab title="商品详情">
 		<rich-text nodes="{{details.details}}"></rich-text>
 	</van-tab>
 	<van-tab title="商品评价">
-			<!-- <comment
-					bindType="{{commentType}}"
-					list="{{item}}"/> -->
+		<comment bindType="{{commentType}}" list="{{item}}" />
 
 	</van-tab>
 </van-tabs>
 
 <view class="buy_now">
-<!--	普通商品-->
+	<!--	普通商品-->
 	<block wx:if="{{ productType==1}}">
 		<view class="number">
 			<text>数量</text>
-			<van-stepper value="{{ number }}" bind:change="numChange"/>
+			<van-stepper value="{{ number }}" bind:change="numChange" />
 		</view>
 		<view class="bottom">
-			<collect type="1" proid="{{details.id}}"/>
-			<van-button
-					block
-					custom-class="buy_now_btn"
-					bindtap="buyNow">
+			<collect type="1" proid="{{details.id}}" />
+			<van-button block custom-class="buy_now_btn" bindtap="buyNow">
 				立即购买
 			</van-button>
 		</view>
 	</block>
-<!--众筹商品-->
+	<!--众筹商品-->
 	<view wx:else class="btns">
-		<collect type="2" proid="{{details.id}}"/>
+		<collect type="2" proid="{{details.id}}" />
 
-		<van-button
-				block
-				wx:if="{{status==0}}"
-				custom-class="buy_now_btn"
-				bindtap="buyNow">
+		<van-button block wx:if="{{status==0}}" custom-class="buy_now_btn" bindtap="buyNow">
 			立即申请
 		</van-button>
-		<van-button
-				block
-				disabled="{{true}}"
-				wx:elif="{{status==1}}"
-				custom-class="buy_now_btn"
-				color="#999">
+		<van-button block disabled="{{true}}" wx:elif="{{status==1}}" custom-class="buy_now_btn" color="#999">
 			已参与,等待结束
 		</van-button>
-		<view
-				wx:elif="{{status==2}}"
-				class="buy_now_btn buy_btn_zx"
-		>
-			<van-button
-					icon="{{filters.imgUrl('kefu-2.png')}}"
-					custom-class="zc_btn zc_kf"
-					open-type="contact"
-					show-message-card
-			>咨询</van-button>
-			<van-button
-					bindtap="toZcDetail"
-					custom-class="zc_btn"
-					color="#BBB">
+		<view wx:elif="{{status==2}}" class="buy_now_btn buy_btn_zx">
+			<van-button icon="{{filters.imgUrl('kefu-2.png')}}" custom-class="zc_btn zc_kf" open-type="contact"
+				show-message-card>咨询</van-button>
+			<van-button bindtap="toZcPageList" custom-class="zc_btn" color="#2ecc7e">
 				众筹成功
+			</van-button>
+		</view>
+		<!-- send-message-path="{{'/pages/three-level/good-details/index?productType='+productType+'&id='+id}}" -->
+		<view wx:elif="{{status==3}}" class="buy_now_btn buy_btn_zx">
+			<van-button icon="{{filters.imgUrl('kefu-2.png')}}" custom-class="zc_btn zc_kf" open-type="contact"
+				send-message-title="{{details.name}}"
+				send-message-img="{{ details.showUrl }}"
+				send-message-path="{{'/good-details/index?productType='+productType+'&id='+id}}"
+				show-message-card>
+				咨询
+			</van-button>
+			<van-button custom-class="zc_btn" color="#BBB">
+				众筹结束
 			</van-button>
 		</view>
 	</view>
 </view>
 
-<login showLogin="{{showLogin}}"/>
-
-<view bindtap="goTop" class="go_top" hidden="{{!floorStatus}}"/>
+<login showLogin="{{showLogin}}" />

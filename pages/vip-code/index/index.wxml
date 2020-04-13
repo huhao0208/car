@@ -2,20 +2,20 @@
 
 <block wx:if="{{userInfo.vip}}">
 	<view class="top">
-		<icon /> {{userInfo.fullName}}的会员卡
-		<text>会员使用规则 》</text>
+		<icon /> {{userInfo.username}}的会员卡
+		<text>会员使用规则 >></text>
 	</view>
 
-	<view class="card card_vip1">
-		<view class="grade" wx:if="{{userInfo.vip ==3}}">
+	<view class="card   card_vip{{userInfo.vip}}">
+		<view class="grade item_vip3" wx:if="{{userInfo.vip ==3}}">
 			<view class="text_ch">黄金会员</view>
 			<view class="text_en">GOLD MEMBER</view>
 		</view>
-		<view class="grade" wx:elif="{{userInfo.vip ==2}}">
+		<view class="grade  item_vip2" wx:elif="{{userInfo.vip == 2}}">
 			<view class="text_ch">白银会员</view>
 			<view class="text_en">SILVER MEMBER</view>
 		</view>
-		<view class="grade" wx:else>
+		<view class="grade  item_vip1" wx:else>
 			<view class="text_ch">青铜会员</view>
 			<view class="text_en">BRONZE MEMBER</view>
 		</view>

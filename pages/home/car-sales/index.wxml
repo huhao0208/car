@@ -1,7 +1,7 @@
 <!--汽车销售-->
 <wxs src="../../../utils/filters.wxs" module="filters" />
 <!--搜索-->
-<van-search value="{{ search }}"
+<van-search value="{{ keyword }}"
             bindchange="onChange"
             bind:search="onSearch"
             background="#003561"
@@ -20,8 +20,10 @@
 			span="6"
 			wx:for="{{brandList}}"
 			wx:key="{{item.id}}"
-			data-search="{{item.name}}"
-			bindtap="onSearch"
+			data-brandId="{{item.id}}"
+			data-index="{{index}}"
+			bindtap="brandSearch"
+			class="{{index == brandListIndex ?'active_brand':''}}"
 	>
 		<van-icon name="{{filters.apiImg(item.icon)}}"/>{{item.name}}
 	</van-col>
@@ -47,8 +49,8 @@
 			<!--	<view slot="tags" class="tags"></view>-->
 			<view slot="bottom" class="bottom">
 				<view class="progress">
-					<view class="price_title">厂家指导价: {{item.guidePrice}}</view>
-					<view class="price_value">首付{{item.firstPayment}}元 <text>月供{{item.monthly}}元</text></view>
+					<view class="price_title">厂家指导价: {{filters.moneyFormat( item.guidePrice )}}万</view>
+					<view class="price_value">首付{{filters.moneyFormat(item.firstPayment)}}万 <text>月供{{item.monthly}}</text></view>
 				</view>
 				<view class="price">
 					<view class="zhixiao">{{item.label}}</view>
@@ -59,9 +61,9 @@
 </block>
 
 <load-more
-		showGotop="{{showGotop}}"
+		showGotop="{{floorStatus}}"
 		loadType="{{loadType}}"
-		showLoad="{{showLoad}}"
+		showLoad="{{true}}"
 
 />
 

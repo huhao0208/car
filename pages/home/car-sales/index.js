@@ -2,50 +2,66 @@
 
 const app = getApp();
 
-import{postList,getBrandList,getCarList} from "../../../api"
+import {
+  getBrandList,
+  getCarList
+} from "../../../api"
 let page = 1
+let brandId = '' //汽车品牌id
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    search:'',
-    showGotop:false,  // 返回顶部
-
-    listData:[],     // 渲染列表用数据
-    brandList:[],    // 品牌列表
+    keyword: '',
+    showGotop: false, // 返回顶部
+    brandListIndex: -1, // 选中的汽车品牌
+    listData: [], // 渲染列表用数据
+    brandList: [], // 品牌列表
 
   },
 
 
-  // 搜索内容
-  onChange(e){
+  // 搜索内容改变
+  onChange(e) {
     this.setData({
-      search:e.detail
+      keyword: e.detail
     })
   },
   // 搜索
-  onSearch(e){
-    console.log(e.currentTarget.dataset,'search')
+  onSearch(e) {
+    page = 1
     this.setData({
-      reqPage:1,
-      listData:[],
-      search:e.currentTarget.dataset.search|| this.data.search
-    },_=>{
-      this._getListData( )
+      listData: []
+    }, _ => {
+      this._getListData()
+    })
+
+  },
+  // 汽车品牌搜索
+  brandSearch(e) {
+    page = 1
+    let brandListIndex = e.currentTarget.dataset.index != this.data.brandListIndex ? e.currentTarget.dataset.index : '-1'
+    let brandId = e.currentTarget.dataset.index != this.data.brandListIndex ? e.currentTarget.dataset.brandid : ''
+    brandId = brandListIndex != -1 ? brandId : ''
+    this.setData({
+      brandListIndex,
+      brandId
+    }, _ => {
+      this._getListData()
     })
 
   },
 
   //屏幕滚动  返回顶部用
-  onPageScroll(e){
-    if (e.scrollTop >= 400 &&e.scrollTop <1000 ) {
+  onPageScroll(e) {
+    if (e.scrollTop >= 400 && e.scrollTop < 1000) {
       if (this.data.floorStatus) return
       this.setData({
         floorStatus: true
       });
-    } else if(e.scrollTop < 400) {
+    } else if (e.scrollTop < 400) {
       if (!this.data.floorStatus) return
       this.setData({
         floorStatus: false
@@ -53,7 +69,7 @@ Page({
     }
   },
   // 返回顶部
-  goTop(){
+  goTop() {
     if (wx.pageScrollTo) {
       wx.pageScrollTo({
         duration: 0,
@@ -74,47 +90,70 @@ Page({
   },
 
   // 获取品牌列表
-  _getBrandList(){
-    getBrandList({page:1,pageSize: 0})
-        .then(res=>{
-      let list= res.list.map(item=>{
-         let{id,icon,name} =item
-            return {id,icon,name}
-          })
-          this.setData({
-            brandList:list
-          })
+  _getBrandList() {
+    getBrandList({
+      page: 1,
+      pageSize: 0
+    })
+      .then(res => {
+
+        let list = res.list.map(item => {
+          let {
+            id,
+            icon,
+            name
+          } = item
+          return {
+            id,
+            icon,
+            name
+          }
         })
+        this.setData({
+          brandList: list
+        })
+      })
   },
 
   // 获取汽车列表
-  _getListData(e){
-    let reqData = {
-      pageSize:  10,
-      page:this.data.reqPage,
-      keyword:this.data.search,
-      ...e
-    }
+  _getListData(e) {
 
-    getCarList(reqData)
-        .then(res=>{
-          console.log(res)
-          this.setData({
-            [`listData[${this.data.listData.length}]`]:res.list,
-            resDataLength:res.list.length
-          })
+    if (page == 1) {
+      this.setData({
+        listData: [],
+        loadType: 1
+      })
+    }
+    getCarList({
+      keyword: this.data.keyword,
+      page,
+      brandId: this.data.brandId
+    })
+      .then(res => {
+        if (res.pages && page > res.pages) return
+
+        let loadType = res.total == 0 ? 3 : res.pages == page ? 2 : 1
+        page = res.page + 1
+
+        this.setData({
+          [`listData[${this.data.listData.length}]`]: res.list,
+          loadType
         })
+      })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options,'接收到的数据')
+    //   console.log(options, '接收到的数据')
+    page = 1
     this.setData({
-      search:options.search
+      keyword: options.keyword
+    }, _ => {
+      this._getListData()
     })
     // 搜索数据
-    this._getListData(options.search)
+
     this._getBrandList()
   },
 
@@ -150,7 +189,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    page = 1
     wx.stopPullDownRefresh()
 
   },
@@ -159,10 +198,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-    this.setData({
-      reqPage:reqPageNumber || this.data.reqPage+1
-    })
     this._getListData()
 
 

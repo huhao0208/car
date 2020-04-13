@@ -2,61 +2,39 @@
 <wxs src="../../../utils/filters.wxs" module="filters" />
 <!--轮播图-->
 <view class="swiper_wrap">
-	<swiper indicator-dots="{{false}}"
-	        autoplay=" {{true}}"
-	        interval="{{5000}}"
-	        duration="{{500}}"
-	        circular="{{true}}"
-	        bindchange = "swiperChange"
-	>
+	<swiper indicator-dots="{{false}}" autoplay=" {{true}}" interval="{{5000}}" duration="{{500}}" circular="{{true}}"
+		bindchange="swiperChange">
 		<block wx:for="{{indexSwiperData}}" wx:key="index">
-			<swiper-item  >
-				<image src="{{item.picUrl}}"
-				       data-id="{{item.id}}"
-				       mode="scaleToFill"
-				       class="swiper_item_image"
-				/>
+			<swiper-item>
+				<image src="{{item.picUrl}}" data-id="{{item.advertId}}" data-type="{{item.kind}}"
+					bindtap="swiperToDetail" mode="scaleToFill" class="swiper_item_image" />
 			</swiper-item>
 		</block>
 	</swiper>
 	<!--重置小圆点的样式 -->
 	<view class="dots">
-			<view wx:for="{{indexSwiperData}}" wx:key="index"
-					class="dot{{index == swiperActive ? ' active' : ''}}"
-			/>
+		<view wx:for="{{indexSwiperData}}" wx:key="index" class="dot{{index == swiperActive ? ' active' : ''}}" />
 	</view>
 </view>
 
 <!--众筹-->
 
-<my-tab plate= "5"
-        bindtabChange="tabc"
-        active="0"
-        showGotop ="{{floorStatus}}"
-        loadType ="{{loadType}}"
-        showLoad ="{{true}}"
->
+<my-tab plate="6" bindtabChange="tabc" active="0" showGotop="{{floorStatus}}" loadType="{{loadType}}"
+	showLoad="{{true}}">
 	<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
-		<van-card
-				bindtap="toDetail"
-				wx:for="{{list}}"
-				wx:key="{{item.id}}"
-				desc="{{item.details}}"
-				title="{{item.name}}"
-				data-id="{{item.id}}"
-				data-product-type="{{item.type}}"
-				title-class="title"
-				thumb-class="card_img"
-				thumb-mode="scaleToFill"
-				thumb="{{ item.showUrl }}"
-		>
-			<view slot="tags" class="tags"></view>
+		<van-card bindtap="toDetail" wx:for="{{list}}" wx:key="{{item.id}}" desc="{{item.introduce}}"
+			title="{{item.name}}" data-id="{{item.id}}" data-product-type="{{item.type}}" title-class="title"
+			thumb-class="card_img" thumb-mode="scaleToFill" thumb="{{ item.showUrl }}">
+			<view slot="tags" class="tags" wx:if="{{item.label}}">{{item.label}}</view>
 			<view slot="bottom" class="bottom">
 				<view class="progress">
-					参与众筹，众筹进度{{filters.progress(item.activityNum,item.totalNum)}}%
-					<view class="progess_background">
-						<view class="progress_value" style="width: {{filters.progress(item.activityNum,item.totalNum)}}%;"></view>
-					</view>
+					<block wx:if="{{item.type==2}}">
+						参与众筹，众筹进度{{filters.progress(item.activityNum,item.totalNum)}}%
+						<view class="progess_background">
+							<view class="progress_value"
+								style="width: {{filters.progress(item.activityNum,item.totalNum)}}%;"></view>
+						</view>
+					</block>
 				</view>
 				<view class="price">
 					¥{{item.currentPrice}}

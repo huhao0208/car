@@ -1,5 +1,12 @@
-
 page van-card .progress {
   padding-top: 40rpx;
 }
 
+.baoyou {
+  background     : url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/baoyou.png") center no-repeat;
+  background-size: contain;
+  display        : inline-block;
+  padding        : 8rpx 8rpx 8rpx 12rpx;
+  font-size      : 20rpx;
+  color          : #FFF;
+}

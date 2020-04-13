@@ -85,7 +85,7 @@ Component({
 			})
 		},
 		getUserInfo(e) {
-			console.log(e)
+		//	console.log(e)
 			if (!e.detail.iv) return wx.showToast({ title: '获取用信息失败,请稍候再试' })
 			// app.globalData.userInfo = e.detail.userInfo
 			requestData = {
@@ -130,7 +130,7 @@ Component({
 			xcxLogin(newReq)
 				.then(
 					res => {
-						console.log(res, '登录成功')
+					//	console.log(res, '登录成功')
 						//选择数据存储
 						app.setGlobalData('unionId', res.token)
 
@@ -139,6 +139,7 @@ Component({
 							res => {
 								// 也可以通过在组件绑定事件 通过登录状态的改变触发事件 并传递参数
 								this.triggerEvent('hasLogin', res)
+								wx.showToast({title:'登录成功'})
 							}
 						)
 
