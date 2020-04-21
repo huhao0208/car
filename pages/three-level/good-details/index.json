@@ -5,6 +5,7 @@
     "comment": "../../../components/comment/index",
     "login": "../../../components/login/index",
     "van-stepper": "@vant/weapp/stepper/index",
+    "van-popup": "@vant/weapp/popup/index",
     "van-progress": "@vant/weapp/progress/index",
     "van-icon": "@vant/weapp/icon/index",
     "van-tab": "@vant/weapp/tab/index",

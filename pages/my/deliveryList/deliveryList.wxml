@@ -1,36 +1,39 @@
-<block wx:if="{{addressList.length>0}}">
-	<van-swipe-cell
-	 wx:for="{{addressList}}"
-	 wx:key="{{index}}"
-	 right-width="{{ 65 }}"
-	 bindclick="clickHandle"
-	 data-info="{{item}}"
-	 left-width="{{ 65 }}"
-	>
-		<view slot="left" class="cell_left">选择</view>
-		<view class="addresss_card">
-			<icon
-			 wx:if="{{ selctedId== item.id}}"
-			 type="success"
-			 size="16"
-			 class="selected"
-			/>
-			<text selectable>{{item.provice}}{{item.city}}{{item.area}}{{item.address}}</text>
-			<view class="username">{{item.contact}}</view>
-			<view class="add_editor">
-				<text>{{item.phone}}</text>
-				<text catchtap="editAddress" data-info="{{item}}">点击修改地址>></text>
+<block wx:if="{{!isDev}}">
+	<block wx:if="{{addressList.length>0}}">
+		<van-swipe-cell
+		 wx:for="{{addressList}}"
+		 wx:key="{{index}}"
+		 right-width="{{ 65 }}"
+		 bindclick="clickHandle"
+		 data-info="{{item}}"
+		 left-width="{{ 65 }}"
+		>
+			<view slot="left" class="cell_left">选择</view>
+			<view class="addresss_card">
+				<icon
+				 wx:if="{{ selctedId== item.id}}"
+				 type="success"
+				 size="16"
+				 class="selected"
+				/>
+				<text selectable>{{item.provice}}{{item.city}}{{item.area}}{{item.address}}</text>
+				<view class="username">{{item.contact}}</view>
+				<view class="add_editor">
+					<text>{{item.phone}}</text>
+					<text catchtap="editAddress" data-info="{{item}}" style="font-size: 24rpx; color:#999">点击修改地址>></text>
+				</view>
 			</view>
-		</view>
-		<view slot="right" class="cell_right">删除</view>
-	</van-swipe-cell>
+			<view slot="right" class="cell_right">删除</view>
+		</van-swipe-cell>
+	</block>
+	<!-- &lt;!&ndash;无收货地址&ndash;&gt; -->
+	<view class="nodata" style="height: 100%;background-color: #FFF" wx:else>
+		<view class="no-address" />
+	
+	</view>
+	<view class="addAddress_btn">
+		<button bindtap="editAddress">新增收货地址</button>
+	</view>
+	
+	
 </block>
-<!-- &lt;!&ndash;无收货地址&ndash;&gt; -->
-<view class="nodata" style="height: 100%;background-color: #FFFFFF" wx:else>
-	<view class="no-address" />
-
-</view>
-<view class="addAddress_btn">
-	<button bindtap="editAddress">新增收货地址</button>
-</view>
-

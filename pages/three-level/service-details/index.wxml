@@ -66,7 +66,8 @@
 	<van-tab title="店铺评价" >
 			<comment
 					page="{{commentPage}}"
-					type="{{commentType}}"
+					type="6"
+					proId="{{details.id}}"
 					showGotop="{{floorStatus}}"
 			/>
 	</van-tab>

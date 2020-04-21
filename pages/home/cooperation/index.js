@@ -29,7 +29,8 @@ Page({
   getListData(e){
     if(page==1){
       this.setData({
-        listData:[]
+        listData:[],
+        loadType: 1
       })
     }
     getStoreList({page,categoryId})
@@ -37,20 +38,13 @@ Page({
           wx.stopPullDownRefresh()
           page = res.page
           let type = (!res.total)?3:( res.page ==res.pages )?2:1
-          if(!res.page && page>res.pages) return
-          if(page == 1){
-         //   console.log(res.list)
-            this.setData({
-              listData: [res.list],
-              loadType: type
-            })
-          }else{
+
+          if(res.page && page>res.pages) return   
+          
             this.setData({
               [`listData[${this.data.listData.length}]`]:res.list,
               loadType: type
             })
-          }
-
           page = res.page+1
 
         })
@@ -85,6 +79,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+     if(app.globalData.isDev) return this.setData({
+            isDev:true
+          })
+      
+
+
     page =1
     categoryId = ''
     this.getListData()

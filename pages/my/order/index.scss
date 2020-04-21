@@ -24,9 +24,11 @@ page{
 }
 
 
+
 van-card {
   .van-card__header{
     justify-content: space-between;
+  
   }
   .title{
     font-size: 25rpx;
@@ -39,6 +41,10 @@ van-card {
   }
 }
 
+page van-card .van-card__header {
+  border-bottom:1px solid #EEE;
+  
+}
 .progress{
   display: inline-block;
   width: 303rpx;

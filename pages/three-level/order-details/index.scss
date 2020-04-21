@@ -5,18 +5,21 @@
 page{
   //background: rgba(233,233,233,.6);
   position:absolute;
+  height: auto;
+  padding-bottom: 170rpx;
 
 }
 .total_price{
+  position: relative;
   color:#DD1A22;
   text-align: right;
   font-size: 30rpx;
   font-weight: 500;
-  padding: 25rpx 40rpx;
+  padding: 20rpx 40rpx;
 }
 .order_info_top{
   color:#666;
-  padding: 25rpx 40rpx;
+  padding: 20rpx 40rpx;
   font-size: 28rpx;
   view{
     line-height: 40rpx;
@@ -38,7 +41,7 @@ page van-card {
   }
   .van-card{
     background: rgba(233,233,233,.6);
-    margin: 30rpx;
+    margin:20rpx 30rpx;
   }
 }
 
@@ -78,8 +81,6 @@ page van-card  .price{
   display: flex;
   flex-direction: row;
   padding: 50rpx 113rpx;
-  border-bottom: 1rpx solid #EEE;
-  margin-bottom: 50rpx;
   .status{
     border-radius: 50%;
     width: 60rpx;
@@ -130,7 +131,7 @@ page van-card  .price{
   }
 }
 .user_name{
-  margin-top: 40rpx;
+  margin-top: 20rpx;
   &::before{
     @include bg('user.png')
   }
@@ -182,4 +183,48 @@ page van-card  .price{
     }
   }
 
+}
+van-field{
+  .van-cell{
+    width: 690rpx;
+    margin: 30rpx;
+    background: rgba(233,233,233,0.6);
+     min-height: 200rpx;
+    .van-field__input--textarea {
+      margin-top:10rpx;
+    }
+  }
+}
+.stars{
+  margin: 30rpx;
+display: flex;
+align-items: center;
+  font-size: 26rpx;
+  color: #999;
+  text{
+    vertical-align: middle;
+  }
+  van-rate{
+    vertical-align: middle;
+    padding-right: 20rpx;
+  }
+
+}
+
+// 物流
+van-steps{
+  .van-steps--vertical {
+    padding-left: 30rpx;
+  }
+  .van-step__circle-container{
+    height: 0;
+  }
+}
+
+.logistics{
+  font-size: 30rpx;
+  display: block;
+  color: #666;
+ // width: 50%;
+  padding: 0 30rpx;
 }

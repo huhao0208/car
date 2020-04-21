@@ -1,3 +1,4 @@
-<wxs src="../../utils/filters.wxs" module="filters"/>
+<wxs src="../../utils/filters.wxs" module="filters" />
 
-<van-icon  name="{{filters.imgUrl(isCollelected?'shoucang2.png':'shoucang1.png')}}" size="{{size+'rpx'}}" bindtap="collection"/>
+<van-icon name="{{filters.imgUrl(isCollelected?'shoucang2.png':'shoucang1.png')}}" size="{{size+'rpx'}}" bindtap="collection" />
+

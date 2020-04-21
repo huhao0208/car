@@ -33,12 +33,13 @@ Component({
 		// 生命周期函数，可以为函数，或一个在methods段中定义的方法名
 		attached: function () {
 			// 先判断是否有登录吗 有的话直接不用往下执行
-			if (app.globalData.unionId) return this.setData({
-				isLogin: true
-			})
+			// if (app.globalData.unionId) return this.setData({
+			// 	isLogin: true
+			// })
+			
 			app.$watch('showLogin', (val, old) => {
 				// 处理全局变量
-				console.log(val, 'showLogin变化了')
+				console.log(val, '←showLogin变化了,isLogin→'+this.data.isLogin)
 
 				this.setData({
 					showLogin: Boolean(val)
@@ -86,7 +87,7 @@ Component({
 		},
 		getUserInfo(e) {
 		//	console.log(e)
-			if (!e.detail.iv) return wx.showToast({ title: '获取用信息失败,请稍候再试' })
+			if (!e.detail.iv) return wx.showToast({ title: '获取用信息失败,请稍候再试' ,icon:'none'})
 			// app.globalData.userInfo = e.detail.userInfo
 			requestData = {
 				...requestData,
@@ -131,9 +132,9 @@ Component({
 				.then(
 					res => {
 					//	console.log(res, '登录成功')
+					
 						//选择数据存储
 						app.setGlobalData('unionId', res.token)
-
 						// 从后台获取用户信息
 						app.getUserDetailInfo(
 							res => {
@@ -142,8 +143,6 @@ Component({
 								wx.showToast({title:'登录成功'})
 							}
 						)
-
-
 					}
 				).catch(err => {
 					console.log(err)
@@ -154,7 +153,6 @@ Component({
 						console.log('登录失败重新登录')
 						app.setGlobalData('userInfo', "")
 						app.setGlobalData('unionId', "")
-
 					})
 				})
 		},

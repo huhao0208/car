@@ -1,6 +1,5 @@
 // 汽车详情
 const app = getApp()
-import {sL,hL} from "../../../utils/util"
 import { getCarDetail } from "../../../api"
 
 Page({
@@ -10,13 +9,13 @@ Page({
    */
   data: {
     floorStatus: false,  // 返回顶部
-    reqPage: 1,    // 请求参数:页码
-    listData: [],     // 渲染列表用数据 评价
     showLogin: false,
     // indexSwiperData: [], //轮播图数据
     swiperActive: 0,
     tabActive: 0,
     carInfo: [],       // 汽车信息
+    commentType: '',    // 获取评价类型
+    page: 0,    // 用来获取评价 每次只需改变page 即可 
   },
   swiperChange(e) {
     this.setData({
@@ -27,8 +26,6 @@ Page({
   priviweImg() {
     const urls = this.data.carInfo.carousel
     const current = this.data.carInfo.carousel[this.data.swiperActive]
- 
-
     wx.previewImage({
       // urls:[],
       current,
@@ -44,7 +41,7 @@ Page({
       // 获取评价
       this.setData({
         active: e.detail.index,
-        commentType: 223
+        page: 1
       })
     } else {
       // 获取详情
@@ -78,7 +75,7 @@ Page({
 
   // 获取汽车信息
   getCarInfo(id) {
-    sL("数据加载中...")
+    // sL("数据加载中...")
     getCarDetail({ id })
       .then(res => {
         /**
@@ -89,18 +86,18 @@ Page({
         */
 
         let detailsData = res
-        detailsData.details = res.details? res.details.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block" '): '等待商家添加'//防止富文本图片过大
+        detailsData.details = res.details ? res.details.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block" ') : '等待商家添加'//防止富文本图片过大
         this.setData({
           carInfo: detailsData
         })
-        hL()
+        // hL()
       })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- 
+
     this.getCarInfo(options.id)
   },
 
@@ -132,20 +129,21 @@ Page({
 
   },
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+    * 页面相关事件处理函数--监听用户下拉动作
+    */
   onPullDownRefresh: function () {
-
-    wx.stopPullDownRefresh()
-
+    if(tabActive==1)  this.setData({
+      page: 1
+    })
   },
 
   /**
-   * 页面上拉触底事件的处理函数
+   * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-
+   if(tabActive==1) this.setData({
+      page: this.data.page + 1
+    })
   },
 
   /**
@@ -153,8 +151,8 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: this.data.carInfo.name + '现价仅需:' + this.data.carInfo.currentPrice + '元',
-      path: '/pages/three-level/car-details/index'
+      title: this.data.carInfo.name + '现价:' + this.data.carInfo.currentPrice + '元',
+      path: '/pages/three-level/car-details/index?id=' + this.data.carInfo.id
     }
   }
 })

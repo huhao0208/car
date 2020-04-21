@@ -1,5 +1,5 @@
 // 预支付
-import { getProductDetail, crowdFunding, directPurchase } from "../../../api"
+import { getProductDetail, crowdFunding, directPurchase,calculateShipping } from "../../../api"
 const app = getApp()
 let onloadData = {}
 Page({
@@ -9,7 +9,22 @@ Page({
    */
   data: {
     currentAddress: '',
-    number: 1
+    number: 1,
+    shippingMethods: 0 , // 配送方式
+    freight:0,    // 运费
+  },
+  // 选择配送方式
+  shippingChange(e){
+    this.setData({
+      shippingMethods:e.detail
+    })
+    if(e.detail==1){
+     if(this.data.currentAddress.id) this.calculateShipping()
+    }else{
+      this.setData({
+        freight:0
+      })
+    }
   },
   // 选择地址
   addAddress() {
@@ -29,46 +44,87 @@ Page({
   getProductDetail(e) {
     getProductDetail({ id: onloadData.id })
       .then(res => {
-     //   console.log(res)
+        //   console.log(res)
+
+       let specIndex = res.specs.findIndex(item=>item.id == onloadData.specId)
+       console.log(onloadData);
+       
         this.setData({
-          details: res
+          details: res,
+          specIndex:specIndex?specIndex:0
         })
       })
   },
 
+  // 获取运费
+  calculateShipping(){
+    calculateShipping({addressId:this.data.currentAddress.id,proId:this.data.id,number:this.data.number})
+    .then(res=>{
+      this.setData(res)
+    })
+  },
+
   // 提交支付
   submit() {
-    if (!this.data.currentAddress || !this.data.currentAddress.id) return wx.showToast({
+
+    if(!this.data.shippingMethods) return wx.showToast({
+      title:'请选择配送方式',
+      icon:'none'
+    })
+
+    if (this.data.shippingMethods==1 && (!this.data.currentAddress || !this.data.currentAddress.id)) return wx.showToast({
       title: '请选择收获地址',
       icon: 'none'
     })
     let reqData = {
+      specId:this.data.specId/1, // 规格id
       proId: this.data.details.id,
-      quantity: this.data.number || 1,
-      addressId: this.data.currentAddress.id
+      quantity: this.data.number/1 || 1,
+      addressId:this.data.shippingMethods==1? this.data.currentAddress.id:'',
+      deliveryMethod:this.data.shippingMethods==1?2:1
     }
+
     let sel = this.data.details.type
 
     let fn = sel == 2 ? crowdFunding : directPurchase
     // 1普通订单 2众筹
     fn(reqData)
-      .then(_ => {
-
-        wx.showToast({
-          title: '支付成功'
+      .then(res => {
+        res.paySign = res.sign
+        wx.requestPayment({
+          //  appId:appid,
+          // timeStamp,
+          // nonceStr,
+          // package: 'prepay_id=' + prepay_id,
+          // signType: 'HMACSHA256',        //'MD5',
+          // paySign,
+          ...res,
+          success: function (re) {
+            wx.redirectTo({
+              url: '/pages/my/order/index?type=' + sel
+            })
+            // wx.showToast({
+            //   title:'支付成功',
+            //   success:()=>{
+              
+            //   }
+            // })
+           
+          },
+          fail: function () {
+            // fail
+          },
+          complete: function (res) {
+            // complete
+            console.log(res);
+            
+          }
         })
 
-        let time = setInterval(_=> {
-          clearInterval(time)
-          time = null
+        // return
+        // wx.navigateBack({delta:-1})
 
-          // 调用微信支付 成功后返回
-          // wx.navigateBack({delta:-1})
 
-          wx.redirectTo({
-            url: '/pages/my/order/index?type=' + sel
-          })
-        }, 1000)
       })
 
   },
@@ -97,6 +153,7 @@ Page({
     this.setData({
       currentAddress: address
     })
+    if(this.data.currentAddress.id && this.data.shippingMethods==1) this.calculateShipping()
   },
 
   /**

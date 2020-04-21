@@ -5,36 +5,23 @@
 >
 	<view wx:for="{{list}}"
 	      wx:key="{{item.id}}"
-	      class="comment"
+	      class="comment_item"
 	>
 		<view class="user_info">
 			<image class="avator"
-			       src="{{filters.apiImg('car.png')}}"/>
-			<text class="user_name">{{'张三'}}</text>  <text class="time">{{filters.formatDate('2020年3月28日10:24:04')}}</text>
+				   src="{{item.head}}"/>
+				   
+			<view class="right">
+				<view class="top">
+					 {{item.username}}  <text class="time">{{filters.formatDate(item.createTime)}}</text>
+				</view>
+				<view class="bottom">
+					<van-rate disabled value="{{item.star}}" disabled-color="#ffd21e"  icon="like"
+					void-icon="like-o"	/><text>{{rateName[item.star-1]}}</text>
+				</view>	
+			</view>
 		</view>
-		<text class="content">的开发撒酒疯回款客户dsgsdgsdg s十多个十多个帝国时代给第三方单身狗但是师傅看见爱上 </text>
-	</view>
-	<view wx:for="{{list}}"
-	      wx:key="{{item.id}}"
-	      class="comment"
-	>
-		<view class="user_info">
-			<image class="avator"
-			       src="{{filters.apiImg('car.png')}}"/>
-			<text class="user_name">{{'张三'}}</text>  <text class="time">{{filters.formatDate('2020年3月28日10:24:04')}}</text>
-		</view>
-		<text class="content">的开发撒酒疯回款客户dsgsdgsdg s十多个十多个帝国时代给第三方单身狗但是师傅看见爱上 </text>
-	</view>
-	<view wx:for="{{list}}"
-	      wx:key="{{item.id}}"
-	      class="comment"
-	>
-		<view class="user_info">
-			<image class="avator"
-			       src="{{filters.apiImg('car.png')}}"/>
-			<text class="user_name">{{'张三'}}</text>  <text class="time">{{filters.formatDate('2020年3月28日10:24:04')}}</text>
-		</view>
-		<text class="content">的开发撒酒疯回款客户dsgsdgsdg s十多个十多个帝国时代给第三方单身狗但是师傅看见爱上 </text>
+		<text class="content">{{item.content}}</text>
 	</view>
 </block>
 

@@ -146,3 +146,33 @@ rich-text {
   padding-bottom: 180rpx;
   overflow-y    : scroll;
 }
+
+// 0.5px 线
+.line{
+  position: relative;
+  border-bottom:1px solid rgba(233,233,233,.5);
+  &::after{
+    display: block;
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px solid #FFF;
+    z-index:1;
+    transform: translateY(50%);
+  }
+}
+.line_top{
+  position: relative;
+  border-top:1px solid rgba(233,233,233,.5);
+  &::after{
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 1px solid #FFF;
+    z-index:1;
+    transform: translateY(50%);
+  }
+}

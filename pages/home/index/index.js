@@ -1,50 +1,52 @@
 // pages/index/index.js
-import { getAdvertList } from "../../../api"
+import { getAdvertList,getHomePage } from "../../../api"
 const app = getApp()
+// let cardList = [
+// 	{
+// 		name: '汽车销售',
+// 		bg: 'car.png',
+// 		navigatorUrl: 'car-sales'
+// 	}, {
+// 		name: '金融贷款',
+// 		bg: 'money.png',
+// 		navigatorUrl: 'loan'
+// 	}, {
+// 		name: '车主服务',
+// 		bg: 'service.png',
+// 		navigatorUrl: 'service'
+// 	}, {
+// 		name: '精品商城',
+// 		bg: 'mendian.png',
+// 		navigatorUrl: 'mall'
+// 	}, {
+// 		name: '会员专享',
+// 		bg: 'vip-3.png',
+// 		navigatorUrl: 'vip-login'
+// 	}, {
+// 		name: '每日活动',
+// 		bg: 'huodong.png',
+// 		navigatorUrl: 'activity'
+// 	}, {
+// 		name: '合作专区',
+// 		bg: 'hezuo.png',
+// 		navigatorUrl: 'cooperation'
+// 	}, {
+// 		name: '更多精彩',
+// 		bg: 'more.png',
+// 		navigatorUrl: ''
+// 	}
+// ]
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
+		isDev:false,
 		search: '',
 		userInfo: "",
 		indexSwiperData: [], //轮播图数据
-		cardsData: [
-			{
-				name: '汽车销售',
-				bg: 'car.png',
-				navigatorUrl: 'car-sales'
-			}, {
-				name: '金融贷款',
-				bg: 'money.png',
-				navigatorUrl: 'loan'
-			}, {
-				name: '车主服务',
-				bg: 'service.png',
-				navigatorUrl: 'service'
-			}, {
-				name: '精品商城',
-				bg: 'mendian.png',
-				navigatorUrl: 'mall'
-			}, {
-				name: '会员专享',
-				bg: 'vip-3.png',
-				navigatorUrl: 'vip-login'
-			}, {
-				name: '每日活动',
-				bg: 'huodong.png',
-				navigatorUrl: 'activity'
-			}, {
-				name: '合作专区',
-				bg: 'hezuo.png',
-				navigatorUrl: 'cooperation'
-			}, {
-				name: '更多精彩',
-				bg: 'more.png',
-				navigatorUrl: ''
-			}
-		]
+		cardsData:[]
 
 	},
 	// 获取轮播图数据
@@ -58,7 +60,7 @@ Page({
 	},
 	// 轮播图跳转
 	swiperToDetail(e) {
-
+		if(this.data.isDev) return
 		// 判断类型跳转对应页面 1 普通商品 2 众筹商品 3 金融贷款 4 汽车销售 5 合作商家
 		let type = e.currentTarget.dataset.type
 		let id = e.currentTarget.dataset.id
@@ -70,6 +72,15 @@ Page({
 		})
 
 
+	},
+	// 获取卡片数据
+	getHomePage(){
+		getHomePage()
+		.then(res=>{
+			this.setData({
+				cardsData:res
+			})
+		})
 	},
 	onChange(e) {
 		this.setData({
@@ -127,6 +138,35 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		let that =this
+		this.getHomePage()
+
+
+		app.getVersion({
+			success(res){
+				that.setData({
+					isDev:Boolean(res)
+				})
+				// if(res){
+				// //	let arr = [];
+				// //	let items = ['金融贷款','精品商城','会员专享','每日活动','合作专区']
+				// 	// cardList.filter(item=>{
+				// 	// 		if(!items.includes(item.name))  arr.push(item)
+				// 	// })
+				// 	that.setData({
+				// 		cardsData: arr,
+				// 		isDev:true
+				// 	})
+				// 	console.log(arr);
+				// }else{
+				// 	that.setData({
+				// 		cardsData: cardList,
+				// 		isDev:false	
+				// 	})
+				// }
+			}
+		})
+		// 判断版本是否为dev	
 		this._getAdvertList()
 	},
 

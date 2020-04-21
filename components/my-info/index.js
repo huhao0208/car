@@ -1,18 +1,18 @@
 const app = getApp()
 Component({
 	properties: {
-		level:{       //会员等级
-			type:String,
-			value:''
-		},
-		name:{
-			type:String,
-			value:''
-		},
-		head:{
-			type:String,
-			value:''
-		}
+		// level:{       //会员等级
+		// 	type:String,
+		// 	value:''
+		// },
+		// name:{
+		// 	type:String,
+		// 	value:''
+		// },
+		// head:{
+		// 	type:String,
+		// 	value:''
+		// }
 	},
 	pageLifetimes:{
 		show() {
@@ -20,12 +20,15 @@ Component({
 		}
 	},
 	lifetimes:{
+		created() {
+			
+		},
 		attached() {
-			// console.log(app.globalData,'组件self')
 			let userInfo = app.globalData.userInfo || wx.getStorageSync("userInfo")
 			this.setData({
 				userInfo
 			})
+			
 		}
 	},
 	data: {

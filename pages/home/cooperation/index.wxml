@@ -1,36 +1,39 @@
-<!--合作专区-->
-<wxs src="../../../utils/filters.wxs" module="filters" />
+<block wx:if="{{!isDev}}">
+	<!--合作专区-->
+	<wxs src="../../../utils/filters.wxs" module="filters" />
 
-<my-tab plate= "5"
-        bindtabChange="tabc"
-        active="0"
-        showGotop ="{{floorStatus}}"
-        loadType ="{{loadType}}"
-        showLoad ="{{showLoad}}"
->
-	<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
-		<van-card
-				wx:for="{{list}}"
-				wx:key="{{item.id}}"
-				desc="{{item.title}}"
-				title="{{item.name}}"
-				title-class="title"
-				data-id="{{item.id}}"
-				bindtap="toDetailPage"
-				thumb-class="card_img"
-				thumb-mode="scaleToFill"
-				thumb="{{filters.apiImg(item.carousels)}}"
-		>
-			<view slot="bottom" class="bottom">
-				<view class="progress">
-					{{item.label}}
+	<my-tab
+	 plate="5"
+	 bindtabChange="tabc"
+	 active="0"
+	 showGotop="{{floorStatus}}"
+	 loadType="{{loadType}}"
+	 showLoad="{{showLoad}}"
+	>
+		<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
+			<van-card
+			 wx:for="{{list}}"
+			 wx:key="{{item.id}}"
+			 desc="{{item.title}}"
+			 title="{{item.name}}"
+			 title-class="title"
+			 data-id="{{item.id}}"
+			 bindtap="toDetailPage"
+			 thumb-class="card_img"
+			 thumb-mode="scaleToFill"
+			 thumb="{{filters.apiImg(item.carousels)}}"
+			>
+				<view slot="bottom" class="bottom">
+					<view class="progress">
+						{{item.label}}
+					</view>
+					<view class="price" wx:if="ShowDistance">
+						{{filters.distance(latitude1,longitude1,item.latitude,item.longitude)}}km
+					</view>
 				</view>
-				<view class="price" wx:if="ShowDistance" >
-					{{filters.distance(latitude1,longitude1,item.latitude,item.longitude)}}km
-				</view>
-			</view>
-		</van-card>
-	</block>
-</my-tab>
+			</van-card>
+		</block>
+	</my-tab>
 
+</block>
 

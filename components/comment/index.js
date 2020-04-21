@@ -1,4 +1,4 @@
-import{ getCarList }from '../../api'
+import{ getAppraiseList }from '../../api'
 
 Component({
 	properties: {
@@ -10,44 +10,41 @@ Component({
 			type:Number|| String,  // 需要加载的页面
 			value:0
 		},
+		proId:{                    // 产品id
+			type:String,
+			value:''
+		},
 		showGotop:{      // 显示返回顶部
 			type:Boolean,
 			value:false
 		}
 	},
 	observers:{
-		page(val){
+		'page'(page){
 		//	console.log(val+"/"+this.data.type,'评论组件请求参数')
-			// -------linshi -------
-			this.setData({loadType:3})
-			return  // 暂时无接口
-			// -------linshi -------
-			if(val>=1){
-				getCarList({page:val})
-					.then(res=>{
-				//		console.log(res,'获取的评价列表')
-						// 如果页码是1 则 直接赋值
-						if(res.page==1){
-							this.setData({
-								listData:[res.list]
-							})
-						}else{
-							this.setData({
-								[`listData[${this.data.listData.length}]`]:res.list
-							})
-						}
-						// 空数据 //	total == 0
-						// 数据加载完毕 // pages == page && total!=0
-						// 加载中 // pages > page  total!-0
-						if(!res.total){this.setData({loadType:3})}
-						else{
-							if(res.pages == res.page){this.setData({loadType:2}) }
-							else{this.setData({loadType:1})}
-						}
-					})
-			}
+		if(page) this.getAppraiseList(page)
+
 		}
 	},
-	data: {},
-	methods: {}
+	data: {
+		rateName:['非常差','差','一般','好','非常好'],
+		loadType:1, 
+		listData:[]
+	},
+	methods: {
+		getAppraiseList(page){
+			let that =this
+			if(page==1) this.setData({listData:[],loadType:1})
+			getAppraiseList({page,proId:this.data.proId,type:this.data.type})
+			.then(res=>{
+				let type =  (!res.total )?3:( res.pages == page )?2:1
+				if(res.pages && res.pages<page) return
+				that.setData({
+					[`listData[${that.data.listData.length}]`]:res.list,
+					loadType:type
+				})
+
+			})
+		}
+	}
 });

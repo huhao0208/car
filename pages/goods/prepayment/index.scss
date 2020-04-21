@@ -5,23 +5,52 @@
 
 ;
 
-van-card {
-  .van-card__header {
-    border-bottom  : 1rpx solid #EEE;
-    justify-content: space-between;
+.shipping_methods_title {
+  padding  : 0 30rpx;
+  font-size: 26rpx;
+  color    : #666;
+}
+
+.shipping_methods_body {
+  display: flex;
+  padding: 30rpx;
+  font-size: 26rpx;
+  color    : #666;
+
+  van-radio {
+    flex: 1;
+     .van-radio{
+      justify-content: center;
+     }
+    
+  }
+  .active_method{
+    .van-radio__label{
+      color:rgb(25, 137, 250)
+    }
+  }
+}
+
+page {
+  van-card {
+    .van-card__header {
+      border-bottom  : none;
+      justify-content: space-between;
+    }
+
+    .title {
+      font-size: 25rpx;
+    }
+
+    .van-card__content {
+      padding-left: 40rpx;
+    }
+
+    .van-card {
+      background: #FFF;
+    }
   }
 
-  .title {
-    font-size: 25rpx;
-  }
-
-  .van-card__content {
-    padding-left: 40rpx;
-  }
-
-  .van-card {
-    background: #FFF;
-  }
 }
 
 .progress {
@@ -44,15 +73,11 @@ van-card {
 }
 
 .price {
-  float      : right;
-  color      : #DD2928;
-  font-size  : 37rpx;
-  text-align : center;
-  line-height: 100rpx;
-}
-
-.bottom {
-  height: 110rpx;
+  float         : right;
+  color         : #DD2928;
+  font-size     : 37rpx;
+  text-align    : center;
+  // line-height: 100rpx;
 }
 
 .tags {
@@ -64,9 +89,10 @@ van-card {
 }
 
 .address {
+  margin-top: 20rpx;
   padding      : 35rpx 15rpx 35rpx 30rpx;
-  border-bottom: 2rpx solid #EEE;
-  border-top   : 2rpx solid #EEE;
+  border-bottom: 1rpx dashed #EEE;
+  border-top   : 1rpx dashed #EEE;
   color        : #666;
 
   .name {
@@ -96,5 +122,31 @@ van-card {
 }
 
 .submit {
-  margin: 231rpx 65rpx 0;
+  position: fixed;
+  border-radius: 26rpx;
+  bottom:50rpx;
+  // width: 80%;
+ left: 65rpx;
+ right: 65rpx;
+}
+
+.price_item {
+  padding       : 30rpx;
+  padding-bottom: 0;
+  font-size     : 26rpx;
+  color         : #666;
+
+  text {
+    float: right;
+  }
+}
+
+.total_price {
+  color         : #333;
+  padding-bottom: 30rpx;
+
+  text {
+    font-size: 36rpx;
+    color    : #DD2928;
+  }
 }

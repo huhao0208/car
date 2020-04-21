@@ -1,4 +1,5 @@
-<!--金融贷款详情-->
+<block wx:if="{{!isDev}}">
+	<!--金融贷款详情-->
 <wxs src="../../../utils/filters.wxs" module="filters" />
 
 <rich-text nodes ="{{details.details}}" space></rich-text>
@@ -20,5 +21,6 @@
 </view>
 
 <login bindhasLogin="hasLogin"/>
+</block>
 
 

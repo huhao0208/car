@@ -1,87 +1,94 @@
 // 商品详情
 const app = getApp()
-import{getAdvertList} from "../../../api"
+import { getAdvertList } from "../../../api"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isLogin:false,
+    isLogin: false,
     indexSwiperData: [], //轮播图数据
     swiperActive: 0,
     tabActive: 0,
-    showLogin:false
+    showLogin: false
   },
-  swiperChange(e){
+  swiperChange(e) {
     this.setData({
-      swiperActive:e.detail.current,
+      swiperActive: e.detail.current,
     })
   },
-  // 轮播图图片预览
-  priviweImg(){
-    const urls = this.data.indexSwiperData.map(item =>item.url)
-    const current = this.data.indexSwiperData[this.data.swiperActive].url
+  // 轮播图跳转
+  swiperToDetail(e) {
+    if(this.data.isDev) return
+    app.isLogin(_ => {
+      // 判断类型跳转对应页面 1 普通商品 2 众筹商品 3 金融贷款 4 汽车销售 5 合作商家
+      let type = e.currentTarget.dataset.type
+      let id = e.currentTarget.dataset.id
+      // `/pages/three-level/good-details/index?productType=${type}&id=${e.currentTarget.dataset.id}`
+      let url = (type == 1 || type == 2) ? `/pages/three-level/good-details/index?productType=${type}&id=${id}` : type == 3 ? '/pages/three-level/loan-details/index?id=' + id : type == 4 ? '/pages/three-level/car-details/index?id=' + id : type == 5 ? '/pages/three-level/cooperation-details/index?id=' + id : ''
 
+      wx.navigateTo({
+        url
+      })
 
-   wx.previewImage({
-     // urls:[],
-     current,
-     urls
+    })
 
-   })
   },
+
 
   // 获取轮播图数据
-  getAdvertList(){
-    getAdvertList({ type:2 })
-        .then(res=>{
-     
-          this.setData({
-            indexSwiperData:res.list
-          })
+  getAdvertList() {
+    getAdvertList({ type: 2 })
+      .then(res => {
+        this.setData({
+          indexSwiperData: res.list
         })
+      })
   },
+
+
+
   // 进入会员专区
-  toVip(){
+  toVip() {
     // 先判断登录
-    app.isLogin(_=>{
+    app.isLogin(_ => {
       // 如果是会员进入专区/pages/vip/index/index 不是去开通页面 pages/vip-code/index/index
       let userInfo = app.globalData.userInfo || wx.getStorageSync('userInfo')
-      if(userInfo.vip){
+      if (userInfo.vip) {
         wx.navigateTo({
-          url:'/pages/vip/index/index'
+          url: '/pages/vip/index/index'
         })
-      }else{
+      } else {
         wx.switchTab({
           url: '/pages/vip-code/index/index'
         })
       }
-    
+
     })
   },
 
   // 升级会员
-  openVip(e){
+  openVip(e) {
 
     let vipType = app.globalData.userInfo.vip || ''
-    if(!vipType) {
+    if (!vipType) {
       // 如果未登录或者没有vip 则只能点击第一个
-      if(e.currentTarget.dataset.vip ==1){
-        app.isLogin( _=>{
+      if (e.currentTarget.dataset.vip == 1) {
+        app.isLogin(_ => {
           wx.switchTab({
-            url:'/pages/vip-code/index/index'
+            url: '/pages/vip-code/index/index'
           })
         })
       }
-    }else{
+    } else {
 
-      
-      if(e.currentTarget.dataset.vip ==vipType){
 
-         app.isLogin( _=>{
+      if (e.currentTarget.dataset.vip == vipType) {
+
+        app.isLogin(_ => {
           wx.switchTab({
-            url:'/pages/vip-code/index/index'
+            url: '/pages/vip-code/index/index'
           })
         })
       }
@@ -91,29 +98,29 @@ Page({
 
     // 如果登录了 则只能申请当前下一级会员 白银跟黄金只能联系客服 使用当前会员卡 
     return
-    app.isLogin( _=>{
+    app.isLogin(_ => {
 
       wx.switchTab({
-        url:'/pages/vip-code/index/index'
+        url: '/pages/vip-code/index/index'
       })
     })
   },
   // 去众筹页面
-  toZcDetail(){
+  toZcDetail() {
     wx.navigateTo({
-      url:'/pages/my/crowdfunding/index'
+      url: '/pages/my/crowdfunding/index'
     })
   },
 
 
   // 此页面登录后触发
-  hasLogin(e){
+  hasLogin(e) {
     this.setData({
-      isLogin:true,
-      userInfo:e.detail
-    })    
+      isLogin: true,
+      userInfo: e.detail
+    })
   },
-  toLogin(){
+  toLogin() {
     app.isLogin()
   },
   /**
@@ -121,9 +128,12 @@ Page({
    */
   onLoad: function (options) {
     this.getAdvertList()
-    // app.isLogin(_=>{
-
-    // })
+    if(app.globalData.isDev){
+      this.setData({
+        isDev:true
+      })
+    }
+    
   },
 
   /**
@@ -138,10 +148,10 @@ Page({
    */
   onShow: function () {
     // 这里判断登录状态 用来改变客服按钮属性
-    if(app.globalData.unionId){
-      app.getUserDetailInfo(res=>{
+    if (app.globalData.unionId) {
+      app.getUserDetailInfo(res => {
         this.setData({
-          isLogin:true,
+          isLogin: true,
           userInfo: res
         })
       })

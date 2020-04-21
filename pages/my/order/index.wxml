@@ -1,84 +1,91 @@
+<block wx:if="{{!isDev}}">
 
-<my-info/>
+	<my-info/>
 
-<van-tabs
-		nav-class="tab_item"
-		color="#FF6A21"
-		swipeable
-		sticky
-		bindchange="tabChange"
-		type="card">
-	<van-tab title="进行中" />
-	<van-tab title="已完成"/>
+	<van-tabs
+	 nav-class="tab_item"
+	 color="#FF6A21"
+	 swipeable
+	 sticky
+	 bindchange="tabChange"
+	 type="card"
+	>
+		<van-tab title="进行中" />
+		<van-tab title="已完成" />
 
-	<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
-		<view wx:for="{{list}}"
-			  wx:key="{{item.id}}"
-			  data-item = "{{item}}"
-		      data-orderId="{{item.id}}"
-		      bindtap="toOrderDetail"
-		>
-			<view class="order_info_top">
-				<view class="order_number">订单号：{{item.orderNumber}}</view>
-				<view class="order_time">{{item.createTime}}</view>
-			</view>
-			<van-card
-
-					desc="{{item.introduce}}"
-					title="{{item.proName}}"
-					title-class="title"
-					thumb-class="card_img"
-					thumb-mode="scaleToFill"
-					thumb="{{ item.url}}"
+		<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
+			<view
+			 wx:for="{{list}}"
+			 wx:key="{{item.id}}"
+			 data-item="{{item}}"
+			 data-orderId="{{item.id}}"
+			 bindtap="toOrderDetail"
 			>
-				<!-- <view slot="tags" class="tags">
+				<view class="order_info_top">
+					<view class="order_number">订单号：{{item.orderNumber}}</view>
+					<view class="order_time">{{item.createTime}}</view>
+				</view>
+				<van-card
+				 desc="{{item.introduce}}"
+				 title="{{item.proName}}"
+				 title-class="title"
+				 thumb-class="card_img"
+				 thumb-mode="scaleToFill"
+				 thumb="{{ item.url}}"
+				>
+					<!-- <view slot="tags" class="tags">
 
 				</view> -->
-				<view slot="bottom" class="bottom">
-					<view class="progress">
-<!--						<view>5.0kg</view>-->
-						X{{item.quantity}}
+					<view slot="bottom" class="bottom">
+						<view class="progress">
+							<!--						<view>5.0kg</view>-->
+							X{{item.quantity}}
+						</view>
+						<view class="price">
+							<view class="price_true">¥{{item.unitPrice}}</view>
+							<view class="price_show">¥{{item.price}}</view>
+						</view>
 					</view>
-					<view class="price">
-						<view class="price_true">¥{{item.unitPrice}}</view>
-						<view class="price_show">¥{{item.price}}</view>
-					</view>
+				</van-card>
+				<view class="steps">
+					<!--众筹订单 -->
+					<block wx:if="{{item.type==2}}">
+						<text style="width: 90rpx;border-radius: 30rpx"
+							class="status {{item.state>=1?'status_active':'' }}">众筹中</text>
+						<text class="line {{(item.state>=1|| item.state==-1)?'line_active':'' }}"/>
+						<text wx:if="{{item.state!=-1}}" style="width: 120rpx;border-radius: 30rpx"
+							class="status {{item.state>=2?'status_active':'' }}">众筹成功</text>
+						<text wx:if="{{item.state!=-1}}" class="line {{item.state>=2?'line_active':'' }}"/>
+
+						<text wx:if="{{item.state==-1}}" style="width: 120rpx;border-radius: 30rpx"
+							class="status status_active">众筹失败</text>
+					</block>
+
+					<!--普通订单-->
+					<block wx:if="{{item.type==1 && item.state!=-1}}">
+						<text class="status {{item.state>=2?'status_active':'' }}">确认</text>
+						<text class="line {{item.state>=2?'line_active':'' }}"/>
+
+					</block>
+					<text class="status {{item.state>=3?'status_active':'' }}">发货</text>
+					<text class="line {{item.state>=3?'line_active':'' }}"/>
+					<text class="status {{item.state>=4?'status_active':'' }}">验收</text>
+					<text class="line {{item.state>=4?'line_active':'' }}"/>
+					<text class="status {{item.state>=5?'status_active':'' }}">完成</text>
 				</view>
-			</van-card>
-			<view class="steps">
-<!--众筹订单 -->
-				<block wx:if="{{item.type==2}}">
-					<text style="width: 90rpx;border-radius: 30rpx" class="status {{item.state>=1?'status_active':'' }}">众筹中</text>
-					<text class="line {{(item.state>=1|| item.state==-1)?'line_active':'' }}"></text>
-					<text wx:if="{{item.state!=-1}}" style="width: 120rpx;border-radius: 30rpx" class="status {{item.state>=2?'status_active':'' }}">众筹成功</text>
-					<text wx:if="{{item.state!=-1}}" class="line {{item.state>=2?'line_active':'' }}"></text>
+				<view class="order_address"> 地址：{{item.province}}{{item.city}}{{item.area}}{{item.address}}</view>
+				<view class="order_user_info">电话：{{item.phone}} {{item.contact}}
+					<button wx:if="{{item.state==3 }}">确认</button>
+					<button wx:if="{{item.state==4 }}">待评价</button>
+					<button wx:elif="{{item.state==5 }}">已评价</button>
+				</view>
 
-					<text wx:if="{{item.state==-1}}" style="width: 120rpx;border-radius: 30rpx" class="status status_active">众筹失败</text>
-				</block>
-
-<!--普通订单-->
-				<block wx:if="{{item.type==1 && item.state!=-1}}">
-					<text class="status {{item.state>=2?'status_active':'' }}">确认</text>
-					<text class="line {{item.state>=2?'line_active':'' }}"></text>
-				</block>
-				<text class="status {{item.state>=3?'status_active':'' }}">发货</text>
-				<text class="line {{item.state>=3?'line_active':'' }}"></text>
-				<text class="status {{item.state>=4?'status_active':'' }}">验收</text>
-				<text class="line {{item.state>=4?'line_active':'' }}"></text>
-				<text class="status {{item.state>=5?'status_active':'' }}">完成</text>
+				<view class="line_1" />
 			</view>
-			<view class="order_address"> 地址：{{item.province}}{{item.city}}{{item.area}}{{item.address}}</view>
-			<view class="order_user_info">电话：{{item.phone}} {{item.contact}} <button wx:if="{{item.state==3||item.state==4 }}">确认</button></view>
-			<view class="line_1"/>
-		</view>
-	</block>
-</van-tabs>
+		</block>
+	</van-tabs>
 
-<load-more showGotop="{{floorStatus}}"
-           loadType="{{loadType}}"
-           showLoad="{{showLoad}}"
-/>
+	<load-more showGotop="{{floorStatus}}" loadType="{{loadType}}" showLoad="{{showLoad}}" />
 
-
-
+</block>
 

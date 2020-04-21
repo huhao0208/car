@@ -60,6 +60,7 @@ Page({
 
   // 获取列表shuj
   getListData(e) {
+
     if (page == 1) {
       this.setData({
         listData: []
@@ -81,6 +82,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if(app.globalData.isDev) return this.setData({
+      isDev:true
+    })
+
     page = 1
     this.getListData()
   },

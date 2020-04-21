@@ -1,4 +1,5 @@
-
+<block wx:if="{{!isDev}}">
+	
 <view class="container">
 	<view class="welcome_img"></view>
 	<view class="title">海量好货 抽奖即得</view>
@@ -38,3 +39,5 @@
 </view>
 
 <login showLogin="{{showLogin}}" bindhasLogin="hasLogin" />
+
+</block>

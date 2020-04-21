@@ -62,6 +62,9 @@ Page({
    */
   onLoad: function (options) {
 
+    if(app.globalData.isDev) return this.setData({
+      isDev:true
+    })
       id = Number(options.id)
     this.getFinancialLoan({id})
 

@@ -1,10 +1,25 @@
 <!--贷款-->
-<my-tab plate="4" bindtabChange="tabc" active="0" showGotop="{{floorStatus}}" loadType="{{loadType}}"
-	showLoad="{{showLoad}}">
+<my-tab
+ plate="4"
+ bindtabChange="tabc"
+ active="0"
+ showGotop="{{floorStatus}}"
+ loadType="{{loadType}}"
+ showLoad="{{showLoad}}"
+>
 	<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
-		<van-card bindtap="toDetail" data-productId="{{item.id}}" wx:for="{{list}}" wx:key="{{item.id}}"
-			desc="{{item.introduce}}" title="{{item.name}}" title-class="title" thumb-class="card_img"
-			thumb-mode="scaleToFill" thumb="{{ item.showUrl }}">
+		<van-card
+		 bindtap="toDetail"
+		 data-productId="{{item.id}}"
+		 wx:for="{{list}}"
+		 wx:key="{{item.id}}"
+		 desc="{{item.introduce}}"
+		 title="{{item.name}}"
+		 title-class="title"
+		 thumb-class="card_img"
+		 thumb-mode="scaleToFill"
+		 thumb="{{ item.showUrl }}"
+		>
 
 			<!-- <view slot="tags" class="baoyou" wx:if="{{item.label}}">
 				{{item.label}}
@@ -22,3 +37,4 @@
 		</van-card>
 	</block>
 </my-tab>
+

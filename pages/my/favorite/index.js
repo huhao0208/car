@@ -55,7 +55,7 @@ Page({
           wx.stopPullDownRefresh()
           let type = (!res.total)?3:( res.page == res.pages )?2:1;
 
-          if(page>res.pages)  return
+          if(res.pages && page>res.pages)  return
           this.setData({
             [`listData[${this.data.listData.length}]`]:res.list,
             loadType: type
@@ -85,6 +85,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+     if(app.globalData.isDev) return this.setData({
+            isDev:true
+          })
+
     page =1
     this.getListData()
 

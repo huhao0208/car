@@ -20,7 +20,8 @@ Page({
   },
   // 去详情页
   toDetail(e){
-
+    console.log(e);
+    
     let {id,productType} = e.currentTarget.dataset
       wx.navigateTo({
         url:'/pages/three-level/good-details/index?id='+id+'&productType='+productType,
@@ -72,6 +73,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+    if(app.globalData.isDev) return
+
     categoryId=""
     page=1
     this.getListData()

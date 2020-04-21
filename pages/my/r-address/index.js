@@ -71,7 +71,7 @@ Page({
 	},
 	// 提交
 	submitHandle() {
-		if (!this.data.options.contact || !this.data.iptAddress ||!this.data.options.address || !this.data.options.province || !this.data.options.phone || !this.data.options.city || !this.data.options.area)  return wx.showToast({title:'请输入完整信息',icon:'none'})
+		if (!this.data.options.contact || !this.data.iptAddress ||!this.data.options.address || !this.data.options.province || !this.data.options.phone || !this.data.options.city || !this.data.options.area)  return wx.showToast({title:'请填写完整信息',icon:'none'})
 
 		// 手机号码验证
 		let reg =  /^[1]([3-9])[0-9]{9}$/

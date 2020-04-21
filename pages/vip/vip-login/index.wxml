@@ -8,11 +8,13 @@
 	        interval="{{5000}}"
 	        duration="{{500}}"
 	        circular="{{true}}"
-	        bindchange="swiperChange"
-	        bindtap="priviweImg"
+			bindchange="swiperChange"
+		
 	>
-		<block wx:for="{{indexSwiperData}}" wx:key="index" data-url="{{item.url}}">
-			<swiper-item>
+		<block wx:for="{{indexSwiperData}}" wx:key="index" 	>
+			<swiper-item data-id="{{item.advertId}}"
+			data-type="{{item.type}}"
+			bindtap="swiperToDetail">
 				<image src="{{item.picUrl}}"
 				       mode="scaleToFill"
 				       class="swiper_item_image"
@@ -76,7 +78,7 @@
 	</view>
 </view>
 
-<view class="buy_now">
+<view class="buy_now" wx:if="{{!isDev}}">
 	<view class="buy_now_btn buy_btn_zx">
 		<van-button
 				icon="{{filters.imgUrl('kefu-1.png')}}"

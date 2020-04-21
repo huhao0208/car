@@ -1,24 +1,24 @@
 const http = require('utils/http');
 const config = require('./utils/config');
-import {getUserDetail,collectProduct} from "./api"
+import { getUserDetail, getVersion } from "./api"
 let isLocation = true
 
 
-// const app = getApp()
 const oldPage =Page
+
 Page = function(app){
-	
+
 	// 不能用 卡爆了
 	// app.onPageScroll =function(options){
 	// 	console.log('屏幕滚动了');
-		
+
 	// 	if (options.scrollTop >= 400 &&options.scrollTop <1000 ) {
 	// 		if (this.data.floorStatus) return
 	// 		options.floorStatus = true
-			
+
 	// 	  } else if(options.scrollTop < 400) {
 	// 		if (!this.data.floorStatus) return
-			
+
 	// 		options.floorStatus = false
 	// 	  }
 
@@ -27,11 +27,16 @@ Page = function(app){
     //         app.onPageScroll.call(this, options);
     //     }
 	// }
-
+	
 	return oldPage(app)
 }
+
+
 App({
 	onLaunch: function () {
+		// 获取服务器版本 判断是否为dev 如果一致 则为线上版
+		this.getVersion()
+
 		//版本更新
 		if (wx.canIUse('getUpdateManager')) {
 			const updateManager = wx.getUpdateManager()
@@ -66,45 +71,59 @@ App({
 		}
 
 		// 获取本地存储的token
-		this.globalData.unionId = wx.getStorageSync('unionId')|| ''
-		this.globalData.userInfo = wx.getStorageSync('userInfo')|| {}
-		// 如果有token 直接获取用户信息
-		if(this.globalData.unionId) {
+		this.globalData.unionId = wx.getStorageSync('unionId') || ''
+		
+		// 如果有token 直接获取用户信息 每次打开小程序更新用户信息
+		if (this.globalData.unionId) {
 			this.getUserDetailInfo()
 		}
 
 
 	},
+
+	// 获取服务器版本
+	getVersion({ success } = {}) {
+		let that = this
+		getVersion()
+			.then(res => {
+				that.globalData.isDev = Boolean(res)
+				if (success && (typeof success == 'function')) success(Boolean(res))
+				// if(!that.globalData.isDev)
+				console.log('~~~~~ isDev:' + that.globalData.isDev  + "版本:" + config.VERSION + "~~~~~~~~");
+			})
+	},
+
+	
 	globalData: {
-		logo:config.LOGO,
+		isDev: true,
+		//	logo:config.LOGO,
 		imgUrl: config.IMG_URL,
 		apiImg: config.API_IMG,
-		userInfo: '',
+		userInfo: {},
 		unionId: '',
-		showLogin:false,   // 用来控制登录弹窗开关
-		latitude:0, //我的定位数据
-		longitude:0,
+		showLogin: false,   // 用来控制登录弹窗开关
+		latitude: 0, // 定位数据
+		longitude: 0,
 	},
 	// 登录验证 在需要验证地方调用  用来控制所在页面login弹窗 ,传入的参数是 登录后要执行的方法
-	isLogin(handle){
-		if(!this.globalData.unionId) {
+	isLogin(handle) {
+		if (!this.globalData.unionId) {
 			// 弹出登录框
 			this.globalData.showLogin = true
 			return false
-		}else{
+		} else {
 			// 执行回调函数
-			if(typeof(handle)=="function") handle(this.globalData.userInfo)
+			if (typeof (handle) == "function") handle(this.globalData.userInfo)
 			return true
 		}
 	},
 
 	// 监听器 用来监听globalData中某个数据变化
-
 	watchCallBack: {},
 	watchingKeys: [],
 
 	// 同步修改数据
-	setGlobalData(name,data) {
+	setGlobalData(name, data) {
 		this.globalData[name] = data
 		wx.setStorageSync(name, data)// 加入缓存
 
@@ -134,18 +153,18 @@ App({
 		}
 	},
 	// 获取定位
-	getLocation({successFn,failFn}) {
+	getLocation({ successFn, failFn }) {
 		let app = getApp()
-		if (app.globalData.latitude && app.globalData.longitude) return successFn({latitude:app.globalData.latitude,longitude:app.globalData.longitude})
+		if (app.globalData.latitude && app.globalData.longitude) return successFn({ latitude: app.globalData.latitude, longitude: app.globalData.longitude })
 		wx.getLocation({
 			type: 'gcj02',
 			// isHighAccuracy: true,
 			//   highAccuracyExpireTime: 3100,
 			success: res => {
-				let {latitude, longitude} = res
+				let { latitude, longitude } = res
 				app.globalData.latitude = latitude
 				app.globalData.longitude = longitude
-				successFn({latitude,longitude})
+				successFn({ latitude, longitude })
 			},
 			fail: err => {
 				wx.getSetting({
@@ -159,8 +178,8 @@ App({
 									if (res.confirm) {
 										wx.openSetting({
 											success(res) {
-											//	console.log('定位授权结果')
-												if (res.authSetting.scope.userLocation)  successFn({latitude:app.globalData.latitude,longitude:app.globalData.longitude})
+												//	console.log('定位授权结果')
+												if (res.authSetting.scope.userLocation) successFn({ latitude: app.globalData.latitude, longitude: app.globalData.longitude })
 											}
 										});
 									} else {
@@ -175,13 +194,13 @@ App({
 								content: '请在系统设置中打开定位服务',
 								confirmText: '确定',
 								success: function (res) {
-									console.log(res,'系统定位开启')
+									console.log(res, '系统定位开启')
 									app.getLocation()
 								}
 							})
 						}
 					},
-					fail: _=>{
+					fail: _ => {
 						console.log(_)
 						failFn(_)
 					}
@@ -192,15 +211,20 @@ App({
 	},
 
 	// 获取最新用户信息
-	getUserDetailInfo(successFn){
+	getUserDetailInfo(successFn) {
 		//console.log("获取用户信息")
-		// Authorization
-		getUserDetail({hideLoading:true})
-			.then(res=>{
-			//	console.log(res,'从后台获取的个人信息')
-				this.setGlobalData("userInfo",res)
-				if(typeof(successFn)=='function') successFn(res)
-			}).catch()
+		// Authorization	
+		getUserDetail({ hideLoading: true })
+			.then(res => {
+				console.log(this);
+
+				//	console.log(res,'从后台获取的个人信息')
+				this.globalData.userInfo = wx.getStorageSync('userInfo') || {}
+				this.setGlobalData("userInfo", res)
+				if (typeof (successFn) == 'function') successFn(res)
+			}).catch(
+				this.globalData.userInfo = wx.getStorageSync('userInfo') || {}
+			)
 	},
-	
+
 })

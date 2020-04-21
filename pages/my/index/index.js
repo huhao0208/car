@@ -8,51 +8,59 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		userIfo:{},
-		vipArr:["","青铜会员","白银会员","黄金会员"]
+		vipArr: ["", "青铜会员", "白银会员", "黄金会员"]
 	},
 	// 页面跳转
 	jumpHandle(e) {
 		// console.log(e.target.dataset.url)
 		app.isLogin(_ => {
-				console.log('可以跳转到:' + e.target.dataset.url)
-				if(!e.target.dataset.url) return
-				wx.navigateTo({
-					url: e.target.dataset.url
-				})
-			}
+			console.log('可以跳转到:' + e.target.dataset.url)
+			if (!e.target.dataset.url) return
+			wx.navigateTo({
+				url: e.target.dataset.url
+			})
+		}
 		)
 	},
-	loginTap(){
+	// 点击登录 调起登录组件
+	loginTap() {
 		app.isLogin()
 	},
-	// 组件绑定的时间 用来实时获取登录的用户信息
-	hasLogin(e) {
-		// console.log(e.detail,'登陆成功后获取的用户信息')
-		// 可以在此更新用户信息
-		this.getUserInfo()
-	},
 
-	// 获取用户信息 及登录状态
-	getUserInfo() {
-		// 登录的状态
-		let userInfo =  app.globalData.userInfo || wx.getStorageSync('userInfo')
-		this.setData({
-			userInfo
-		})
-	},
-	improveInof(){
+	// 组件绑定的时间 用来实时获取登录的用户信息
+	// 不需要了...
+	// hasLogin(e) {
+	// 	// console.log(e.detail,'登陆成功后获取的用户信息')
+	// 	// 更新用户信息
+	// //	this.onShow()
+
+	// },
+
+	// 完善个人信息
+	improveInof() {
 		wx.chooseAddress({
 			success(res) {
-				console.log(res,'地执信息')
+
 			}
 		})
 	},
+
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		this.setData({
+			isDev: app.globalData.isDev,
+			//	userInfo:app.globalData.userInfo
+		})
 
+		let that = this
+		// 监控用户信息变化 防止登录状态过期 无响应
+		app.$watch('userInfo', (val, old) => {
+			that.setData({
+				userInfo: val
+			})
+		})
 	},
 
 
@@ -67,7 +75,10 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-		this.getUserInfo()
+		// 如果登录状态 则每次打开获取最新用户信息
+		if (app.globalData.unionId) {
+			app.getUserDetailInfo()
+		}
 	},
 
 	/**

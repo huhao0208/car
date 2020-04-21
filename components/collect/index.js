@@ -60,6 +60,7 @@ Component({
 		},
 		// 获取收藏状态
 		judgeCollect(){
+		if(!app.globalData.unionId) return
 			judgeCollect({type:this.data.type,proId:this.data.proid})
 				.then(res=>{
 				//	console.log(res,'获取的收藏状态')

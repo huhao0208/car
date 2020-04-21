@@ -1,93 +1,60 @@
 <!--pages/my/index.wxml-->
-<wxs src="../../../utils/filters.wxs" module="filters"/>
+<wxs src="../../../utils/filters.wxs" module="filters" />
+
 <view class="top">
-	<view class="user_info"
-	      wx:if="{{userInfo.id}}"
-	>
-		<image class="avator" src="{{userInfo.head}}"/>
+	<view class="user_info" wx:if="{{userInfo.id}}">
+		<image class="avator" src="{{userInfo.head}}" />
 		<view class="user_info_right">
 			<view class="name">
 				<view>
 					{{userInfo.username}}
-					<van-icon name="{{filters.imgUrl('anzhuo-2.png')}}"/>
+					<van-icon name="{{filters.imgUrl('anzhuo-2.png')}}" />
 				</view>
-<!--				<view class="detaile_user_info" bindtap="improveInof">完善个人信息 ＞</view>-->
+				<!--				<view class="detaile_user_info" bindtap="improveInof">完善个人信息 ＞</view>-->
 			</view>
 			<view class="account ">
 				帐号：{{userInfo.phone}}
 			</view>
 			<view class="grade" wx:if="{{userInfo.expireDays>0}}">
-				<view class="grade_name grade_name_vip{{userInfo.vip}}" >
+				<view class="grade_name grade_name_vip{{userInfo.vip}}">
 					{{vipArr[userInfo.vip]}}
 				</view>
-				<text class="term" > 还有{{userInfo.expireDays}}天到期</text>
+				<text class="term"> 还有{{userInfo.expireDays}}天到期</text>
 			</view>
 		</view>
 	</view>
 
-	<view class="login"
-               bindtap="loginTap"
-	            wx:else
-	>
-		<view class="avator"></view>
+	<view class="login" bindtap="loginTap" wx:else>
+		<image class="avator" src="http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/user.png"></image>
 		<view>未登录</view>
 	</view>
 </view>
 
-<van-cell-group custom-class="cell_group" >
-	<van-cell title="我的订单"
-              custom-class="cell"
-	          is-link
-	          icon="{{filters.imgUrl('wodedingdan.png')}}"
-	          bindtap="jumpHandle"
-	          data-url="/pages/my/order/index?type=1"
-	/>
-	<van-cell title="我的众筹"
-	          border="{{ false }}"
-	          icon="{{filters.imgUrl('wodezhongchou-.png')}}"
-	          is-link
-	          bindtap="jumpHandle"
-	          data-url="/pages/my/order/index?type=2"
-	/>
+<van-cell-group custom-class="cell_group" wx:if="{{!isDev}}">
+	<van-cell title="我的订单" custom-class="cell" is-link icon="{{filters.imgUrl('wodedingdan.png')}}" bindtap="jumpHandle"
+		data-url="/pages/my/order/index?type=1" />
+	<van-cell title="我的众筹" border="{{ false }}" icon="{{filters.imgUrl('wodezhongchou-.png')}}" is-link
+		bindtap="jumpHandle" data-url="/pages/my/order/index?type=2" />
 </van-cell-group>
 
 <van-cell-group custom-class="cell_group">
-	<van-cell title="抽奖列表"
-	          icon="{{filters.imgUrl('choujiang1.png')}}"
-	          is-link
-	          bindtap="jumpHandle"
-	          data-url="/pages/my/prize/index"
-	/>
-	<van-cell title="收货地址"
-	          icon="{{filters.imgUrl('shouhuodizhi-2.png')}}"
-	          border="{{ false }}"
-	          is-link
-	          bindtap="jumpHandle"
-	          data-url="/pages/my/deliveryList/deliveryList"
-	/>
-	<van-cell title="我的收藏"
-	          icon="{{filters.imgUrl('favorite1.png')}}"
-	          border="{{ false }}"
-	          is-link
-	          bindtap="jumpHandle"
-	          data-url="/pages/my/favorite/index"
-	/>
+	<block wx:if="{{!isDev}}">
+		<van-cell title="抽奖列表" icon="{{filters.imgUrl('choujiang1.png')}}" is-link bindtap="jumpHandle"
+			data-url="/pages/my/prize/index" />
+		<van-cell title="收货地址" icon="{{filters.imgUrl('shouhuodizhi-2.png')}}" border="{{ false }}" is-link
+			bindtap="jumpHandle" data-url="/pages/my/deliveryList/deliveryList" />
+	</block>
+	<van-cell title="我的收藏" icon="{{filters.imgUrl('favorite1.png')}}" border="{{ false }}" is-link bindtap="jumpHandle"
+		data-url="/pages/my/favorite/index" />
 </van-cell-group>
 <van-cell-group custom-class="cell_group">
-	<van-cell title="在线客服"
-	          icon="{{filters.imgUrl('kefu-2.png')}}"
-			  is-link
-			  bindtap="jumpHandle"
-	>
-        <button open-type="{{userInfo.username?'contact':''}}"
-                show-message-card
-                style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0)" />
+	<van-cell title="在线客服" icon="{{filters.imgUrl('kefu-2.png')}}" is-link bindtap="jumpHandle">
+		<button open-type="{{userInfo.username?'contact':''}}" show-message-card
+			style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0)" />
 
-    </van-cell>
+	</van-cell>
 
 
 </van-cell-group>
 
-<login bindhasLogin="hasLogin"/>
-
-
+<login bindhasLogin="hasLogin" />

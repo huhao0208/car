@@ -1,5 +1,8 @@
 {
   "usingComponents": {
+    "van-steps": "@vant/weapp/steps",
+    "van-field": "@vant/weapp/field",
+    "van-rate": "@vant/weapp/rate",
     "van-button": "@vant/weapp/button",
     "van-icon": "@vant/weapp/icon/index",
     "van-tabs": "@vant/weapp/tabs/index",

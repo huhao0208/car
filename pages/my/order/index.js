@@ -43,7 +43,7 @@ Page({
 		})
 
 	},
-
+	// 获取订单列表数据
 	getListData() {
 		if(page==1) this.setData({
 			listData:[],
@@ -53,7 +53,7 @@ Page({
 			.then(res => {
 				wx.stopPullDownRefresh()
 				let ltype = (!res.total) ? 3 : (res.page == res.pages) ? 2 : 1
-				if (page > res.pages)  return
+				if ( res.pages && page > res.pages)  return
 				this.setData({
 					loadType: ltype,
 					[`listData[${this.data.listData.length}]`]: res.list,
@@ -63,7 +63,7 @@ Page({
 			})
 
 	},
-
+	// 去订单详情
 	toOrderDetail(e) {
 		// console.log(e)
 		 console.log(e.currentTarget.dataset.item)
@@ -78,6 +78,13 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+		 if(app.globalData.isDev) return this.setData({
+			      isDev:true
+			    })
+			
+
+		if(app.globalData.isDev) return
+
 		type= options.type
 		wx.setNavigationBarTitle({
 			title:type==1?'我的订单':'我的众筹'

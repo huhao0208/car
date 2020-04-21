@@ -3,7 +3,9 @@ $font_color: #999;
 @mixin bg($name) {
   background     : url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) no-repeat center;
   background-size: 100%;
-};
+}
+
+;
 
 page {
   height       : auto;
@@ -30,7 +32,7 @@ swiper {
 
 .dots {
   position   : absolute;
-  bottom    : 0;
+  bottom     : 0;
   margin-left: 50%;
   transform  : translate(-50%, -20rpx);
 }
@@ -67,6 +69,33 @@ van-card {
   }
 }
 
+.table {
+  margin: 30rpx 0;
+  border-bottom: 1px solid #CCC;
+  color: #666;
+  font-size: 24rpx;
+  .table_title{
+    padding:15rpx;
+    font-size: 30rpx;
+  }
+  .table_item {
+    border       : 1px solid #CCC;
+    border-bottom: none;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    .item_title{
+      width: 200rpx;
+      padding:15rpx;
+      border-right: 1px solid #CCC;
+    }
+    .item_content{
+      flex: 1;
+    }
+  }
+  ;
+}
+
 .buy_now {
   position  : fixed;
   left      : 0;
@@ -75,7 +104,7 @@ van-card {
   box-sizing: border-box;
   bottom    : 0;
   background: #FFF;
-  z-index   : 999;
+  z-index   : 2;
 
   .bottom {
     display        : flex;
@@ -203,4 +232,76 @@ van-card {
   justify-content: space-between;
   align-items    : center;
   padding        : 0 50rpx 30rpx;
+}
+
+van-popup {
+.van-popup{
+  overflow-y:hidden
+}
+  .card{
+    display: flex;
+    padding: 30rpx;
+   image{
+    width: 150rpx;
+    height: 150rpx;
+    margin-right: 30rpx;
+   }
+   .right{
+     flex: 1;
+     .top{
+      font-size: 36rpx;
+      color:#FF5501;
+      text{
+       text-decoration: line-through;
+       color:#999;
+       font-size: 30rpx;
+      }
+       .stock{
+         font-size: 24rpx;
+         color: #666;
+        float: right;
+       }
+     }
+     .selected,.title{
+       font-size: 28rpx;
+       color: #999;
+     }
+   }
+  }
+  .specs_title{
+    padding: 30rpx 30rpx ;
+
+  }
+  .specs_item{
+    z-index: 999999;
+    display: inline-block;
+    padding:10rpx 15rpx;
+    margin: 0 0 20rpx 30rpx;
+    background: rgba(200,200,200,.3);
+    border-radius: 10rpx;
+    font-size: 28rpx;
+    border: 1px solid transparent;
+  }
+  .specs_item_active{
+    color:#FF5501;
+    border: 1px solid #FF5501;
+    background: rgba(200,200,200,.1);
+  }
+  .number_pro{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:30rpx;
+    van-stepper{
+      z-index: 99999;
+    }
+  }
+  .confirm_btn{
+    z-index: 99999;
+    background: #DD1A22;
+    border-radius: 36rpx;
+    color:#FFF;
+    // width: 95%;
+    margin: 20rpx 30rpx 50rpx;
+  }
 }

@@ -1,7 +1,7 @@
 // 合作专区详情
-import{getStoreDetail} from "../../../api"
-const app= getApp()
-let id =''
+import { getStoreDetail } from "../../../api"
+const app = getApp()
+let id = ''
 Page({
 
   /**
@@ -10,60 +10,75 @@ Page({
   data: {
     swiperActive: 0,
     tabActive: 0,
-    ShowDistance:false
+    ShowDistance: false,
+    commentType: '',    // 获取评价类型
+    page: 0,    // 用来获取评价 每次只需改变page 即可
   },
-  swiperChange(e){
+  swiperChange(e) {
     this.setData({
-      swiperActive:e.detail.current,
+      swiperActive: e.detail.current,
     })
   },
   // 轮播图图片预览
-  priviweImg(){
-   let  current = this.data.carousel[this.data.swiperActive]
-   wx.previewImage({
-     // urls:[],
-     current,
-     urls:this.data.carousel
+  priviweImg() {
+    let current = this.data.carousel[this.data.swiperActive]
+    wx.previewImage({
+      // urls:[],
+      current,
+      urls: this.data.carousel
 
-   })
-  },
-
-  openMap(){
-    wx.openLocation({
-      latitude:this.data.latitude,
-      longitude:this.data.longitude,
-      scale:18
     })
   },
-  call(e){
+  
+  // tab栏切换
+  tabChange(e) {
+    if (e.detail.index == 1) {
+      // 获取评价
+      this.setData({
+        tabActive: e.detail.index,
+        page: 1
+      })
+
+    } else {
+      // 获取详情
+    }
+  },
+  openMap() {
+    wx.openLocation({
+      latitude: this.data.latitude,
+      longitude: this.data.longitude,
+      scale: 18
+    })
+  },
+  call(e) {
     wx.makePhoneCall({
       phoneNumber: e.currentTarget.dataset.phone,
-      success:res=>{
-        
+      success: res => {
+
       },
-      fail:rse=>{
+      fail: rse => {
         // 取消
       }
     })
   },
 
   // 获取详情列表
-  getStoreDetail(){
-    getStoreDetail({id})
-        .then(res=>{
-          this.setData({
-            ...res
-          })
+  getStoreDetail() {
+    getStoreDetail({ id })
+      .then(res => {
+        this.setData({
+          ...res
         })
+      })
   },
 
   // 未开放
-  unopened(){
+  unopened() {
     wx.showModal({
-      title:'提示',
-      content:'暂未开放,请下载XXX APP购买',
+      title: '提示',
+      content: '暂未开放,请下载XXX APP购买',
       // confirmColor:'#ccc',
-      showCancel:false,
+      showCancel: false,
       success(res) {
 
       }
@@ -74,25 +89,32 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+     if(app.globalData.isDev) return this.setData({
+            isDev:true
+          })
+      
+      
+
+
 
     id = options.id
     this.getStoreDetail()
 
     //获取我的定位
-    let that =this
+    let that = this
     app.getLocation({
-      successFn(e){
-        console.log(e,'我的定位')
+      successFn(e) {
+        console.log(e, '我的定位')
         // 控制显示距离
         that.setData({
-          ShowDistance:true,
-          latitude1:app.globalData.latitude,
-          longitude1:app.globalData.longitude
+          ShowDistance: true,
+          latitude1: app.globalData.latitude,
+          longitude1: app.globalData.longitude
         })
       },
-      failFn(){
+      failFn() {
         that.setData({
-          ShowDistance:false
+          ShowDistance: false
         })
       }
     })
@@ -125,19 +147,22 @@ Page({
   onUnload: function () {
 
   },
-
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
   onPullDownRefresh: function () {
-
+    this.setData({
+      page: 1
+    })
   },
 
   /**
-   * 页面上拉触底事件的处理函数
+   * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.setData({
+      page: this.data.page + 1
+    })
   },
 
   /**
