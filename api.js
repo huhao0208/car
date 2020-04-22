@@ -1,14 +1,15 @@
 import { get, post } from "./utils/http"
 
+// 不需要显示loading 的在请求参数里添加 hideloading 即可
 module.exports = {
 	// 版本判断
-	getVersion: data => post('api/getVersion', data),
+	getVersion: data => post('api/getVersion', {...data,hideLoading:true}),
 
 	// 登录
 	xcxLogin: data => post('api/xcxLogin', data),
 
 	// 获取用户信息getUserDetail
-	getUserDetail: data => post('api/getUserDetail', data),
+	getUserDetail: data => post('api/getUserDetail', {...data,hideLoading:true}),
 
 	//获取收货地址信息
 	getAddressList: data => post('api/getAddressList', data),
@@ -23,17 +24,17 @@ module.exports = {
 	// 获取轮播图数据  api/getAdvertList
 	getAdvertList: data => post('api/getAdvertList', data),
 
+	// 获取首页卡片数据 api/getHomePage
+	getHomePage: data => post('api/getHomePage', data),
+
 	// 分类列表
-	getCategoryList: data => post('api/getCategoryList', data),
+	getCategoryList: data => post('api/getCategoryList', {...data,hideLoading:true}),
 
 	// 获取产品列表
 	getProductList: data => post('api/getProductList', data),
 
 	// 获取产品详情
 	getProductDetail: data => post('api/getProductDetail', data),
-
-	// 评价
-
 
 	// 汽车销售 精选品牌 汽车品牌
 	getBrandList: data => post('api/getBrandList', data),
@@ -65,7 +66,7 @@ module.exports = {
 	getPrizePool: data => post('api/getPrizePool', data),
 
 	// 获取抽奖结果
-	userDrawLottery: data => post('api/userDrawLottery', data),
+	userDrawLottery: data => post('api/userDrawLottery', {...data,hideLoading:true}),
 
 	// 获取中奖结果列表
 	getWinningRecordList: data => post('api/getWinningRecordList', data),
@@ -81,20 +82,20 @@ module.exports = {
 	applyFinancialLoan: data => post('api/applyFinancialLoan', data),
 
 	// 开通会员
-	openMembership: data => post('api/openMembershipByPay', data),
+	openMembership: data => post('api/openMembershipByPay', {...data,hideLoading:true}),
 
 	// 获取活动列表
 	getActivityList: data => post('api/getActivityList', data),
 
 	// 收藏产品
-	collectProduct: data => post('api/collectProduct', data),
+	collectProduct: data => post('api/collectProduct', {...data,hideLoading:true}) ,
 
 	// 移除收藏
-	removeCollect: data => post('api/removeCollect', data),
+	removeCollect: data =>  post('api/removeCollect', {...data,hideLoading:true}) ,
 
 	// 查询收藏状态 judgeCollect
 
-	judgeCollect: data => post('api/judgeCollect', data),
+	judgeCollect: data => post('api/judgeCollect', {...data,hideLoading:true}) ,
 
 	// 获取我的收藏列表 getCollectionList
 	getCollectionList: data => post('api/getCollectionList', data),
@@ -106,13 +107,17 @@ module.exports = {
 	crowdFunding: data => post('api/crowdFundingByPay', data),
 
 	// 判断众筹资格
-	judgeInCrowdFunding: data => post('api/judgeInCrowdFunding', data),
+	judgeInCrowdFunding: data => post('api/judgeInCrowdFunding', {...data,hideLoading:true}),
 
 	// 获取订单列表
-	getOrderList: data => post('api/getOrderList', data),
+	getOrderList: data => post('api/getOrderList', {...data,hideLoading:true}) ,
+
+	// 申请退款 rquestRefund
+	rquestRefund: data => post('api/rquestRefund', {...data,hideLoading:true}),
+
 
 	// 订单确认收货 
-	confirmReceipt: data => post('api/confirmReceipt', data),
+	confirmReceipt: data => post('api/confirmReceipt', {...data,hideLoading:true}),
 
 	// 发布评价 orderAppraise
 	orderAppraise: data => post('api/orderAppraise', data),
@@ -127,9 +132,11 @@ module.exports = {
 	getOrderTraces: data => post('api/getOrderTraces', data),
 
 	// 计算运费calculateShipping
-	calculateShipping: data => post('api/calculateShipping', data),
+	calculateShipping: data => post('api/calculateShipping', {...data,hideLoading:true}),
 
-	// 获取首页卡片数据 api/getHomePage
-	getHomePage: data => post('api/getHomePage', data),
+	// 积分规则 getIntegralRule
+	getIntegralRule: data =>  post('api/getIntegralRule', {...data,hideLoading:true}) ,
+
+
 
 }

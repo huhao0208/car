@@ -1,4 +1,5 @@
 
+import {getIntegralRule} from "../../../api"
 
 const app = getApp()
 
@@ -8,7 +9,10 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		vipArr: ["", "青铜会员", "白银会员", "黄金会员"]
+		vipArr: ["", "青铜会员", "白银会员", "黄金会员"],
+		integralRule:{
+			ruleTitle:'积分规则'
+		}
 	},
 	// 页面跳转
 	jumpHandle(e) {
@@ -63,7 +67,13 @@ Page({
 		})
 	},
 
-
+	// 获取积分规则
+	async getIntegralRule(){
+		let res = await getIntegralRule()
+		this.setData({
+			integralRule:res
+		})
+	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
@@ -79,6 +89,7 @@ Page({
 		if (app.globalData.unionId) {
 			app.getUserDetailInfo()
 		}
+		this.getIntegralRule()
 	},
 
 	/**

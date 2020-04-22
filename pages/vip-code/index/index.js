@@ -70,22 +70,31 @@ Page({
     let that = this
     app.isLogin(_ => {
       let { province, city, area, address, fullName, contact, gender } = this.data.formData
+
       if (!(province && city && area && address && fullName && contact && gender)) return wx.showToast({
         title: '请完善信息',
         icon: 'none'
       })
+
+
       // 手机号码验证
       let reg = /^[1]([3-9])[0-9]{9}$/
       if (!reg.test(contact)) return wx.showToast({ title: '请输入正确的手机号码', icon: "none" })
 
       openMembership(that.data.formData)
+
         .then(res => {
           res.paySign = res.sign
+          
           wx.requestPayment({
             ...res,
             success: function (r) {
               // success
               // 开通成功刷新用户信息
+              wx.showToast({
+                title:'会员开通成功!'
+              })
+
               app.getUserDetailInfo(re => {
                 console.log(re, '重新获取的用户信息')
                 that.setData({

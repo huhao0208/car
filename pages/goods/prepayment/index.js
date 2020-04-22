@@ -10,11 +10,13 @@ Page({
   data: {
     currentAddress: '',
     number: 1,
-    shippingMethods: 0 , // 配送方式
+    shippingMethods:1 , // 配送方式
     freight:0,    // 运费
   },
   // 选择配送方式
   shippingChange(e){
+    console.log(e);
+    
     this.setData({
       shippingMethods:e.detail
     })
@@ -151,9 +153,9 @@ Page({
     // 获取收货地址
     let address = wx.getStorageSync("currentAddress") || app.globalData.currentAddress
     this.setData({
-      currentAddress: address
+      currentAddress: address|| ''
     })
-    if(this.data.currentAddress.id && this.data.shippingMethods==1) this.calculateShipping()
+    if(address && address.id && this.data.shippingMethods==1) this.calculateShipping()
   },
 
   /**

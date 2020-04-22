@@ -1,0 +1,4 @@
+/* pages/my/Integral/index.wxss */
+page{
+    padding: 30rpx;
+}

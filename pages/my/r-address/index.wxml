@@ -13,7 +13,7 @@
 	</view>
 	<input type="text"
 	       value="{{options.address}}"
-	       bindconfirm = "iptAddressHandle"
+	       bingchange = "iptAddressHandle"
 	       bindblur = "iptAddressHandle"
 	       placeholder=" 请输入详细地址"/>
 </view>
@@ -21,7 +21,7 @@
 <view class="ueserInfo">
 	<input type="text"
 	       value="{{options.contact}}"
-	       bindconfirm = "iptNameHandle"
+	       bingchange = "iptNameHandle"
 	       bindblur = "iptNameHandle"
 	       placeholder="您的名字" />
 	<van-radio-group
@@ -37,8 +37,8 @@
 	</van-radio-group>
 	<input type="number"
 	       value="{{options.phone}}"
-	       bindconfirm = "iptPhoneHandle"
-	       bindblur = "iptPhoneHandle"
+	       bindchange = "iptPhoneHandle"
+	       bindinput = "iptPhoneHandle"
 	       placeholder="您的联系方式" />
 </view>
 

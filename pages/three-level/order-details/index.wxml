@@ -1,102 +1,191 @@
 <block wx:if="{{!isDev}}">
 	<!--pages/my/index.wxml-->
 
-<wxs src="../../../utils/filters.wxs" module="filters" />
+	<wxs src="../../../utils/filters.wxs" module="filters" />
 
-<view class="steps line">
-	<!--众筹订单 -->
-	<block wx:if="{{type==2}}">
-		<text style="width: 90rpx;border-radius: 30rpx" class="status {{state>=1?'status_active':'' }}">众筹中</text>
-		<text class="line {{(state>=1|| state==-1)?'line_active':'' }}"></text>
-		<text wx:if="{{state!=-1}}" style="width: 120rpx;border-radius: 30rpx"
-			class="status {{state>=2?'status_active':'' }}">众筹成功</text>
-		<text wx:if="{{state!=-1}}" class="line {{state>=2?'line_active':'' }}"></text>
+	<view class="steps line">
+		<!--众筹订单 -->
+		<block wx:if="{{type==2}}">
+			<text style="width: 90rpx;border-radius: 30rpx" class="status {{state>=1?'status_active':'' }}">众筹中</text>
+			<text class="line {{(state>=1|| state==-1)?'line_active':'' }}" />
 
-		<text wx:if="{{state==-1}}" style="width: 120rpx;border-radius: 30rpx" class="status status_active">众筹失败</text>
+			<text wx:if="{{state!=-1}}" style="width: 120rpx;border-radius: 30rpx"
+				class="status {{state>=2?'status_active':'' }}">众筹成功
+</text>
+			<text wx:if="{{state!=-1}}" class="line {{state>=2?'line_active':'' }}" />
+
+
+			<text wx:if="{{state==-1}}" style="width: 120rpx;border-radius: 30rpx"
+				class="status status_active">众筹失败
+</text>
+		</block>
+
+		<!--普通订单-->
+		<block wx:if="{{type==1 && state!=-1}}">
+			<text class="status {{state>=2?'status_active':'' }}">确认</text>
+			<text class="line {{state>=2?'line_active':'' }}" />
+
+
+		</block>
+		<text class="status {{state>=3?'status_active':'' }}">发货
+</text>
+			<text class="line {{state>=3?'line_active':'' }}" />
+
+		<text class="status {{state>=4?'status_active':'' }}">验收
+</text>
+			<text class="line {{state>=4?'line_active':'' }}" />
+
+		<text class="status {{state>=5?'status_active':'' }}">完成
+</text>
+	</view>
+
+	<block wx:if="{{phone}}">
+
+		<view class="order_user_info user_name">收货人：{{contact}} </view>
+
+		<view class="order_user_info">电话：{{phone}} </view>
+
+		<view class="order_address"> 地址：{{province||''}}{{city||''}}{{area||''}}{{addresss||''}}</view>
 	</block>
 
-	<!--普通订单-->
-	<block wx:if="{{type==1 && state!=-1}}">
-		<text class="status {{state>=2?'status_active':'' }}">确认</text>
-		<text class="line {{state>=2?'line_active':'' }}"></text>
+	<van-card
+	 desc="{{item.introduce}}"
+	 title="{{proName}}"
+	 title-class="title"
+	 thumb-class="card_img"
+	 thumb-mode="scaleToFill"
+	 thumb="{{ url}}"
+	 bindtap="goodsDetail"
+	>
+		<!--		<view slot="tags" class="tags"/>-->
+
+		<view slot="bottom" class="bottom">
+			<view class="progress">
+				<!--				<view >5.0kg</view>-->
+				X{{quantity}}
+			</view>
+			<view class="price">
+				<view class="price_true">¥{{unitPrice}}</view>
+				<view class="price_show">¥{{price}}</view>
+			</view>
+		</view>
+	</van-card>
+
+	<view class="price_item">
+		订单总价 :
+		<text>¥ {{quantity*unitPrice}} </text>
+
+	</view>
+
+	<view class="price_item">
+		运费:
+		<text>¥ {{freightFee|| 0.00}} </text>
+	</view>
+
+	<view class="total_price line price_item">
+		合计:
+		<text>{{quantity*unitPrice + freightFee}}元 </text>
+	</view>
+	<view class="order_info_top line">
+		<view class="order_number">订单编号：{{orderNumber}}</view>
+		<view class="order_time">交易时间：{{createTime}}</view>
+	</view>
+
+	<!-- 物流信息 -->
+	<!-- 全部展开状态 -->
+	<block wx:if="{{expNo}}">
+		<text class="logistics"> {{expName}} </text>
+		<text class="logistics" selectable> 快递单号: {{expNo}} </text>
+		<block wx:if="{{steps.length}}">
+			<van-steps
+			 wx:if="{{loadMoreEx}}"
+			 steps="{{ steps }}"
+			 direction="vertical"
+			 bindtap="showMoreEx"
+			/>
+			<van-steps
+			 wx:else
+			 steps="{{ [steps[0]] }}"
+			 direction="vertical"
+			 bindtap="showMoreEx"
+			/>
+		</block>
+
 	</block>
-	<text class="status {{state>=3?'status_active':'' }}">发货</text>
-	<text class="line {{state>=3?'line_active':'' }}"></text>
-	<text class="status {{state>=4?'status_active':'' }}">验收</text>
-	<text class="line {{state>=4?'line_active':'' }}"></text>
-	<text class="status {{state>=5?'status_active':'' }}">完成</text>
-</view>
 
-<view class="order_user_info user_name">收货人：{{contact}} </view>
+	<!-- 评价 -->
+	<block wx:if="{{state ==4 || state ==5 }}">
 
-<view class="order_user_info">电话：{{phone}} </view>
-
-<view class="order_address"> 地址：{{province}}{{city}}{{area}}{{addresss}}</view>
-
-<van-card desc="{{item.introduce}}" title="{{proName}}" title-class="title" thumb-class="card_img"
-	thumb-mode="scaleToFill" thumb="{{ url}}" bindtap="goodsDetail">
-	<!--		<view slot="tags" class="tags"/>-->
-
-	<view slot="bottom" class="bottom">
-		<view class="progress">
-			<!--				<view >5.0kg</view>-->
-			X{{quantity}}
+		<view class="stars">
+			<text> 物品满意度: </text>
+			<van-rate
+			 value="{{ rateValue }}"
+			 bind:change="rateChange"
+			 disabled-color="#ffd21e"
+			 icon="like"
+			 void-icon="like-o"
+			 disabled="{{state ==5}}"
+			/>
+			<text> {{rateName[rateValue-1]}} </text>
 		</view>
-		<view class="price">
-			<view class="price_true">¥{{unitPrice}}</view>
-			<view class="price_show">¥{{price}}</view>
+		<van-field
+		 value="{{comment}}"
+		 input-class="textIpt"
+		 disabled="{{state==5}}"
+		 placeholder="请输入您的评价内容"
+		 border="{{ true }}"
+		 bind:change="commentChange"
+		 type="textarea"
+		 clearable
+		 autosize
+		 disable-default-padding
+		>
+
+		</van-field>
+
+	</block>
+	<!-- 客服 -->
+	<!-- <van-button icon="{{filters.imgUrl('kefu-2.png')}}" class="kf_btn_flex" open-type="contact"
+		send-message-title="订单编号：{{orderNumber}}" send-message-img="{{url}}" show-message-card>
+	</van-button> -->
+
+	<view class="kf_btn_flex">
+		<van-icon name="{{filters.imgUrl('kefu-2.png')}}" />
+		<text> 客服 </text>
+		<button
+		 open-type="contact"
+		 send-message-title="订单编号：{{orderNumber}}"
+		  send-message-path="{{'/pages/three-level/good-details/index?productType='+type+'&id='+proId}}"
+		 send-message-img="{{url}}"
+		 show-message-card
+		></button>
+	</view>
+
+	<view class="buy_now" wx:if="{{state!=5}}">
+		<view class="buy_now_btn buy_btn_zx">
+
+			<van-button custom-class="zc_btn zc_kf" bindtap="refund" disabled="{{!(refundState == 0 && state >= 1 && state <= 4)}}">
+				{{ refundState == 0 ? '申请退款':refundState == 1 ? '退款中':'退款成功'}}
+			</van-button>
+
+			<van-button
+			 disabled="{{state < 3 || !refundState }}"
+			 wx:if="{{state < 4}}"
+			 color="#DD1A22"
+			 bindtap="confireBtn"
+			 custom-class="zc_btn"
+			>
+				确认收货
+			</van-button>
+			<van-button
+			 wx:else
+			 color="#DD1A22"
+			 bindtap="submitComment"
+			 custom-class="zc_btn"
+			>
+				发布评价
+			</van-button>
 		</view>
 	</view>
-</van-card>
-<view class="total_price line">
-	合计: {{unitPrice*quantity}} 元
-</view>
-<view class="order_info_top line">
-	<view class="order_number">订单编号：{{orderNumber}}</view>
-	<view class="order_time">交易时间：{{createTime}}</view>
-</view>
-
-<!-- 物流信息 -->
-<!-- 全部展开状态 -->
-<block wx:if="{{expNo}}">
-	<text class="logistics"> {{expName}} </text>
-	<text class="logistics" selectable> 快递单号: {{expNo}} </text>
-	<van-steps wx:if="{{loadMoreEx}}" steps="{{ steps }}" direction="vertical" bindtap="showMoreEx" />
-	<van-steps wx:else steps="{{ [steps[0]] }}" direction="vertical" bindtap="showMoreEx"/>
 </block>
 
-
-<!-- 评价 -->
-<block wx:if="{{state ==4 || state ==5 }}">
-
-	<view class="stars">
-		<text> 物品满意度: </text>
-		<van-rate value="{{ rateValue }}" bind:change="rateChange" disabled-color="#ffd21e" icon="like"
-			void-icon="like-o" disabled="{{state ==5}}" /><text> {{rateName[rateValue-1]}} </text>
-	</view>
-	<van-field value="{{comment}}" input-class="textIpt" disabled="{{state==5}}" placeholder="请输入您的评价内容"
-		border="{{ true }}" bind:change="commentChange" type="textarea" clearable autosize disable-default-padding>
-
-	</van-field>
-
-
-</block>
-
-
-
-<view class="buy_now" wx:if="{{state!=5}}">
-	<view class="buy_now_btn buy_btn_zx">
-		<van-button icon="{{filters.imgUrl('kefu-2.png')}}" custom-class="zc_btn zc_kf" open-type="contact"
-			send-message-title="订单编号：{{orderNumber}}" send-message-img="{{url}}" show-message-card>
-			联系客服
-		</van-button>
-		<van-button disabled="{{state < 3 }}" wx:if="{{state < 4}}" color="#DD1A22" bindtap="confireBtn"
-			custom-class="zc_btn">
-			确认收货
-		</van-button>
-		<van-button wx:else color="#DD1A22" bindtap="submitComment" custom-class="zc_btn">
-			发布评价
-		</van-button>
-	</view>
-</view>
-</block>

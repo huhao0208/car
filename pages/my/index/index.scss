@@ -1,108 +1,145 @@
-@mixin bg($name){
-  background-image:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) ;
+@mixin bg($name) {
+  background-image   : url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name);
   background-position: left center;
-  background-repeat: no-repeat;
-  background-size: contain;
-};
-page{
-  background: rgba(233,233,233,.6);
-  position:absolute;
-  .top{
-    height: 251rpx;
+  background-repeat  : no-repeat;
+  background-size    : contain;
+}
+
+;
+
+page {
+  background: rgba(233, 233, 233, .6);
+  position  : absolute;
+
+  // color:#003561;
+  .top {
+    height    : 251rpx;
     background: #FFF;
-    padding:0 28rpx 0 53rpx;
-    overflow: hidden;
-    .user_info{
+    padding   : 0 28rpx 0 53rpx;
+    overflow  : hidden;
+
+    .user_info {
       margin-top: 30rpx;
     }
-    .avator{
-      width: 171rpx;
-      height: 171rpx;
-      float: left;
-      background: #1989fa;
+
+    .avator {
+      width        : 171rpx;
+      height       : 171rpx;
+      float        : left;
+      // background: #1989fa;
       border-radius: 50%;
     }
-    .user_info_right{
+
+    .user_info_right {
       float: right;
       width: 443rpx;
-      .name{
-        font-size: 37rpx;
-        display: flex;
+
+      .name {
+        font-size      : 37rpx;
+        display        : flex;
         justify-content: space-between;
-        align-items: center;
-        van-icon{
+        align-items    : center;
+
+        van-icon {
           vertical-align: middle;
         }
-        .detaile_user_info{
+
+        .detaile_user_info {
           font-size: 24rpx;
-          color:#666;
+          color    : #666;
         }
-      }
-      .account{
-        font-size: 27rpx;
-        margin: 24rpx 0 27rpx;
-        color:#666
       }
 
-      .grade{
-        display: flex;
+      .account {
+        font-size: 27rpx;
+        margin   : 24rpx 0 27rpx;
+        color    : #666
+      }
+
+      .grade {
+        display        : flex;
         justify-content: space-between;
-        .grade_name{
-          display: inline-block;
-          color: #FDA701;
-          height: 36rpx;
-          line-height: 36rpx;
-          border-radius: 18rpx 11rpx 11rpx 18rpx;
-          background-size:  contain;
-          padding: 0 13rpx 0 40rpx;
-          font-size: 20rpx;
+
+        .grade_name {
+          display        : inline-block;
+          color          : #FDA701;
+          height         : 36rpx;
+          line-height    : 36rpx;
+          border-radius  : 18rpx 11rpx 11rpx 18rpx;
+          background-size: contain;
+          padding        : 0 13rpx 0 40rpx;
+          font-size      : 20rpx;
         }
-        .grade_name_vip1{
+
+        .grade_name_vip1 {
           @include bg('vip1.png');
           background-color: #CEE8FC;
-          color:#435A67
-        }
-        .grade_name_vip2{
-          @include bg('vip2.png');
-          background-color: #FAD6BC;
-          color:#8E5A39
-        }
-        .grade_name_vip3{
-          @include bg('vip3.png');
-          background-color: #FFEFD4;
-          color: #FDA701;
+          color           : #435A67
         }
 
-        .term{
+        .grade_name_vip2 {
+          @include bg('vip2.png');
+          background-color: #FAD6BC;
+          color           : #8E5A39
+        }
+
+        .grade_name_vip3 {
+          @include bg('vip3.png');
+          background-color: #FFEFD4;
+          color           : #FDA701;
+        }
+
+        .term {
           font-size: 20rpx;
-          color:#999;
+          color    : #999;
         }
       }
     }
 
-    .login{
+    .login {
       text-align: center;
-      .avator{
-        float:none;
+
+      .avator {
+        float : none;
         margin: auto;
       }
 
-      text{
-        margin-top:10rpx;
-        color:#999
+      text {
+        margin-top: 10rpx;
+        color     : #999
       }
     }
 
   }
 
-  .cell_group{
+  .cell_group {
     margin-top: 27rpx;
-    .van-cell{
+
+    .van-cell {
       height: 90rpx;
     }
-    .van-cell__left-icon-wrap,.van-cell__right-icon-wrap{
-      font-size: 40rpx;
+
+    .van-cell__left-icon-wrap,
+    .van-cell__right-icon-wrap {
+      font-size     : 40rpx;
       vertical-align: middle;
     }
+  }
+}
+
+.contact_btn {
+  position        : absolute;
+  top             : 0;
+  left            : 0;
+  right           : 0;
+  bottom          : 0;
+  background-color: rgba(255, 255, 255, 0);
+  border          : none;
+  outline         : none;
+  &::before{
+    border: none;
+  }
+  &::after{
+    border: none;
   }
 }

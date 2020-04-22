@@ -4,8 +4,15 @@
 
 	<!--轮播图-->
 	<view class="swiper_wrap">
-		<swiper indicator-dots="{{false}}" autoplay=" {{true}}" interval="{{5000}}" duration="{{500}}"
-			circular="{{true}}" bindchange="swiperChange" bindtap="priviweImg">
+		<swiper
+		 indicator-dots="{{false}}"
+		 autoplay=" {{true}}"
+		 interval="{{5000}}"
+		 duration="{{500}}"
+		 circular="{{true}}"
+		 bindchange="swiperChange"
+		 bindtap="priviweImg"
+		>
 			<block wx:for="{{details.carousel}}" wx:key="index" data-url="{{item}}">
 				<swiper-item>
 					<image src="{{item}}" mode="scaleToFill" class="swiper_item_image" />
@@ -25,40 +32,51 @@
 	</view>
 	<block wx:if="{{productType==1}}">
 		<view class="car_price_now">
-			现价： <text>¥{{details.currentPrice}}元</text>
+			现价：
+			<text>¥{{details.currentPrice}}元</text>
 			<view class="tuihuo" wx:if="{{details.label}}">{{details.label}}</view>
 			<view class="share">
-				<button open-type="share"
-					style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0" />
+				<button open-type="share" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0" />
 			</view>
 		</view>
 	</block>
 
 	<block wx:else>
 		<view class="car_price_now">
-			众筹价： <text>¥{{details.currentPrice}}元</text>
+			众筹价：
+			<text>¥{{details.currentPrice}}元</text>
 			<view class="tuihuo" wx:if="{{details.label}}">{{details.label}}</view>
 			<view class="share">
-				<button open-type="share"
-					style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0" />
+				<button open-type="share" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0);margin:0;padding:0" />
 			</view>
 		</view>
 		<view class="progress">
 			已筹到: ¥{{details.activityNum*details.currentPrice}}元
-			<van-progress percentage="{{filters.progress(details.activityNum,details.totalNum)}}" pivot-text=""
-				show-pivot="{{false}}" color="#DF4241" pivot-color="#DF4241" />
+			<van-progress
+			 percentage="{{filters.progress(details.activityNum,details.totalNum)}}"
+			 pivot-text=""
+			 show-pivot="{{false}}"
+			 color="#DF4241"
+			 pivot-color="#DF4241"
+			/>
 			<view class="progress_text">
-				当前进度{{filters.progress(details.activityNum,details.totalNum)}}% <text>{{details.activityNum}}名支持者</text>
+				当前进度{{filters.progress(details.activityNum,details.totalNum)}}%
+				<text>{{details.activityNum}}名支持者</text>
 			</view>
 		</view>
 	</block>
 
-	<van-tabs active="{{ tabActive }}" sticky swipeable bind:change="tabChange">
+	<van-tabs
+	 active="{{ tabActive }}"
+	 sticky
+	 swipeable
+	 bind:change="tabChange"
+	>
 		<van-tab title="商品详情">
 			<!-- 产品参数 -->
 			<view class="table" wx:if="{{details.attrs && details.attrs.length}}">
 				<view class="table_item table_title">
-					产品参数
+					规格参数
 				</view>
 				<view class="table_item" wx:for="{{details.attrs}}">
 					<view class="item_title">
@@ -71,7 +89,7 @@
 			</view>
 
 			<!-- 产品详情 -->
-			<rich-text nodes="{{details.details}}"></rich-text>
+			<rich-text nodes="{{details.details}}" />
 		</van-tab>
 		<van-tab title="商品评价">
 			<comment type="{{details.type}}" page="{{page}}" proId="{{details.id}}" />
@@ -96,24 +114,46 @@
 		<view wx:else class="btns">
 			<collect type="2" proid="{{details.id}}" />
 
-			<van-button block wx:if="{{status==0}}" custom-class="buy_now_btn" bindtap="openDialog">
+			<van-button
+			 block
+			 wx:if="{{status==0}}"
+			 custom-class="buy_now_btn"
+			 bindtap="openDialog"
+			>
 				立即申请
 			</van-button>
-			<van-button block disabled="{{true}}" wx:elif="{{status==1}}" custom-class="buy_now_btn" color="#999">
+			<van-button
+			 block
+			 disabled="{{true}}"
+			 wx:elif="{{status==1}}"
+			 custom-class="buy_now_btn"
+			 color="#999"
+			>
 				已参与,等待结束
 			</van-button>
 			<view wx:elif="{{status==2}}" class="buy_now_btn buy_btn_zx">
-				<van-button icon="{{filters.imgUrl('kefu-2.png')}}" custom-class="zc_btn zc_kf" open-type="contact"
-					show-message-card>咨询</van-button>
+				<van-button
+				 icon="{{filters.imgUrl('kefu-2.png')}}"
+				 custom-class="zc_btn zc_kf"
+				 open-type="contact"
+				 show-message-card
+				>咨询
+				</van-button>
 				<van-button bindtap="toZcPageList" custom-class="zc_btn" color="#2ecc7e">
 					众筹成功
 				</van-button>
 			</view>
 			<!-- send-message-path="{{'/pages/three-level/good-details/index?productType='+productType+'&id='+id}}" -->
 			<view wx:elif="{{status==3}}" class="buy_now_btn buy_btn_zx">
-				<van-button icon="{{filters.imgUrl('kefu-2.png')}}" custom-class="zc_btn zc_kf" open-type="contact"
-					send-message-title="{{details.name}}" send-message-img="{{ details.showUrl }}"
-					send-message-path="{{'/good-details/index?productType='+productType+'&id='+id}}" show-message-card>
+				<van-button
+				 icon="{{filters.imgUrl('kefu-2.png')}}"
+				 custom-class="zc_btn zc_kf"
+				 open-type="contact"
+				 send-message-title="{{details.name}}"
+				 send-message-img="{{ details.showUrl }}"
+				 send-message-path="{{'/pages/three-level/good-details/index?productType='+productType+'&id='+id}}"
+				 show-message-card
+				>
 					咨询
 				</van-button>
 				<van-button custom-class="zc_btn" color="#BBB">
@@ -124,43 +164,13 @@
 	</view>
 
 	<!-- 购买弹出层 -->
-	<!-- <van-action-sheet show="{{ showDialog }}" z-index="9999" round="{{false}}" close-on-click-overlay
-		bind:close="dialogClose">
-		<view class="card line">
-			<image src="{{details.showUrl}}" mode="aspectFit|aspectFill|widthFix" />
-			<view class="right">
-				<view class='top'>
-					¥{{details.specs[specsActiveIdnex].currentPrice}}
-					<text>{{details.specs[specsActiveIdnex].originalPrice}}</text>
-					<view class="stock">
-						库存:{{details.specs[specsActiveIdnex].stock}}
-					</view>
-				</view>
-
-				<view class="selected">
-					已选: 规格: {{details.specs[specsActiveIdnex].name}}, 数量: {{number}}
-				</view>
-			</view>
-		</view>
-
-		<view class="specs_title">
-			选择规格:
-		</view>
-		<view class="specs_item {{index == specsActiveIdnex? 'specs_item_active':''}}" wx:for="{{details.specs}}">
-			{{item.name}}
-		</view>
-
-		<view class="number_pro line_top line" wx:if="{{details.type ==1}}">
-			选择数量:
-			<van-stepper value="{{ number }}" bind:change="numChange" />
-		</view>
-
-		<button class="confirm_btn">确定</button>
-	</van-action-sheet> -->
-
-	<!-- bindtouchmove ="preventTouchMove" -->
-	<van-popup show="{{ showDialog }}" z-index="2" position="bottom" safe-area-inset-bottom  bindclose="dialogClose"
-	 >
+	<van-popup
+	 show="{{ showDialog }}"
+	 z-index="2"
+	 position="bottom"
+	 safe-area-inset-bottom
+	 bindclose="dialogClose"
+	>
 
 		<view class="card line">
 			<image src="{{details.showUrl}}" mode="aspectFit|aspectFill|widthFix" />
@@ -187,19 +197,25 @@
 			选择规格:
 		</view>
 
-		<view class="specs_item {{index == specsActiveIdnex? 'specs_item_active':''}}" wx:for="{{details.specs}}" wx:key="{{item.id}}" bindtap='selectSpecs' data-index="{{index}}">
+		<view
+		 class="specs_item {{index == specsActiveIdnex? 'specs_item_active':''}}"
+		 wx:for="{{details.specs}}"
+		 wx:key="{{item.id}}"
+		 bindtap='selectSpecs'
+		 data-index="{{index}}"
+		>
 			{{item.name}}
 		</view>
 
 		<view class="number_pro line_top line" wx:if="{{details.type == 1}}">
-			<text > 选择数量: </text> 
-			<van-stepper  value="{{ number }}" bind:change="numChangeH" />
+			<text > 选择数量: </text>
+			<van-stepper value="{{ number }}" bind:change="numChangeH" />
 		</view>
 
 		<button class="confirm_btn" bind:tap="buyNow">确定</button>
 
 	</van-popup>
-	
 
 	<login showLogin="{{showLogin}}" />
 </block>
+

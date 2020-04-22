@@ -40,6 +40,10 @@ Page({
       })
 
     } else {
+      this.setData({
+        tabActive: e.detail.index,
+      })
+
       // 获取详情
     }
   },
@@ -160,6 +164,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+    if(!this.data.tabActive) return
     this.setData({
       page: this.data.page + 1
     })

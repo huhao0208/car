@@ -26,7 +26,7 @@
 </block>
 
 <load-more
-		loadType="{{ 3 ||loadType}}"
+		loadType="{{ loadType}}"
 		showLoad="{{true}}"
 		showGotop="{{showGotop}}"
 />

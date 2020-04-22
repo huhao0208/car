@@ -45,7 +45,7 @@ Page({
           [`listData[${this.data.listData.length}]`]: res.list,
           loadType: ltype
         })
-        page++
+        page = res.page+1
 
       })
   },
@@ -80,7 +80,7 @@ Page({
    */
   onLoad: function (options) {
     if (app.globalData.isDev) return
-
+    page=1
     categoryId = ''
     this.getListData()
 
@@ -97,7 +97,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -125,7 +125,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    page++;
+    // page++;
     this.getListData()
 
 

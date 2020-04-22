@@ -1,9 +1,10 @@
 const app = getApp();
 import{getProductList,getAdvertList} from "../../../api"
+const myBehavior  = require('../../../utils/behavior')
 let page  = 1;
 let categoryId = '' ;   // 分类id
 Page({
-
+  behaviors:[myBehavior],
   /**
    * 页面的初始数据
    */
@@ -78,6 +79,7 @@ Page({
 
     categoryId=""
     page=1
+
     this.getListData()
 
     this.getAdvertListData()

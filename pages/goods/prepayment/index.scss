@@ -6,30 +6,43 @@
 ;
 
 .shipping_methods_title {
-  padding  : 0 30rpx;
+  padding  : 10rpx 30rpx;
   font-size: 26rpx;
   color    : #666;
-}
-
-.shipping_methods_body {
   display: flex;
-  padding: 30rpx;
-  font-size: 26rpx;
-  color    : #666;
-
-  van-radio {
-    flex: 1;
-     .van-radio{
-      justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  van-dropdown-menu{
+    .van-dropdown-menu__item{
+     padding-left: 200rpx;
+     padding-right: 10rpx;
+     .van-ellipsis{
+       font-size: 26rpx;
      }
-    
-  }
-  .active_method{
-    .van-radio__label{
-      color:rgb(25, 137, 250)
     }
+  
   }
 }
+
+// .shipping_methods_body {
+//   display: flex;
+//   padding: 30rpx;
+//   font-size: 26rpx;
+//   color    : #666;
+
+  // van-radio {
+  //   flex: 1;
+  //    .van-radio{
+  //     justify-content: center;
+  //    }
+    
+  // }
+  // .active_method{
+  //   .van-radio__label{
+  //     color:rgb(25, 137, 250)
+  //   }
+  // }
+// }
 
 page {
   van-card {
@@ -91,8 +104,8 @@ page {
 .address {
   margin-top: 20rpx;
   padding      : 35rpx 15rpx 35rpx 30rpx;
-  border-bottom: 1rpx dashed #EEE;
-  border-top   : 1rpx dashed #EEE;
+  // border-bottom: 1rpx dashed #EEE;
+  // border-top   : 1rpx dashed #EEE;
   color        : #666;
 
   .name {
@@ -118,6 +131,8 @@ page {
 
   text {
     float: right;
+    font-size: 26rpx;
+    padding-right: 15rpx;
   }
 }
 

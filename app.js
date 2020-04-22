@@ -4,9 +4,9 @@ import { getUserDetail, getVersion } from "./api"
 let isLocation = true
 
 
-const oldPage =Page
+const oldPage = Page
 
-Page = function(app){
+Page = function (app) {
 
 	// 不能用 卡爆了
 	// app.onPageScroll =function(options){
@@ -24,10 +24,10 @@ Page = function(app){
 
 	// 	  if (typeof app.onPageScroll === 'function') {
 
-    //         app.onPageScroll.call(this, options);
-    //     }
+	//         app.onPageScroll.call(this, options);
+	//     }
 	// }
-	
+
 	return oldPage(app)
 }
 
@@ -72,7 +72,7 @@ App({
 
 		// 获取本地存储的token
 		this.globalData.unionId = wx.getStorageSync('unionId') || ''
-		
+
 		// 如果有token 直接获取用户信息 每次打开小程序更新用户信息
 		if (this.globalData.unionId) {
 			this.getUserDetailInfo()
@@ -89,11 +89,11 @@ App({
 				that.globalData.isDev = Boolean(res)
 				if (success && (typeof success == 'function')) success(Boolean(res))
 				// if(!that.globalData.isDev)
-				console.log('~~~~~ isDev:' + that.globalData.isDev  + "版本:" + config.VERSION + "~~~~~~~~");
+				console.log('~~~~~ isDev:' + that.globalData.isDev + "版本:" + config.VERSION + "~~~~~~~~");
 			})
 	},
 
-	
+
 	globalData: {
 		isDev: true,
 		//	logo:config.LOGO,
@@ -211,20 +211,11 @@ App({
 	},
 
 	// 获取最新用户信息
-	getUserDetailInfo(successFn) {
-		//console.log("获取用户信息")
-		// Authorization	
-		getUserDetail({ hideLoading: true })
-			.then(res => {
-				console.log(this);
-
-				//	console.log(res,'从后台获取的个人信息')
-				this.globalData.userInfo = wx.getStorageSync('userInfo') || {}
-				this.setGlobalData("userInfo", res)
-				if (typeof (successFn) == 'function') successFn(res)
-			}).catch(
-				this.globalData.userInfo = wx.getStorageSync('userInfo') || {}
-			)
+	async getUserDetailInfo(successFn) {
+		let res = await getUserDetail({ hideLoading: true })
+		// mmp 小程序支持async await了啊
+		this.setGlobalData("userInfo", res)
+		if (typeof (successFn) == 'function') successFn(res)
 	},
 
 })

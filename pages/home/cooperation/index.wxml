@@ -27,7 +27,7 @@
 					<view class="progress">
 						{{item.label}}
 					</view>
-					<view class="price" wx:if="ShowDistance">
+					<view class="price" wx:if="{{ShowDistance}}">
 						{{filters.distance(latitude1,longitude1,item.latitude,item.longitude)}}km
 					</view>
 				</view>

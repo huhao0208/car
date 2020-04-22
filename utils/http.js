@@ -5,7 +5,9 @@ const base_url = config.API_ROOT;
 
 const request = function (method, url, data) {
 	const app = getApp()
+
 	return new Promise((resolve, reject) => {
+		let loadingFlag = false 
 		// 请求头信息
 		let header = { 'content-type': 'application/json' }
 		try {
@@ -27,8 +29,12 @@ const request = function (method, url, data) {
 
 		// 发送请求 当获取分页数据时不显示loading  如果不需显示loading 则在请求的参数中添加hideLoading即可
 		try {
+		
+
 			console.log(data.page, 'dataPage')
-			if ((data.page && data.page == 1 || !data.page) && !data.hideLoading) sL('请稍候...')
+			if ((data.page == 1 || !data.page) && !data.hideLoading) sL('请稍候...')
+
+			loadingFlag = Boolean(data.showLoading)
 
 			if (data.showLoading) delete data.showLoading
 		} catch (e) {
@@ -40,8 +46,22 @@ const request = function (method, url, data) {
 			method: method,
 			data: data,
 			header: header,
-			success: (res) => {
-				// console.log(res,'http')
+			success: (res) => { 
+				console.log(res,'http');
+				
+				
+
+				!loadingFlag && hL() 
+
+				// if(res.statusCode!==200) {
+				// 	wx.showToast({
+				// 		title:res.errMsg,
+				// 		iocn:'none'
+				// 	})
+
+				// 	return
+				// }
+
 				if (res.data.code == 401) {
 					wx.showToast({
 						title: '登录状态过期,请重新登录',
@@ -73,7 +93,7 @@ const request = function (method, url, data) {
 				reject(err)
 			},
 			complete(res) {
-				hL()
+				
 			}
 		})
 	})

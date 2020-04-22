@@ -40,7 +40,6 @@ Page({
           let type = (!res.total)?3:( res.page ==res.pages )?2:1
 
           if(res.page && page>res.pages) return   
-          
             this.setData({
               [`listData[${this.data.listData.length}]`]:res.list,
               loadType: type

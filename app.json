@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/home/index/index",
-    "pages/vip/index/index" ,
+    "pages/vip/index/index",
     "pages/vip/vip-login/index",
     "pages/vip-code/index/index",
     "pages/my/index/index",
@@ -25,7 +25,8 @@
     "pages/three-level/order-details/index",
     "pages/my/prize/index",
     "pages/three-level/prize-address/index",
-    "pages/my/favorite/index"
+    "pages/my/favorite/index",
+    "pages/my/integral/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -35,12 +36,14 @@
     "enablePullDownRefresh": false
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/home/index/index",
-      "text": "主页",
-      "iconPath": "images/tabbar/home1.png",
-      "selectedIconPath": "images/tabbar/home2.png"
-    },{
+    "list": [
+      {
+        "pagePath": "pages/home/index/index",
+        "text": "主页",
+        "iconPath": "images/tabbar/home1.png",
+        "selectedIconPath": "images/tabbar/home2.png"
+      },
+      {
         "pagePath": "pages/vip/vip-login/index",
         "text": "会员",
         "iconPath": "images/tabbar/vip1.png",

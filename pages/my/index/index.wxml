@@ -25,36 +25,81 @@
 	</view>
 
 	<view class="login" bindtap="loginTap" wx:else>
-		<image class="avator" src="http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/user.png"></image>
+		<image class="avator" src="https://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/static/default_head.png" />
 		<view>未登录</view>
 	</view>
 </view>
 
 <van-cell-group custom-class="cell_group" wx:if="{{!isDev}}">
-	<van-cell title="我的订单" custom-class="cell" is-link icon="{{filters.imgUrl('wodedingdan.png')}}" bindtap="jumpHandle"
-		data-url="/pages/my/order/index?type=1" />
-	<van-cell title="我的众筹" border="{{ false }}" icon="{{filters.imgUrl('wodezhongchou-.png')}}" is-link
-		bindtap="jumpHandle" data-url="/pages/my/order/index?type=2" />
+	<van-cell
+	 title="我的订单"
+	 custom-class="cell"
+	 is-link
+	 icon="{{filters.imgUrl('wodedingdan.png')}}"
+	 bindtap="jumpHandle"
+	 data-url="/pages/my/order/index?type=1"
+	/>
+	<van-cell
+	 title="我的众筹"
+	 border="{{ false }}"
+	 icon="{{filters.imgUrl('wodezhongchou-.png')}}"
+	 is-link
+	 bindtap="jumpHandle"
+	 data-url="/pages/my/order/index?type=2"
+	/>
 </van-cell-group>
 
 <van-cell-group custom-class="cell_group">
 	<block wx:if="{{!isDev}}">
-		<van-cell title="抽奖列表" icon="{{filters.imgUrl('choujiang1.png')}}" is-link bindtap="jumpHandle"
-			data-url="/pages/my/prize/index" />
-		<van-cell title="收货地址" icon="{{filters.imgUrl('shouhuodizhi-2.png')}}" border="{{ false }}" is-link
-			bindtap="jumpHandle" data-url="/pages/my/deliveryList/deliveryList" />
+		<van-cell
+		 title="抽奖列表"
+		 icon="{{filters.imgUrl('choujiang1.png')}}"
+		 is-link
+		 bindtap="jumpHandle"
+		 data-url="/pages/my/prize/index"
+		/>
+		<van-cell
+		 title="收货地址"
+		 icon="{{filters.imgUrl('shouhuodizhi-2.png')}}"
+		 border="{{ true }}"
+		 is-link
+		 bindtap="jumpHandle"
+		 data-url="/pages/my/deliveryList/deliveryList"
+		/>
 	</block>
-	<van-cell title="我的收藏" icon="{{filters.imgUrl('favorite1.png')}}" border="{{ false }}" is-link bindtap="jumpHandle"
-		data-url="/pages/my/favorite/index" />
+	<van-cell
+	 title="我的收藏"
+	 icon="{{filters.imgUrl('favorite1.png')}}"
+	 border="{{ false }}"
+	 is-link
+	 bindtap="jumpHandle"
+	 data-url="/pages/my/favorite/index"
+	/>
 </van-cell-group>
+
 <van-cell-group custom-class="cell_group">
-	<van-cell title="在线客服" icon="{{filters.imgUrl('kefu-2.png')}}" is-link bindtap="jumpHandle">
-		<button open-type="{{userInfo.username?'contact':''}}" show-message-card
-			style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;background-color: rgba(255,255,255,0)" />
+	<block wx:if="{{!isDev}}">
+		<van-cell
+		 title="{{integralRule.ruleTitle}}"
+		 icon="{{filters.imgUrl('jifen.png')}}"
+		 border="{{ true }}"
+		 is-link
+		 bindtap="jumpHandle"
+		 data-url="/pages/my/integral/index"
+		/>
+	</block>
 
+	<van-cell
+	 title="在线客服"
+	 icon="{{filters.imgUrl('kefu-2.png')}}"
+	 is-link
+	 bindtap="jumpHandle"
+	 style="overflow:hidden"
+	>
+		<button open-type="{{userInfo.username?'contact':''}}" show-message-card class="contact_btn" />
 	</van-cell>
-
 
 </van-cell-group>
 
 <login bindhasLogin="hasLogin" />
+

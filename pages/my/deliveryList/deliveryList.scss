@@ -41,9 +41,12 @@
   z-index: 999;
   width: 100%;
   bottom:0;
-  padding:20rpx;
+  // padding:20rpx;
   button{
-    margin: 20rpx ;
+   position: absolute;
+   left: 30rpx;
+   bottom: 60rpx;
+   right: 30rpx;
   background: #D01A17;
   color:#FFF
 }

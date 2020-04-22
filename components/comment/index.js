@@ -37,6 +37,7 @@ Component({
 			if(page==1) this.setData({listData:[],loadType:1})
 			getAppraiseList({page,proId:this.data.proId,type:this.data.type})
 			.then(res=>{
+
 				let type =  (!res.total )?3:( res.pages == page )?2:1
 				if(res.pages && res.pages<page) return
 				that.setData({

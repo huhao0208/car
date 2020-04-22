@@ -1,5 +1,5 @@
 // pages/my/index.js
-import { confirmReceipt, orderAppraise, getOrderTraces,getOrderAppraise} from "../../../api"
+import { confirmReceipt, orderAppraise, getOrderTraces, getOrderAppraise, rquestRefund } from "../../../api"
 
 const app = getApp()
 
@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    freightFee: 0,
     rateName: ['非常差', '差', '一般', '好', '非常好'],
     rateValue: 5,    //评价星值
     comment: '',      // 评价内容
@@ -56,7 +57,7 @@ Page({
         this.setData({
           rateValue: res.star,
           comment: res.content
-          
+
         })
       })
   },
@@ -85,10 +86,51 @@ Page({
       url
     })
   },
+  // 申请退款
+   refund() {
+      fpage = getCurrentPages().slice(-2)[0]
+      if (this.data.refundState == 0) {
+        wx.showModal({
+          title: '退款申请',
+          content: '您确定要申请退款?',
+          showCancel: true,
+          cancelText: '取消',
+          cancelColor: '#000000',
+          confirmText: '确定',
+          confirmColor: '#3CC51F',
+          success: async (result) => {
+            if(result.confirm){
+              let res = await rquestRefund({ id: this.data.id })
+              wx.showToast({
+                title: '申请退款成功'
+              })
+              fpage.onLoad({ type: fpage.options.type }) 
+              this.setData({
+                refundState: 1
+              })
+            }
+      
+          },
+          fail: () => { },
+          complete: () => { }
+        });
+
+
+      
+    }else {
+      fpage.onLoad({ type: fpage.options.type })
+    }
+
+
+
+
+
+  },
 
   // 确认收货
   confireBtn() {
     if (this.data.state < 3) return
+    if(!this.data.refundState) return
     fpage = getCurrentPages().slice(-2)[0]
     confirmReceipt({ id: this.data.id })
       .then(res => {
@@ -154,20 +196,31 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    console.log('onHide');
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log('onUnload,刷新上页数据');
+    fpage = getCurrentPages().slice(-2)[0]
+    fpage.onLoad({ type: fpage.options.type })
+    
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+
+    fpage = getCurrentPages().slice(-2)[0]
+    fpage.onLoad({ type: fpage.options.type })
+
+    setTimeout(_=>{
+      wx.stopPullDownRefresh()
+    },800)
 
   },
 

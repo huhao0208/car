@@ -2,6 +2,7 @@
 const app = getApp()
 import { getProductDetail, judgeInCrowdFunding } from "../../../api"
 let onloadData = {};
+let details = ''
 Page({
 
   /**
@@ -53,13 +54,13 @@ Page({
     }
   },
   // 阻止穿透
-  preventTouchMove() {},
+  preventTouchMove() { },
 
   // 选择规格
-  selectSpecs(e){
+  selectSpecs(e) {
     console.log(e);
     this.setData({
-      specsActiveIdnex:e.currentTarget.dataset.index
+      specsActiveIdnex: e.currentTarget.dataset.index
     })
   },
 
@@ -84,16 +85,20 @@ Page({
   },
   // 立即购买
   buyNow() {
-   
+
     let _this = this
     app.isLogin(_ => {
-      // 判读众筹 众筹查询是否有资格
+      // 判读众筹 
       if (onloadData.productType == 2) {
+        //众筹查询是否有资格
+
         judgeInCrowdFunding({ id: _this.data.id })
           .then(res => {
             // 未参加众筹 可以参与
             if (!res) {
               // 这里跳转
+              console.log(res, '未参加众筹,可以参与');
+
               if (_this.data.details.totalNum == _this.data.details.activityNum) {
                 _this.setData({
                   status: 3   // 众筹结束
@@ -108,6 +113,7 @@ Page({
 
             } else {
               // 已参与众筹 
+              console.log(res, '已参与众筹');
 
               //
               if (_this.data.details.totalNum == _this.data.details.activityNum) {
@@ -134,7 +140,7 @@ Page({
 
     })
 
-   
+
   },
 
   // 去众筹liebiao页面
@@ -165,9 +171,48 @@ Page({
       .then(res => {
         let detailsData = res
         detailsData.details = res.details ? res.details.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block" ') : '等待商家添加'//防止富文本图片过大
+        details = detailsData
         this.setData({
           details: detailsData
         })
+
+        let _this = this
+        // 每次进页面判断用户是否可以参加众筹
+        if (onloadData.productType == 2) {
+
+          judgeInCrowdFunding({ id: _this.data.id })
+            .then(res => {
+              // 未参加众筹 可以参与
+              if (!res) {
+
+                if (_this.data.details.totalNum == _this.data.details.activityNum) {
+                  _this.setData({
+                    status: 3   // 众筹结束
+                  })
+                } else {
+                  _this.setData({
+                    status: 0   // 可参与众筹
+                  })
+
+                }
+              } else {
+                // 已参与众筹 
+                if (_this.data.details.totalNum == _this.data.details.activityNum) {
+                  _this.setData({
+                    status: 2   // 众筹成功
+                  })
+                } else {
+                  _this.setData({
+                    status: 1   // 众筹中
+                  })
+                }
+
+              }
+            })
+
+        }
+
+
       })
   },
 
@@ -176,7 +221,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    details = ''
     if (app.globalData.isDev) return this.setData({
       isDev: true
     })
@@ -191,7 +236,7 @@ Page({
       console.log('普通商品')
     }
 
-    this.getProductDetail()
+
   },
 
   /**
@@ -206,41 +251,9 @@ Page({
    */
   onShow: function () {
     this.dialogClose()
-    let _this = this
-    // 每次进页面判断用户是否可以参加众筹
-    if (onloadData.productType == 2) {
+    this.getProductDetail()
 
-      judgeInCrowdFunding({ id: _this.data.id })
-        .then(res => {
-          // 未参加众筹 可以参与
-          if (!res) {
 
-            if (_this.data.details.totalNum == _this.data.details.activityNum) {
-              _this.setData({
-                status: 3   // 众筹结束
-              })
-            } else {
-              _this.setData({
-                status: 0   // 可参与众筹
-              })
-
-            }
-          } else {
-            // 已参与众筹 
-            if (_this.data.details.totalNum == _this.data.details.activityNum) {
-              _this.setData({
-                status: 2   // 众筹成功
-              })
-            } else {
-              _this.setData({
-                status: 1   // 众筹中
-              })
-            }
-
-          }
-        })
-
-    }
 
   },
 

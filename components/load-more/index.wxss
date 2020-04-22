@@ -162,8 +162,8 @@
 
 .go_top{
     position: fixed;
-    right: 30rpx;
-    bottom: 60rpx;
+    right: 40rpx;
+    bottom: 120rpx;
     width: 60rpx;
     height: 60rpx;
     z-index: 10000;

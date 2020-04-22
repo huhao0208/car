@@ -19,8 +19,8 @@
 		 thumb-class="card_img"
 		 thumb-mode="scaleToFill"
 		 thumb="{{ item.showUrl }}"
-		>
 
+		>
 			<!-- <view slot="tags" class="baoyou" wx:if="{{item.label}}">
 				{{item.label}}
 			</view> -->

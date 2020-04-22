@@ -47,7 +47,10 @@ Component({
 			let that = this
 			collectProduct({type:this.data.type,proId:this.data.proid})
 				.then(_=>{
-						that.judgeCollect()
+					wx.showToast({
+						title:'收藏成功'
+					})
+					that.judgeCollect()
 				})
 		},
 		// 移除收藏

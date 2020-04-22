@@ -1,13 +1,25 @@
 <wxs src="../../../utils/filters.wxs" module="filters" />
-<view class="shipping_methods_title">请选择配送方式 :</view>
-<van-radio-group value="{{ shippingMethods }}" bind:change="shippingChange" class="shipping_methods_body line">
-	<van-radio name="1" shape="square" class="{{shippingMethods==1?'active_method':''}}">
-		快递配送
-	</van-radio>
-	<van-radio name="2" shape="square" class="{{shippingMethods==2?'active_method':''}}">
-		到店自提
-	</van-radio>
-</van-radio-group>
+<!-- 地址 -->
+<block wx:if="{{true || shippingMethods==1}}">
+	<view class="address line" bindtap="editAddress" wx:if="{{currentAddress}}">
+		<view>
+			{{currentAddress.province}}{{addressData.province}}{{currentAddress.city}}{{currentAddress.area}}{{ currentAddress.address}}
+		</view>
+		<view class="name">{{currentAddress.contact}}</view>
+		<view>
+			{{currentAddress.phone}}
+			<text catchtap="addAddress" style="font-size: 24rpx; color:#999">修改地址>></text>
+		</view>
+	</view>
+	<view
+	 class="address line"
+	 style="text-align: center"
+	 wx:else
+	 bindtap="addAddress"
+	>点击选择收货地址
+	</view>
+</block>
+
 <van-card
  bindtap="toProductDetail"
  desc="{{details.specs[specIndex].name}}"
@@ -38,29 +50,26 @@
 	共计:
 	<text> {{filters.moneyFormat((details.specs[specIndex].currentPrice*number + freight)*10000)}}元 </text>
 </view>
+
+<view class="shipping_methods_title line" >
+		请选择配送方式 : 
+	<van-dropdown-menu  >
+		<van-dropdown-item value="{{ shippingMethods }}" bind:change="shippingChange" options="{{ [ { text: '快递配送', value: 1 }, { text: '到店自提', value: 2 }] }}" />
+	</van-dropdown-menu>
+</view>
+<!-- <van-radio-group value="{{ shippingMethods }}" bind:change="shippingChange" class="shipping_methods_body line">
+	<van-radio name="1" shape="square" class="{{shippingMethods==1?'active_method':''}}">
+		快递配送
+	</van-radio>
+	<van-radio name="2" shape="square" class="{{shippingMethods==2?'active_method':''}}">
+		到店自提
+	</van-radio>
+</van-radio-group> -->
+
 <view class="payment_type">
 	<icon/>
 	<text>微信支付</text>
 </view>
-<!-- 地址 -->
-<block wx:if="{{shippingMethods==1}}">
-	<view class="address" bindtap="editAddress" wx:if="{{currentAddress}}">
-		<view>
-			{{currentAddress.province}}{{addressData.province}}{{currentAddress.city}}{{currentAddress.area}}{{ currentAddress.address}}
-		</view>
-		<view class="name">{{currentAddress.contact}}</view>
-		<view>
-			{{currentAddress.phone}}
-			<text catchtap="addAddress" style="font-size: 24rpx; color:#999">修改地址>></text>
-		</view>
-	</view>
-	<view
-	 class="address"
-	 style="text-align: center"
-	 wx:else
-	 bindtap="addAddress"
-	>点击选择收货地址
-	</view>
-</block>
+
 <button type="primary" class="submit" bindtap="submit">立即支付</button>
 

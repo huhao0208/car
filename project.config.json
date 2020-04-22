@@ -425,6 +425,13 @@
 					"pathName": "pages/three-level/good-details/index",
 					"query": "productType=1&id=7",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/order-details/index",
+					"pathName": "pages/three-level/order-details/index",
+					"query": "id=7&number=1&specId=17",
+					"scene": null
 				}
 			]
 		}

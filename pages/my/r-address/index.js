@@ -35,7 +35,7 @@ Page({
 	// 选择地址
 	addressSelected(e) {
 		let address = e.detail.values
-	
+
 		this.setData({
 			[`options.province`]: address[0].name,
 			[`options.city`]: address[1].name,
@@ -44,7 +44,7 @@ Page({
 		})
 	},
 	iptAddressHandle(e) {
-	
+
 		this.setData({
 			[`options.address`]: e.detail.value,
 			iptAddress: e.detail.value
@@ -52,7 +52,7 @@ Page({
 	},
 	// // 性别 选择
 	selcetSexHandle(e) {
-	
+
 		this.setData({
 			'options.sex': e.detail,
 			sex: e.detail,
@@ -69,24 +69,31 @@ Page({
 			[`options.phone`]: e.detail.value,
 		})
 	},
+
 	// 提交
 	submitHandle() {
-		if (!this.data.options.contact || !this.data.iptAddress ||!this.data.options.address || !this.data.options.province || !this.data.options.phone || !this.data.options.city || !this.data.options.area)  return wx.showToast({title:'请填写完整信息',icon:'none'})
+		console.log(this.data.options);
+		
+		let {contact,address,province,phone,city,area} = this.data.options
+
+		if (!(contact && address && province && phone && city &&area) ) return wx.showToast({ title: '请填写完整信息', icon: 'none' })
 
 		// 手机号码验证
-		let reg =  /^[1]([3-9])[0-9]{9}$/
-		if(!reg.test(this.data.options.phone)) return wx.showToast({title:'请输入正确的手机号码',icon:"none"})
+		let reg = /^[1]([3-9])[0-9]{9}$/
+		if (!reg.test(phone)) return wx.showToast({ title: '请输入正确的手机号码', icon: "none" })
+
 
 		// 判断是否为默认地址 如果是默认的地址 还需修改 app.globalData 以及本地缓存的地址
-	try {
-		let currentaddressId = wx.getStorageSync('currentAddress').id|| app.globalData.currentaddress.id || ''
-		if(this.data.options.id&& (this.data.options.id ==currentaddressId) ){
-			app.setGlobalData('currentAddress',this.data.options)
+		try {
+			let currentaddressId = wx.getStorageSync('currentAddress').id || app.globalData.currentaddress.id || ''
+			if (this.data.options.id && (this.data.options.id == currentaddressId)) {
+				app.setGlobalData('currentAddress', this.data.options)
+			}
+		} catch (error) {
+			console.log(error);
+
 		}
-	} catch (error) {
-		console.log(error);
-		
-	}
+
 
 		if (this.data.pageType == 'car-details' || this.data.pageType == 'loan-details' || this.data.pageType == 'prize') {
 			// 购车咨询
@@ -96,20 +103,20 @@ Page({
 			this.data.options.sex = this.data.sex
 			let fn = this.data.pageType == 'car-details' ? consultCarInfo : this.data.pageType == 'loan-details' ? applyFinancialLoan : usePrize
 
-			
 
-			console.log(fn,'fn');
-			
+
+			console.log(fn, 'fn');
+
 
 			if (this.data.pageType == 'prize') {
-			
+
 				this.data.options.id = this.data.pageData.id
-				let { contact, phone, province, city, area, address } = this.data.options
+			///	let { contact, phone, province, city, area, address } = this.data.options
 
 			}
 			fn(this.data.options)
 				.then(res => {
-				
+
 					wx.showToast({
 						title: '提交成功',
 						success(res) {
@@ -126,7 +133,7 @@ Page({
 			// 修改新增地址
 			saveOrUpdateAddress(this.data.options)
 				.then(res => {
-				
+
 					wx.navigateBack()
 				})
 		}
@@ -136,12 +143,12 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-	
+
 		let pages = getCurrentPages()
 		let page = pages[pages.length - 2] || ''
 		// 如果是从 汽车销售过来的
 		if (page && page.route == 'pages/three-level/car-details/index') {
-	
+
 			this.setData({
 				pageType: 'car-details',
 				pageData: page.data.carInfo
@@ -152,10 +159,10 @@ Page({
 				pageData: page.data.details
 			})
 
-		}else {
+		} else {
 			this.setData({
 				options,
-				pageType:null
+				pageType: null
 			})
 		}
 		this.setData({
@@ -177,7 +184,7 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-	
+
 	},
 
 	/**
