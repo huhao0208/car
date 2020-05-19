@@ -5,9 +5,9 @@
     <view class="van-card__thumb" bind:tap="onClickThumb">
       <image
         wx:if="{{ thumb }}"
-        src="{{ thumb }}"
+        src="{{ thumb+'?x-oss-process=image/resize,w_240' }}"
         mode="{{ thumbMode }}"
-        lazy-load="{{ lazyLoad }}"
+        lazy-load="{{true || lazyLoad }}"
         class="van-card__img thumb-class"
       />
       <slot name="thumb" />

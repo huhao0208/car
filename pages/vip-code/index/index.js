@@ -1,6 +1,6 @@
 // pages/vip-code/index.js
 import areaList from "../../../components/area"
-import { openMembership } from "../../../api"
+import { openMembership,getMembershipPrice,getIntegralRule } from "../../../api"
 const app = getApp()
 Page({
 
@@ -15,7 +15,6 @@ Page({
       vip: 1
     }
   },
-
   toSelectAddress(e) {
     this.setData({
       isShowAera: true
@@ -127,17 +126,51 @@ Page({
       })
     })
   },
+  // 获取开通会员的价格
+  getMembershipPrice(){
+    getMembershipPrice()
+    .then(res=>{
+      this.setData(  res )
+      wx.stopPullDownRefresh()
+
+    })
+  },
+	// 获取分规则
+	async getIntegralRule(){
+		let res = await getIntegralRule()
+		this.setData({
+			integralRule:res
+		})
+	},
+  // 会员规则
+  toInegral(){
+    wx.navigateTo({
+      url:'/pages/my/integral/index?type=vip'
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
+  
+    this.getIntegralRule()
+    // 先用旧数据 渲染页面 
+   this.setData({
+     userInfo: app.globalData.userInfo|| ''
+   })
+  
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    // 判断是否登录或者有无vip 
+    if (!this.data.userInfo.vip) this.setData({
+      areaList: areaList
+    })
 
   },
 
@@ -145,21 +178,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that = this
-    // 登录成功刷新用户信息
+    if( !app.globalData.userInfo || !app.globalData.userInfo.vip ){ this.getMembershipPrice()}
+    // 如果登录了 则刷新用户信息
     if (app.globalData.unionId) {
       app.getUserDetailInfo(res => {
+        wx.stopPullDownRefresh()
         this.setData({
           userInfo: res
         })
-        if (!res.vip) that.setData({
-          areaList: areaList
-        })
-      })
-
-    } else {
-      this.setData({
-        userInfo: ''
       })
     }
 
@@ -183,7 +209,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    this.onShow()
 
+    setTimeout(_=>{
+      wx.stopPullDownRefresh()
+    },2000)
   },
 
   /**

@@ -1,6 +1,6 @@
 // 商品详情
 const app = getApp()
-import { getProductDetail, judgeInCrowdFunding } from "../../../api"
+import { getProductDetail, judgeInCrowdFunding,getProductLimitQuantity } from "../../../api"
 let onloadData = {};
 let details = ''
 Page({
@@ -71,6 +71,9 @@ Page({
     })
   },
 
+  // 获取当前可购买数量
+  
+
   // 打开对话框
   openDialog() {
     this.setData({
@@ -87,7 +90,17 @@ Page({
   buyNow() {
 
     let _this = this
-    app.isLogin(_ => {
+    app.isLogin(async _ => {
+      // 获取限购数量
+      let limit = await getProductLimitQuantity({id:this.data.details.id})
+     ;
+      if(this.data.number>this.data.details.specs[this.data.specsActiveIdnex].stock) return wx.showToast({title:'数量超出库存',icon:'none'})
+     if(limit !=-1){
+
+      if(this.data.number>limit) return wx.showToast({title:'您当前最多可购买'+limit+'件',icon:'none'})
+      if(limit==0) return wx.showToast({title:'你的购买次数已用尽，请下次再来',icon:'none'})
+
+     }
       // 判读众筹 
       if (onloadData.productType == 2) {
         //众筹查询是否有资格
@@ -134,7 +147,6 @@ Page({
         wx.navigateTo({
           url: `/pages/goods/prepayment/index?id=${_this.data.id}&number=${_this.data.number}&specId=${_this.data.details.specs[_this.data.specsActiveIdnex].id}`
         })
-
       }
 
 
@@ -250,7 +262,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.dialogClose()
     this.getProductDetail()
 
 
@@ -261,14 +272,16 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+     
+      this.dialogClose()
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+   
+    this.dialogClose()
   },
 
   /**

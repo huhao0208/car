@@ -19,7 +19,6 @@ Page({
     brandListIndex: -1, // 选中的汽车品牌
     listData: [], // 渲染列表用数据
     brandList: [], // 品牌列表
-
   },
 
 
@@ -117,7 +116,7 @@ Page({
 
   // 获取汽车列表
   _getListData(e) {
-
+    let that =this
     if (page == 1) {
       this.setData({
         listData: [],

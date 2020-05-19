@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "会员码",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "login": "../../../components/login/index",
     "van-button": "@vant/weapp/button",

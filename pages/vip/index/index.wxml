@@ -6,7 +6,7 @@
 		bindchange="swiperChange">
 		<block wx:for="{{indexSwiperData}}" wx:key="index">
 			<swiper-item>
-				<image src="{{item.picUrl}}" data-id="{{item.advertId}}" data-type="{{item.kind}}"
+				<image src="{{item.picUrl+'?x-oss-process=image/resize,w_750'}}" data-id="{{item.advertId}}" data-type="{{item.kind}}"
 					bindtap="swiperToDetail" mode="scaleToFill" class="swiper_item_image" />
 			</swiper-item>
 		</block>

@@ -30,19 +30,55 @@ Page({
     // 判断type
     let type = e.currentTarget.dataset.type
     let id = e.currentTarget.dataset.id
-    if (type == 1 || type == 2) {
-      wx.navigateTo({
-        url: '/pages/three-level/prize-address/index?id=' + id
-      })
-    } else {
-      usePrize({ id })
-        .then(res => {
-          page = 1
-          that.getListData()
-        })
-    }
-  },
+    wx.showModal({
+      title: '',
+      content: '确定使用?',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#000000',
+      confirmText: '确定',
+      confirmColor: '#3CC51F',
+      success: (result) => {
+        if (result.confirm) {
+          // xuyao 地址
+          if (type == 1 || type == 2) {
+            wx.navigateTo({
+              url: '/pages/three-level/prize-address/index?id=' + id
+            })
+          }else{
+          // 不需要地址
+          usePrize({ id })
+          .then(res => {
+            page = 1
+            that.getListData()
+          })
+         }
+        }
+      },
+      fail: () => {},
+      complete: () => {}
+    });
 
+  },
+  // 去商品详情
+  toGoodsDetail(e){
+    console.log(e);
+   let {type,goodsid:id} = e.currentTarget.dataset
+
+   // type 1普通商品 2众筹商品 3 车主服务
+	// 判断类型跳转对应页面 1 普通商品 2 众筹商品 3 金融贷款 4 汽车销售 5 合作商家
+    // let url = (type == 1 || type == 2) ? `/pages/three-level/good-details/index?productType=${type}&id=${id}` : type == 3 ? '/pages/three-level/loan-details/index?id=' + id : type == 4 ? '/pages/three-level/car-details/index?id=' + id : type == 5 ? '/pages/three-level/cooperation-details/index?id=' + id : ''
+
+
+    let url = (type == 1 || type == 2) ? `/pages/three-level/good-details/index?productType=${type}&id=${id}` : type == 3 ? '/pages/three-level/car-details/index?id=' + id : ''
+    if (!url) return
+    
+		wx.navigateTo({
+			url
+		})
+
+    
+  },
   //屏幕滚动  返回顶部用
   onPageScroll(e) {
     if (e.scrollTop >= 400 && e.scrollTop < 1000) {

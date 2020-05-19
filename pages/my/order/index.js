@@ -1,5 +1,4 @@
 // pages/my/index.js
-import {jump} from "../../../utils/util";
 import {getOrderList} from "../../../api"
 
 const app = getApp()
@@ -35,9 +34,7 @@ Page({
 	tabChange(e){
 		page=1
 		this.setData({
-			state:e.detail.index==0?123:5,
-			type:1
-
+			state:e.detail.index==0?123:51,
 		},_=>{
 			this.getListData()
 		})
@@ -47,7 +44,7 @@ Page({
 	getListData() {
 		if(page==1) this.setData({
 			listData:[],
-			type:1
+			loadType:1
 		})
 		getOrderList({page, type:type/1,state:this.data.state})
 			.then(res => {
@@ -67,9 +64,10 @@ Page({
 	toOrderDetail(e) {
 		// console.log(e)
 		 console.log(e.currentTarget.dataset.item)
-		 this.setData({
-			 currentData:e.currentTarget.dataset.item
-		 })
+		 app.globalData.currentOrderData = e.currentTarget.dataset.item
+		//  this.setData({
+		// 	 currentData:e.currentTarget.dataset.item
+		//  })
 		wx.navigateTo({
 			url: '/pages/three-level/order-details/index?orderId='+ e.currentTarget.dataset.orderid
 		})

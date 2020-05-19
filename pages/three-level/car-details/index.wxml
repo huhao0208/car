@@ -44,6 +44,7 @@
 >
 	<van-tab title="商品详情" >
 		<rich-text nodes="{{carInfo.details}}"></rich-text>
+		<view class="empty_box" style=" height: 150rpx"/>
 	</van-tab>
 	<van-tab title="商品评价" >
 			<comment type="4" page="{{page}}" proId="{{carInfo.id}}"/>

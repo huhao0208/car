@@ -16,13 +16,30 @@ Page({
   // 移除收藏
   delete(e){
     //console.log(e)
-    let opt = e.currentTarget.dataset
-    removeCollect({proId:opt.proid,type:opt.type})
-        .then(_=>{
-            page =1
-          this.getListData()
-        })
-
+    
+    wx.showModal({
+      title: '',
+      content: '确定移除收藏?',
+      showCancel: true,
+      cancelText: '取消',
+      cancelColor: '#000000',
+      confirmText: '确定',
+      confirmColor: '#3CC51F',
+      success: (result) => {
+        if (result.confirm) {
+          let opt = e.currentTarget.dataset
+          removeCollect({proId:opt.proid,type:opt.type})
+              .then(_=>{
+                  page =1
+                this.getListData()
+              })
+          
+        }
+      },
+      fail: () => {},
+      complete: () => {}
+    });
+ 
   },
   // 去详情页
   toDetail(e){
@@ -60,7 +77,6 @@ Page({
             [`listData[${this.data.listData.length}]`]:res.list,
             loadType: type
           })
-
           page = res.page+1
 
         })

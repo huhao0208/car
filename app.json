@@ -26,10 +26,11 @@
     "pages/my/prize/index",
     "pages/three-level/prize-address/index",
     "pages/my/favorite/index",
-    "pages/my/integral/index"
+    "pages/my/integral/index",
+    "pages/my/integralList/index"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "中汇创智",
     "navigationBarTextStyle": "black",

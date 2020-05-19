@@ -1,124 +1,205 @@
 $font_color: #999;
-@mixin bg($name,$color){
-    background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) no-repeat center,$color;
-    background-size: 100%;
-};
 
-page{
-  height: auto;
-  padding: 0 30rpx ;
-  color: #020202;
-  margin-bottom: 140rpx;
+@mixin bg($name, $color) {
+  background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) no-repeat center,
+    $color;
+  background-size: 100%;
 }
-.swiper_wrap{
+
+page {
+  overflow-x: hidden;
+  height: auto;
+  padding: 0 30rpx 60rpx;
+  color: #020202;
+  overflow-y: scroll;
+  // margin-bottom: 140rpx;
+}
+
+.swiper_wrap {
   width: 100vw;
   margin-left: -30rpx;
   height: 430rpx;
   position: relative;
 }
+
 swiper {
   height: 100%;
+
   .swiper_item_image {
     width: 100%;
     height: 100%;
   }
 }
+
 .dots {
   position: absolute;
-  bottomn:0;
-  margin-left:50%;
-  transform: translate(-50%,-20rpx);
+  bottom: 0;
+  margin-left: 50%;
+  transform: translate(-50%, -20rpx);
 }
+
 .dot {
   width: 36rpx;
   height: 5rpx;
-  background-color: #FFF;
+  background-color: #fff;
   opacity: 0.5;
   margin: 5rpx;
   float: left;
 }
+
 .active {
   opacity: 1;
 }
 
-
-.buy_now{
+.buy_now {
   position: fixed;
   left: 0;
   width: 100%;
   padding: 20rpx 30rpx;
   box-sizing: border-box;
   bottom: 0;
-  background: #FFF;
-  z-index:999;
-  .buy_now_btn{
+  background: #fff;
+  z-index: 9;
+
+  .buy_now_btn {
     border-radius: 40rpx;
-    color: #FFF;
-    border:1rpx solid #DD1A22;
+    color: #fff;
+    border: 1rpx solid #dd1a22;
   }
-  .buy_btn_zx{
-    background: #FFF;
+
+  .buy_btn_zx {
+    background: #fff;
     overflow: hidden;
     display: flex;
-    van-button{
+
+    van-button {
       flex: 1;
     }
-    .zc_btn{
+
+    .zc_btn {
       width: 100%;
-      color:#DD1A22;
-      border:none;
+      color: #dd1a22;
+      border: none;
     }
-    .zc_kf{
-      color: #DD1A22;
-      .van-button__icon{
+
+    .zc_kf {
+      color: #dd1a22;
+
+      .van-button__icon {
         font-size: 40rpx;
         vertical-align: middle;
       }
     }
   }
-
 }
 
-.cards_content{
-  margin:20rpx 50rpx 0;
-  .title{
-    color:#999;
+.cards_content {
+  margin: 20rpx 50rpx 120rpx;
+
+  .title {
+    color: #999;
   }
-  .card{
+
+  .card {
     margin: 20rpx 0;
     height: 180rpx;
     border-radius: 10rpx;
-    color: #FFF;
+    color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @include bg('card-bg-s.png',linear-gradient(129deg,rgba(226,137,77,1),rgba(187,112,62,1)));
-    .text{
+    @include bg("card-bg-s.png",
+      linear-gradient(129deg, rgba(226, 137, 77, 1), rgba(187, 112, 62, 1)));
+
+    .text {
       margin-left: 50rpx;
       text-align: center;
-      .text_ch{
+
+      .text_ch {
         font-size: 40rpx;
         font-weight: 300;
       }
-      .text_en{
+
+      .text_en {
         font-size: 20rpx;
         margin: 15rpx 0;
       }
-    };
-    .status{
+    }
+
+    .status {
       display: inline-block;
       position: relative;
       padding: 10rpx;
-      border: 0.5rpx solid #FFF;
+      border: 0.5rpx solid #fff;
       border-radius: 8rpx;
       margin-right: 40rpx;
       font-size: 22rpx;
     }
+    .red_font{
+      color: #dd1a22;
+    }
   }
-  .card:nth-child(3){
-    @include bg('card-bg-s.png',linear-gradient(129deg,rgba(155,178,196,1),rgba(115,133,148,1)))
+
+  .card:nth-child(3) {
+    @include bg("card-bg-s.png",
+      linear-gradient(129deg, rgba(155, 178, 196, 1), rgba(115, 133, 148, 1)));
   }
-  .card:nth-child(4){
-    @include bg('card-bg-s.png',linear-gradient(129deg,rgba(226,186,130,1),rgba(243,218,166,1)));
+
+  .card:nth-child(4) {
+    @include bg("card-bg-s.png",
+      linear-gradient(129deg, rgba(226, 186, 130, 1), rgba(243, 218, 166, 1)));
+  }
+}
+
+van-popup {
+  .title {
+    text-align: center;
+    padding:30rpx 0;
+  }
+.van-popup--center{
+  border-radius: 20rpx;
+ display: flex;
+  flex-direction: column;
+ // align-items: center;
+  justify-content: space-between;
+  .form{
+    flex: 1;
+
+  }
+  .tips{
+   padding-bottom: 10rpx;
+    text-align: center;
+    color: #dd1a22;
+    font-size: 24rpx;
+   
+  }
+  
+}
+.ipts{
+  max-height: 500rpx;
+  overflow-y: scroll;
+}
+  .btns {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(200,200,200,.1);
+   
+    button {
+      width: 100%;
+      display: 1;
+      font-size: 35rpx;
+      background-color: rgba(222,222,222,.2);
+      padding: 20rpx  0;
+    }
+
+    button::after {
+      width: 0;
+      height: 0;
+      border: none
+    }
+    .jump_btn{
+      color: #68f;
+      border-left: 1px solid rgba(200,200,200,.1);
+    }
   }
 }

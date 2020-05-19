@@ -1,10 +1,8 @@
 const app = getApp();
 import{getProductList,getAdvertList} from "../../../api"
-const myBehavior  = require('../../../utils/behavior')
 let page  = 1;
 let categoryId = '' ;   // 分类id
 Page({
-  behaviors:[myBehavior],
   /**
    * 页面的初始数据
    */
@@ -129,7 +127,7 @@ Page({
       })
     }
     // 获取众筹 type2
-    getProductList({page,type:2,categoryId})
+    getProductList({page,subType:2,categoryId})
         .then(res=>{
           wx.stopPullDownRefresh()
          if( res.pages && page>res.pages) return

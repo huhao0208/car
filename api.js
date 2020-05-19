@@ -6,7 +6,7 @@ module.exports = {
 	getVersion: data => post('api/getVersion', {...data,hideLoading:true}),
 
 	// 登录
-	xcxLogin: data => post('api/xcxLogin', data),
+	xcxLogin: data => post('api/xcxLogin', {...data,hideLoading:true}),
 
 	// 获取用户信息getUserDetail
 	getUserDetail: data => post('api/getUserDetail', {...data,hideLoading:true}),
@@ -75,6 +75,7 @@ module.exports = {
 	usePrize: data => post('api/usePrize', data),
 
 
+
 	// 咨询购车提交 地址页面
 	consultCarInfo: data => post('api/consultCarInfo', data),
 
@@ -83,6 +84,9 @@ module.exports = {
 
 	// 开通会员
 	openMembership: data => post('api/openMembershipByPay', {...data,hideLoading:true}),
+
+	// 获取开通会员的价格
+	getMembershipPrice: data => post('api/getMembershipPrice', {...data,hideLoading:true}),
 
 	// 获取活动列表
 	getActivityList: data => post('api/getActivityList', data),
@@ -108,6 +112,9 @@ module.exports = {
 
 	// 判断众筹资格
 	judgeInCrowdFunding: data => post('api/judgeInCrowdFunding', {...data,hideLoading:true}),
+
+	// 获取限购数量
+	 getProductLimitQuantity : data => post('api/getProductLimitQuantity', {...data,hideLoading:true}),
 
 	// 获取订单列表
 	getOrderList: data => post('api/getOrderList', {...data,hideLoading:true}) ,
@@ -137,6 +144,18 @@ module.exports = {
 	// 积分规则 getIntegralRule
 	getIntegralRule: data =>  post('api/getIntegralRule', {...data,hideLoading:true}) ,
 
+	// 
+	getUserIntegral:data => post('api/getUserIntegral', {...data,hideLoading:true}),
+	
+	// 获取积分
+	getIntegralList: data =>  post('api/getIntegralList', {...data,hideLoading:true}) ,
 
+	// 会员升级填写内容
+	getMemberPropsDefs:data =>  post('api/getMemberPropsDefs', {...data,hideLoading:true}) ,
+	
+	//升级会员提交
+	upgradeMembership:data =>  post('api/upgradeMembership', {...data,hideLoading:true}) ,
 
+	//  获取订单详情
+	getOrderInfo: data =>  post('api/getOrderInfo', {...data,hideLoading:true}) ,
 }

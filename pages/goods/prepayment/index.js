@@ -1,5 +1,5 @@
 // 预支付
-import { getProductDetail, crowdFunding, directPurchase,calculateShipping } from "../../../api"
+import { getProductDetail, crowdFunding, directPurchase,calculateShipping,getUserIntegral } from "../../../api"
 const app = getApp()
 let onloadData = {}
 Page({
@@ -12,15 +12,22 @@ Page({
     number: 1,
     shippingMethods:1 , // 配送方式
     freight:0,    // 运费
+    exchange:0, // 要兑换的积分,
+    ratio:0,     // 兑换比例
+    totalIntegral: 0 ,// 总积分
+    submitIntegral:0,  // 确认提交的积分
+    showIntegral:false,   // 积分选择显示
+    showMthod:false,      // 显示购买方式
   },
   // 选择配送方式
   shippingChange(e){
     console.log(e);
     
     this.setData({
-      shippingMethods:e.detail
+      shippingMethods:e.currentTarget.dataset.type,
+      showMthod:false
     })
-    if(e.detail==1){
+    if(e.currentTarget.dataset.type==1){
      if(this.data.currentAddress.id) this.calculateShipping()
     }else{
       this.setData({
@@ -41,9 +48,70 @@ Page({
     //   })
     // }
   },
+  // 显示积分选择
+  selectJf(){
+    this.setData({
+      showIntegral:!this.data.showIntegral
+    })
+  },
+// 购买方式选择显示
+selectMethod(){
+  this.setData({
+    showMthod:!this.data.showMthod
+  })
+},
+  // 获取积分
+  getUserIntegral(){
+    let that = this
+    // let vip = this.data.userInfo.vip || 0
+    // let vipPrice = ['vip0Price','vip1Price','vip2Price','vip3Price']
+    let orderMoney= this.data.number * this.data.details.currentPrice
+    getUserIntegral({orderMoney})
+    .then(res=>{
+      
+      that.setData( res )
+
+    })
+  },
+  // 积分改变
+  integralNumChange(e){
+
+    // 输入的积分
+    let exchange =parseInt(e.detail.value/1)  
+
+    // 判断小于全部积分
+    exchange = exchange<=0? 0 : exchange>this.data.creditAmount?this.data.creditAmount:exchange
+    
+    exchange =  exchange>this.data.totalIntegral?this.data.totalIntegral:exchange
+    this.setData({
+      exchange
+    })
+    
+  },
+  // 选择全部积分
+  integralNumAll(){
+    let options = {
+      detail:{
+        value:this.data.totalIntegral
+      }
+    }
+    this.integralNumChange(options)
+   
+  },
+
+  // 积分兑换确认
+  exchangeConfirm(){
+    this.setData({
+      submitIntegral:this.data.exchange,
+      showIntegral:false
+    })
+
+    // this.selectComponent('#integral_item').toggle();
+  },
 
   // 获取商品详情
   getProductDetail(e) {
+    let that = this
     getProductDetail({ id: onloadData.id })
       .then(res => {
         //   console.log(res)
@@ -54,7 +122,11 @@ Page({
         this.setData({
           details: res,
           specIndex:specIndex?specIndex:0
-        })
+        }
+        ,_=>{
+          that.getUserIntegral()
+        }
+        )
       })
   },
 
@@ -83,7 +155,8 @@ Page({
       proId: this.data.details.id,
       quantity: this.data.number/1 || 1,
       addressId:this.data.shippingMethods==1? this.data.currentAddress.id:'',
-      deliveryMethod:this.data.shippingMethods==1?2:1
+      deliveryMethod:this.data.shippingMethods==1?2:1,
+      integral:this.data.submitIntegral
     }
 
     let sel = this.data.details.type
@@ -122,11 +195,6 @@ Page({
             
           }
         })
-
-        // return
-        // wx.navigateBack({delta:-1})
-
-
       })
 
   },
@@ -143,17 +211,21 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // // 获取用户信息
+    // let userInfo = app.globalData.userInfo
+
     // 获取收货地址
     let address = wx.getStorageSync("currentAddress") || app.globalData.currentAddress
     this.setData({
-      currentAddress: address|| ''
+      currentAddress: address|| '',
+      // userInfo
     })
     if(address && address.id && this.data.shippingMethods==1) this.calculateShipping()
   },

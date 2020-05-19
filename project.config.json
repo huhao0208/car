@@ -4,17 +4,17 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
-		"postcss": false,
+		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
+		"showShadowRootInWxmlPanel": false,
 		"scopeDataCheck": false,
 		"uglifyFileName": true,
 		"checkInvalidKey": true,
@@ -25,10 +25,12 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"bundle": false
+		"bundle": true,
+		"useCompilerModule": true,
+		"skeletonGenerateFilesWithoutConfirm": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.10.4",
+	"libVersion": "2.11.0",
 	"appid": "wxc9f9c7ef81ff1fe1",
 	"projectname": "lt_project",
 	"debugOptions": {
@@ -37,6 +39,11 @@
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "",
+		"beforeUpload": ""
+	},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -431,6 +438,90 @@
 					"name": "pages/three-level/order-details/index",
 					"pathName": "pages/three-level/order-details/index",
 					"query": "id=7&number=1&specId=17",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/mall/index",
+					"pathName": "pages/home/mall/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "wode ",
+					"pathName": "pages/my/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的积分",
+					"pathName": "pages/my/integralList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/prepayment/index",
+					"pathName": "pages/goods/prepayment/index",
+					"query": "id=13&number=1&specId=18",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "积分",
+					"pathName": "pages/my/integralList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/order/index",
+					"pathName": "pages/my/order/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/prize/index",
+					"pathName": "pages/my/prize/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/vip/vip-login/index",
+					"pathName": "pages/vip/vip-login/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/index/index",
+					"pathName": "pages/my/index/index",
+					"query": "id=2",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/integralList/index",
+					"pathName": "pages/my/integralList/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/good-details/index",
+					"pathName": "pages/three-level/good-details/index",
+					"query": "productType=1&id=7",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/order-details/index",
+					"pathName": "pages/three-level/order-details/index",
+					"query": "orderId=194",
 					"scene": null
 				}
 			]

@@ -34,7 +34,7 @@ Page({
       })
     }
 
-    getProductList({ page, type: 1, categoryId })
+    getProductList({ page, subType: 1, categoryId })
       .then(res => {
         wx.stopPullDownRefresh()
         // page = res.page
@@ -82,6 +82,7 @@ Page({
     if (app.globalData.isDev) return
     page=1
     categoryId = ''
+
     this.getListData()
 
   },
@@ -97,6 +98,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    
+
     
   },
 

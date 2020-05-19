@@ -1,42 +1,11 @@
-const http = require('utils/http');
+
 const config = require('./utils/config');
 import { getUserDetail, getVersion } from "./api"
 let isLocation = true
-
-
-const oldPage = Page
-
-Page = function (app) {
-
-	// 不能用 卡爆了
-	// app.onPageScroll =function(options){
-	// 	console.log('屏幕滚动了');
-
-	// 	if (options.scrollTop >= 400 &&options.scrollTop <1000 ) {
-	// 		if (this.data.floorStatus) return
-	// 		options.floorStatus = true
-
-	// 	  } else if(options.scrollTop < 400) {
-	// 		if (!this.data.floorStatus) return
-
-	// 		options.floorStatus = false
-	// 	  }
-
-	// 	  if (typeof app.onPageScroll === 'function') {
-
-	//         app.onPageScroll.call(this, options);
-	//     }
-	// }
-
-	return oldPage(app)
-}
-
-
 App({
 	onLaunch: function () {
 		// 获取服务器版本 判断是否为dev 如果一致 则为线上版
 		this.getVersion()
-
 		//版本更新
 		if (wx.canIUse('getUpdateManager')) {
 			const updateManager = wx.getUpdateManager()
@@ -69,16 +38,28 @@ App({
 				}
 			})
 		}
-
 		// 获取本地存储的token
-		this.globalData.unionId = wx.getStorageSync('unionId') || ''
-
+		this.globalData.unionId = wx.getStorageSync('unionId')?wx.getStorageSync('unionId'):''
+		wx.$unionId = this.globalData.unionId
 		// 如果有token 直接获取用户信息 每次打开小程序更新用户信息
 		if (this.globalData.unionId) {
 			this.getUserDetailInfo()
 		}
-
-
+		
+		let that  =this
+		// 获取设备信息
+		wx.getSystemInfo({
+			success: (result) => {		
+				that.globalData.systemInfo = result
+			},
+			fail: () => {},
+			complete: () => {}
+		});
+		  
+	},
+	onShow(){
+		// 再判断一次版本
+		if(this.globalData.isDev) this.getVersion()
 	},
 
 	// 获取服务器版本
@@ -86,6 +67,7 @@ App({
 		let that = this
 		getVersion()
 			.then(res => {
+	
 				that.globalData.isDev = Boolean(res)
 				if (success && (typeof success == 'function')) success(Boolean(res))
 				// if(!that.globalData.isDev)
@@ -123,10 +105,9 @@ App({
 	watchingKeys: [],
 
 	// 同步修改数据
-	setGlobalData(name, data) {
+	setGlobalData(name, data='') {
 		this.globalData[name] = data
 		wx.setStorageSync(name, data)// 加入缓存
-
 	},
 
 	$watch(key, cb) {
@@ -153,6 +134,7 @@ App({
 		}
 	},
 	// 获取定位
+
 	getLocation({ successFn, failFn }) {
 		let app = getApp()
 		if (app.globalData.latitude && app.globalData.longitude) return successFn({ latitude: app.globalData.latitude, longitude: app.globalData.longitude })
@@ -167,6 +149,7 @@ App({
 				successFn({ latitude, longitude })
 			},
 			fail: err => {
+				if (!isLocation) return
 				wx.getSetting({
 					success: function (res) {
 						if (!res.authSetting['scope.userLocation']) {
@@ -183,6 +166,8 @@ App({
 											}
 										});
 									} else {
+										// 第二次 
+										isLocation = false
 										console.log('get location fail');
 									}
 								}
@@ -196,6 +181,8 @@ App({
 								success: function (res) {
 									console.log(res, '系统定位开启')
 									app.getLocation()
+
+
 								}
 							})
 						}
@@ -216,6 +203,7 @@ App({
 		// mmp 小程序支持async await了啊
 		this.setGlobalData("userInfo", res)
 		if (typeof (successFn) == 'function') successFn(res)
+
 	},
 
 })

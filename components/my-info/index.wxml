@@ -1,16 +1,24 @@
 <wxs src="../../utils/filters.wxs" module="filters"></wxs>
 
-<view class="user_info"
->
-	<image class="avator" src="{{userInfo.head}}"/>
+<view class="user_info">
+	<image class="avator" src="{{userInfo.head}}" />
 	<view class="user_info_right">
 		<view class="account ">
 			{{userInfo.username}}
 		</view>
-		<view class="grade_name grade_name_vip{{userInfo.vip}}"
-		      wx:if="{{userInfo.expireDays>0}}"
-		>
+		<view class="grade_name grade_name_vip{{userInfo.vip}}" wx:if="{{userInfo.expireDays>0}}">
 			{{vipArr[userInfo.vip]}}
 		</view>
 	</view>
+
+	<view class="integral">
+			<view>
+				总积分:<text>{{userInfo.integral||0}}</text>
+			</view>
+			  
+			<slot name="integral_slot" ></slot>
+	</view>
+
+
+
 </view>

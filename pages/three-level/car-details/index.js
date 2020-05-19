@@ -40,7 +40,7 @@ Page({
     if (e.detail.index == 1) {
       // 获取评价
       this.setData({
-        active: e.detail.index,
+        tabActive: e.detail.index,
         page: 1
       })
     } else {
@@ -132,7 +132,7 @@ Page({
     * 页面相关事件处理函数--监听用户下拉动作
     */
   onPullDownRefresh: function () {
-    if(tabActive==1)  this.setData({
+    if(this.data.tabActive==1)  this.setData({
       page: 1
     })
   },
@@ -141,7 +141,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-   if(tabActive==1) this.setData({
+   if(this.data.tabActive==1) this.setData({
       page: this.data.page + 1
     })
   },

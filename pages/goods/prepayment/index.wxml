@@ -1,7 +1,7 @@
 <wxs src="../../../utils/filters.wxs" module="filters" />
 <!-- 地址 -->
 <block wx:if="{{true || shippingMethods==1}}">
-	<view class="address line" bindtap="editAddress" wx:if="{{currentAddress}}">
+	<view class="address border " bindtap="editAddress" wx:if="{{currentAddress}}">
 		<view>
 			{{currentAddress.province}}{{addressData.province}}{{currentAddress.city}}{{currentAddress.area}}{{ currentAddress.address}}
 		</view>
@@ -11,24 +11,12 @@
 			<text catchtap="addAddress" style="font-size: 24rpx; color:#999">修改地址>></text>
 		</view>
 	</view>
-	<view
-	 class="address line"
-	 style="text-align: center"
-	 wx:else
-	 bindtap="addAddress"
-	>点击选择收货地址
+	<view class="address border " style="text-align: center" wx:else bindtap="addAddress">点击选择收货地址
 	</view>
 </block>
-
-<van-card
- bindtap="toProductDetail"
- desc="{{details.specs[specIndex].name}}"
- title="{{details.name}}"
- title-class="title"
- thumb-class="card_img"
- thumb-mode="scaleToFill"
- thumb="{{ details.showUrl}}"
->
+<!-- 
+<van-card bindtap="toProductDetail" desc="{{details.specs[specIndex].name}}" title="{{details.name}}"
+	title-class="title" thumb-class="card_img" thumb-mode="scaleToFill" thumb="{{ details.showUrl}}">
 	<view slot="tags" class="tags" wx:if="{{details.label}}">{{details.label}}</view>
 	<view slot="bottom" class="bottom">
 		<view class="progress">数量*{{number}}</view>
@@ -37,39 +25,161 @@
 		</view>
 	</view>
 </van-card>
-<view class="line" style="width: 100%;" />
+<view class="border" style="width: 100%;" />
 <view class="price_item">
 	商品总价:
 	<text>¥{{filters.moneyFormat(details.specs[specIndex].currentPrice*number*10000)}}</text>
 </view>
 <view class="price_item">
-	运费(快递):
+	运费(快递): {{[123].toFixed(2)}}
 	<text>¥ {{filters.moneyFormat(freight*10000)}}</text>
 </view>
-<view class="total_price price_item line">
+<view class="total_price price_item border">
 	共计:
-	<text> {{filters.moneyFormat((details.specs[specIndex].currentPrice*number + freight)*10000)}}元 </text>
+	<text> {{filters.moneyFormat((details.specs[specIndex].currentPrice*number + freight - submitIntegral/deductIntegral)*10000)}}元 </text>
 </view>
 
-<view class="shipping_methods_title line" >
-		请选择配送方式 : 
-	<van-dropdown-menu  >
-		<van-dropdown-item value="{{ shippingMethods }}" bind:change="shippingChange" options="{{ [ { text: '快递配送', value: 1 }, { text: '到店自提', value: 2 }] }}" />
+<view class="shipping_methods_title border ">
+	积分抵扣 :
+	<van-dropdown-menu class="integral">
+		<van-dropdown-item id="integral_item" value="{{1}}" options="{{ [ { text: filters.moneyFormat(submitIntegral/deductIntegral*10000)+'元', value: 1 }] }}">
+			<view class="integral_cell border border _top integral_tips" >
+				<text> 总积分:{{totalIntegral}} </text> <text>本次最多可用:{{creditAmount<=totalIntegral?creditAmount:totalIntegral}}</text> <text>本次抵扣:{{filters.moneyFormat(exchange/deductIntegral*10000)}}元</text>
+			</view>
+		
+			<view class="integral_cell integral_cell_num border ">
+				<input type="number" placeholder="输入要抵扣的积分数量" bindchange="integralNumChange" value="{{exchange}}" />
+				<view style="color:rgb(25,137,250);padding:5rpx 20rpx"  bindtap="integralNumAll">全部抵扣</view>
+				<view style="color:rgb(47, 212, 14);padding:5rpx 20rpx"  bind:tap="exchangeConfirm"  custom="confirm_btn">
+					确定
+				</view>
+			</view>
+		</van-dropdown-item>
+
 	</van-dropdown-menu>
 </view>
-<!-- <van-radio-group value="{{ shippingMethods }}" bind:change="shippingChange" class="shipping_methods_body line">
-	<van-radio name="1" shape="square" class="{{shippingMethods==1?'active_method':''}}">
-		快递配送
-	</van-radio>
-	<van-radio name="2" shape="square" class="{{shippingMethods==2?'active_method':''}}">
-		到店自提
-	</van-radio>
-</van-radio-group> -->
+<view class="shipping_methods_title border ">
+	请选择配送方式 :
+	<van-dropdown-menu>
+		<van-dropdown-item value="{{ shippingMethods }}" bind:change="shippingChange"
+			options="{{ [ { text: '快递配送', value: 1 }, { text: '到店自提', value: 2 }] }}" />
+	</van-dropdown-menu>
+</view>
 
 <view class="payment_type">
-	<icon/>
+	<icon />
 	<text>微信支付</text>
 </view>
 
-<button type="primary" class="submit" bindtap="submit">立即支付</button>
+<view class="submit">
+	<button type="primary" class="submit_btn" bindtap="submit">立即支付</button>
+</view>
+   -->
 
+<van-card bindtap="toProductDetail" desc="{{details.specs[specIndex].name}}" title="{{details.name}}"
+	title-class="title" thumb-class="card_img" thumb-mode="scaleToFill" thumb="{{ details.showUrl}}">
+	<view slot="tags" class="tags" wx:if="{{details.label}}">{{details.label}}</view>
+	<view slot="bottom" class="bottom">
+		<view class="progress">数量*{{number}}</view>
+		<view class="price">
+			¥{{filters.moneyFormat(details.specs[specIndex].currentPrice*10000)}}
+		</view>
+	</view>
+</van-card>
+
+<view class="item_cell">
+	<view class="left">
+		商品总价
+	</view>
+	<view class="right">
+		¥{{filters.moneyFormat(details.specs[specIndex].currentPrice*number*10000)}}
+	</view>
+</view>
+<view class="item_cell">
+	<view class="left">
+		运费(快递)
+	</view>
+	<view class="right">
+		¥ {{filters.moneyFormat(freight*10000)}}
+	</view>
+</view>
+<view class="item_cell">
+	<view class="left">
+		共计
+	</view>
+	<view class="right" style="color: #dd2928;">
+		{{filters.moneyFormat((details.specs[specIndex].currentPrice*number + freight - submitIntegral/deductIntegral)*10000)}}元
+	</view>
+</view>
+<view class="item_cell cell_menu " bindtap = "selectJf">
+	<view class="left">
+		积分抵扣
+	</view>
+	<view class="right">
+		¥ {{filters.moneyFormat(submitIntegral/deductIntegral*10000)}}  {{!showIntegral?"▼":"▲"}}
+	</view>
+</view>
+<!-- 隐藏部分 -->
+<view class="cell_menu_item"  hidden="{{!showIntegral}}">
+	<view>
+		总积分:{{totalIntegral}}
+	</view>
+	<view>
+		本次最多可用: {{creditAmount<=totalIntegral?creditAmount:totalIntegral}}
+	</view>
+	<view>
+		本次抵扣:{{filters.moneyFormat(exchange/deductIntegral*10000)}}元
+	</view>
+</view>
+<view class="cell_menu_item cell_menu_item_ipt"  hidden="{{!showIntegral}}">
+	<input type="number" placeholder="输入要抵扣的积分数量" bindchange="integralNumChange" value="{{exchange}}"></input>
+	<view style="color:rgb(25,137,250)" bindtap="integralNumAll">
+		全部抵扣
+	</view>
+	<view style="color:rgb(47, 212, 14)" bind:tap="exchangeConfirm">
+		确定
+	</view>
+</view>
+
+<view class="item_cell cell_menu border" bindtap = "selectMethod">
+	<view class="left">
+		请选择配送方式
+	</view>
+	<view class="right">
+		{{shippingMethods!=1?'到店自提':'快递配送'}} {{!showMthod?"▼":"▲"}}
+	</view>
+</view>
+
+<view class="cell_menu_item  buy_method border" hidden="{{!showMthod}}" data-type='1' catchtap = "shippingChange">
+	<view class="buy_method_item">
+		快递配送
+	</view>
+	<view >
+		<van-icon name="success" color="rgb(25,137,250)" size="40rpx" wx:if="{{shippingMethods==1}}"/>
+		<!-- {{shippingMethods==1?'✔':'' }} -->
+	</view>
+</view>
+<view class="cell_menu_item  buy_method border" hidden="{{!showMthod}}" data-type='0' catchtap = "shippingChange">
+	<view class="buy_method_item" >
+		到店自提
+	</view>
+	<view >
+		<van-icon color="rgb(25,137,250)" size="40rpx" name="success" wx:if="{{shippingMethods!=1}}"/>
+	</view>
+</view>
+
+<view class="item_cell cell_menu border" >
+	<view class="left">
+		支付方式
+	</view>
+	<view class="right">
+		微信
+	</view>
+</view>
+
+<view style="height:{{(showMthod|| showIntegral)?'300rpx':0}}">
+	
+</view>
+<view class="submit" >
+	<button type="primary" bindtap="submit">立即支付</button>
+</view>

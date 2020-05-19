@@ -1,54 +1,70 @@
 <block wx:if="{{!isDev}}">
-	<!--商家详情-->
-<wxs src="../../../utils/filters.wxs" module="filters" />
-
-<!--轮播图-->
-<view class="swiper_wrap">
-	<swiper indicator-dots="{{false}}" autoplay=" {{true}}" interval="{{5000}}" duration="{{500}}" circular="{{true}}"
-		bindchange="swiperChange" bindtap="priviweImg">
-		<block wx:for="{{carousel}}" wx:key="index" data-url="{{item}}">
-			<swiper-item>
-				<image src="{{item}}" mode="scaleToFill" class="swiper_item_image" />
-			</swiper-item>
-		</block>
-	</swiper>
-	<!--重置小圆点的样式 -->
-	<view class="dots">
-		<view wx:for="{{carousel}}" wx:key="index" class="dot{{index == swiperActive ? ' active' : ''}}" />
-	</view>
-</view>
-
-<view class="car_name">{{title}}</view>
-
-<view class="car_price">{{label}}</view>
-
-<view class="car_price_now">
-	<block wx:if="{{ ShowDistance}}">
-		<icon class="dingwei" /> 距离{{filters.distance(latitude1,longitude1,latitude,longitude)}}公里</block>
-	<view class="daohang" bindtap="openMap">
-		<icon class="share" /> 到这里去</view>
-</view>
-<view class="car_price_now" catchtap="call" data-phone="{{phone}}">
-	<icon class="dingwei dianhua" /> 联系电话: {{phone}}
-</view>
-<view class="car_price_now">
-	<icon class="dingwei shijian" /> 营业时间: {{businessHours}}
-</view>
-
-<van-tabs active="{{ tabActive }}" sticky swipeable bind:change="tabChange">
-	<van-tab title="产品推荐">
-
-		<view class="goods_card" wx:for="{{pros}}" bindtap="goBuy">
-			<image src="{{item.url}}" lazy-load mode="scaleToFill" />
-			<view class="card_right">
-				<view class="title">{{item.name}}</view>
-				<view class="price"> ¥{{item.price}} <button bindtap="unopened">去购买</button></view>
-			</view>
+	<!-- 商家详情 -->
+	<wxs src="../../../utils/filters.wxs" module="filters" />
+	<!-- 轮播图 -->
+	<view class="swiper_wrap">
+		<swiper
+		 indicator-dots="{{false}}"
+		 autoplay=" {{true}}"
+		 interval="{{5000}}"
+		 duration="{{500}}"
+		 circular="{{true}}"
+		 bindchange="swiperChange"
+		 bindtap="priviweImg"
+		>
+			<block wx:for="{{carousel}}" wx:key="index" data-url="{{item}}">
+				<swiper-item>
+					<image src="{{item}}" mode="scaleToFill" class="swiper_item_image" />
+				</swiper-item>
+			</block>
+		</swiper>
+		<!-- 重置小圆点的样式 -->
+		<view class="dots">
+			<view wx:for="{{carousel}}" wx:key="index" class="dot{{index == swiperActive ? ' active' : ''}}" />
 		</view>
-
-	</van-tab>
-	<van-tab title="店铺评价">
-		<comment type="5" page="{{page}}" proId="{{id}}" />
-	</van-tab>
-</van-tabs>
+	</view>
+	<view class="car_name">{{title}}</view>
+	<view class="car_price">{{label}}</view>
+	<view class="car_price_now">
+		<icon class="dingwei" style="margin-right:10rpx" />
+		<block wx:if="{{ ShowDistance}}">
+			距离{{filters.distance(latitude1,longitude1,latitude,longitude)}}公里
+		</block>
+		<block wx:else>{{detailAddress}}</block>
+		<view class="daohang" bindtap="openMap">
+			<icon class="share" />
+			到这里去
+		</view>
+	</view>
+	<view class="car_price_now" catchtap="call" data-phone="{{phone}}">
+		<icon class="dingwei dianhua" />
+		联系电话: {{phone}}
+	</view>
+	<view class="car_price_now">
+		<icon class="dingwei shijian" />
+		营业时间: {{businessHours}}
+	</view>
+	<van-tabs
+	 active="{{ tabActive }}"
+	 sticky
+	 swipeable
+	 bind:change="tabChange"
+	>
+		<van-tab title="产品推荐">
+			<view class="goods_card" wx:for="{{pros}}" bindtap="goBuy">
+				<image src="{{item.url}}" lazy-load mode="scaleToFill" />
+				<view class="card_right">
+					<view class="title">{{item.name}}</view>
+					<view class="price">
+						¥{{item.price}}
+						<button bindtap="unopened">去购买</button>
+					</view>
+				</view>
+			</view>
+		</van-tab>
+		<van-tab title="店铺评价">
+			<comment type="5" page="{{page}}" proId="{{id}}" />
+		</van-tab>
+	</van-tabs>
 </block>
+

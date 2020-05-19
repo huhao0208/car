@@ -19,7 +19,7 @@
 >
 <block wx:for="{{indexSwiperData}}" wx:key="index">
 	<swiper-item >
-		<image src="{{item.picUrl}}"
+		<image src="{{item.picUrl +'?x-oss-process=image/resize,w_750'}}"
 		       data-id="{{item.advertId}}"
 		       data-type="{{item.kind}}"
 		       bindtap="swiperToDetail"

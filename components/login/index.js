@@ -1,22 +1,24 @@
 // 组件自动监控登录状态  如果需要登录 则直接调用 app.isLogin() 括号里面传递需要登录后处理的函数
 // 组件通过hasLogin 绑定事件获取登录状态  接收参数为微信用户昵称 头像
-import { xcxLogin } from "../../api"
+import {
+	xcxLogin
+} from "../../api"
 //获取应用实例
 const app = getApp()
 let requestData = {
-	encryptedData: '',   // 户信息的加密数据
-	enIv: '',            // 用户信息加密算法的初始向量
-	telNumber: '',        // 手机号码
-	iv: '',                // 手机iv
-	code: '',           // 用户登录凭证（有效期五分钟）。后台调用 auth.code2Session，使用 code 换取 openid 和 session_key 等信息
-	username: '',        // userInfo.nickName
-	userhead: ''         // userInfo.avatarUrl
+	encryptedData: '', // 户信息的加密数据
+	enIv: '', // 用户信息加密算法的初始向量
+	telNumber: '', // 手机号码
+	iv: '', // 手机iv
+	code: '', // 用户登录凭证（有效期五分钟）。后台调用 auth.code2Session，使用 code 换取 openid 和 session_key 等信息
+	username: '', // userInfo.nickName
+	userhead: '' // userInfo.avatarUrl
 }
 
 Component({
 	behaviors: [],
 	properties: {
-		showLogin: {     // 控制是否需要展示
+		showLogin: { // 控制是否需要展示
 			type: Boolean,
 			value: false
 		},
@@ -36,13 +38,14 @@ Component({
 			// if (app.globalData.unionId) return this.setData({
 			// 	isLogin: true
 			// })
-			
+
 			app.$watch('showLogin', (val, old) => {
 				// 处理全局变量
-				console.log(val, '←showLogin变化了,isLogin→'+this.data.isLogin)
+				console.log(val, '←showLogin变化了,isLogin→' + this.data.isLogin)
 
 				this.setData({
-					showLogin: Boolean(val)
+					showLogin: Boolean(val),
+					openType:'getUserInfo'
 				})
 			})
 			// 在这里全局监控登录状态 如果登录 则不展示
@@ -62,8 +65,8 @@ Component({
 			})
 
 		},
-		moved: function () { },
-		detached: function () { },
+		moved: function () {},
+		detached: function () {},
 	},
 
 	// 生命周期函数，可以为函数，或一个在methods段中定义的方法名
@@ -72,22 +75,25 @@ Component({
 
 	pageLifetimes: {
 		// 组件所在页面的生命周期函数
-		show: function () {
-		},
-		hide: function () { },
-		resize: function () { },
+		show: function () {},
+		hide: function () {},
+		resize: function () {},
 	},
 
 	methods: {
 		// 取消登录
 		_loginCancel() {
 			this.setData({
-				showLogin: false
+				showLogin: false,
+
 			})
 		},
 		getUserInfo(e) {
-		//	console.log(e)
-			if (!e.detail.iv) return wx.showToast({ title: '获取用信息失败,请稍候再试' ,icon:'none'})
+				console.log(e)
+			if (!e.detail.iv) return wx.showToast({
+				title: '获取用信息失败,请稍候再试',
+				icon: 'none'
+			})
 			// app.globalData.userInfo = e.detail.userInfo
 			requestData = {
 				...requestData,
@@ -101,8 +107,10 @@ Component({
 			})
 		},
 
-		getPhoneNumber(e) {
+		getPhoneNumberH(e) {
 			let that = this
+			console.log(e);
+			
 			if (!e.detail.iv) return wx.showToast({
 				title: '获取手机号码失败,请稍候再试',
 				icon: 'none'
@@ -126,25 +134,42 @@ Component({
 			let that = this
 			//	console.log(requestData,'requestData')
 			// 不需要对用户信息解密
-			let { code, telNumber: encryptedData, iv, username, userhead } = requestData
-			let newReq = { code, encryptedData, iv, username, userhead }
+			let {
+				code,
+				telNumber: encryptedData,
+				iv,
+				username,
+				userhead
+			} = requestData
+
+			let newReq = {
+				code,
+				encryptedData,
+				iv,
+				username,
+				userhead
+			}
 			xcxLogin(newReq)
 				.then(
 					res => {
-					//	console.log(res, '登录成功')
-					
-						//选择数据存储
-						app.setGlobalData('unionId', res.token)
+						//存储token
+						app.setGlobalData('unionId', res.token)		
+						// wx.$unionId = res.token
 						// 从后台获取用户信息
 						app.getUserDetailInfo(
-							res => {
+							ress => {
 								// 也可以通过在组件绑定事件 通过登录状态的改变触发事件 并传递参数
-								this.triggerEvent('hasLogin', res)
-								wx.showToast({title:'登录成功'})
+								that.triggerEvent('hasLogin', ress)
+								setTimeout(__=>{
+									wx.showToast({
+										title: '登录成功'
+									})
+								},100)
 							}
 						)
 					}
-				).catch(err => {
+				)
+				.catch(err => {
 					console.log(err)
 
 					that.setData({

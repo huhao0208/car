@@ -1,4 +1,4 @@
-
+<!-- 
 <van-popup
 		z-index="999999"
 		show="{{ !isLogin && showLogin}}"
@@ -15,5 +15,39 @@
 		<button open-type="getUserInfo" wx:if="{{openType=='getUserInfo'}}" type="primary" lang="zh_CN" bindgetuserinfo="getUserInfo">允许</button>
 		<button open-type="getPhoneNumber" wx:else type="primary" lang="zh_CN" bindgetphonenumber="getPhoneNumber">允许</button>
 	</view>
-</van-popup>
+</van-popup> -->
+<block wx:if="{{!isLogin && showLogin}}">
+	<!-- 获取手机号 -->
+	<view class="login_page1" wx:if="{{openType=='getUserInfo'}}">
+		<image src="http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/logo.png"></image>
+		<view class="text_center title" hover-class="none" hover-stop-propagation="false">
+			中汇创智申请获得以下权限
+		</view>
+		<view class="text_center tips" hover-class="none" hover-stop-propagation="false">
+			获得您的公开信息(昵称、头像等)
+		</view>
+		<button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 立即授权</button>
+		<button bindtap="_loginCancel">暂不授权</button>
+	</view>
+	<!-- 获取用户信息 -->
+	<view class="login_page2" wx:else>
+		<view class="get_phone_number">
+			<view class="top line" style="text-align: center;">
+				登陆授权
+			</view>
+			<image src="http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/logo.png" />
+			<view class="text_center title" style="font-size: 30rpx;">
+				中汇创智申请获得以下权限
+			</view>
+			<view class="text_center tips">
+				获得您的手机号码
+			</view>
 
+			<view class="btns">
+				<button style="color:#999" bindtap="_loginCancel">拒绝</button>
+				<button style="color:#f99" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumberH"> 允许</button>
+			</view>
+
+		</view>
+	</view>
+</block>

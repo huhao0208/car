@@ -1,6 +1,6 @@
 <!--pages/my/Integral/index.wxml-->
 <block wx:if="{{!isDev}}">
-   <rich-text class="" nodes="{{ruleContent}}">
+   <rich-text class="" nodes="{{content}}">
        
    </rich-text>
      

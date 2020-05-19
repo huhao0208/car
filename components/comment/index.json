@@ -3,6 +3,6 @@
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index",
     "van-rate": "@vant/weapp/rate/index",
-    "load-more": "../components/load-more/index"
+    "load-more": "../load-more/index"
   }
 }

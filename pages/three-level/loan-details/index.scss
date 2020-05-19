@@ -9,6 +9,7 @@ page{
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow: hidden;
 }
 
 .footer{
@@ -47,4 +48,16 @@ page{
     background: #D01A17;
     box-shadow: 0 0 1rpx 3rpx #ccc;
   }
+}
+
+.rich_content{
+  height: 100vh;
+  padding-bottom: 180rpx;
+  overflow-y: scroll;
+  width: 100vw;
+  overflow-x: hidden;
+}
+.kefu_btn::after{
+  width: 0;
+  height: 0;
 }

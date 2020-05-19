@@ -34,13 +34,13 @@
 					<block wx:if="{{item.type==2}}">
 						<text style="width: 90rpx;border-radius: 30rpx"
 							class="status {{item.state>=1?'status_active':'' }}">众筹中</text>
-						<text class="line {{(item.state>=1|| item.state==-1)?'line_active':'' }}" />
+						<text class="line {{(item.state>=1)?'line_active':'' }}" />
 						<text wx:if="{{item.state!=-1}}" style="width: 120rpx;border-radius: 30rpx"
 							class="status {{item.state>=2?'status_active':'' }}">众筹成功</text>
 						<text wx:if="{{item.state!=-1}}" class="line {{item.state>=2?'line_active':'' }}" />
 
-						<text wx:if="{{item.state==-1}}" style="width: 120rpx;border-radius: 30rpx"
-							class="status status_active">众筹失败</text>
+						<!-- <text wx:if="{{item.state==-1}}" style="width: 120rpx;border-radius: 30rpx"
+							class="status status_active">众筹失败</text> -->
 					</block>
 
 					<!--普通订单-->
@@ -62,13 +62,16 @@
 						{{item.phone}}
 						<button wx:if="{{item.state==3 }}">待收货</button>
 						<button wx:if="{{item.state==4 }}">待评价</button>
+						<button wx:if="{{item.state==-1 }}">已退款</button>
 						<button wx:elif="{{item.state==5 }}">已评价</button>
+						
 					</view>
 				</block>
 				<block wx:else>
 					<view class="order_user_info status_btn">
 						<button wx:if="{{item.state==3 }}">待收货</button>
 						<button wx:if="{{item.state==4 }}">待评价</button>
+						<button wx:if="{{item.state==-1 }}">已退款</button>
 						<button wx:elif="{{item.state==5 }}">已评价</button>
 					</view>
 				</block>

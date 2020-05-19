@@ -1,41 +1,38 @@
-@mixin bg($name){
-  background:url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) no-repeat center;
+@mixin bg($name) {
+  background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/" + $name)
+    no-repeat center;
   background-size: 100%;
-};
-page{
+}
+page {
   //background: rgba(233,233,233,.6);
-  position:absolute;
-
+  position: absolute;
 }
 
-.order_info_top{
+.order_info_top {
   display: flex;
   justify-content: space-between;
   padding: 25rpx 40rpx;
   font-size: 24rpx;
-  .order_time{
+  .order_time {
     display: inline-block;
-    color:#999
+    color: #999;
   }
-  .order_number{
+  .order_number {
     flex: 1;
   }
-
 }
 
-
-.card_item{
-  border-bottom:1rpx solid #EEE
+.card_item {
+  border-bottom: 1rpx solid #eee;
 }
 van-card {
-  .van-card__header{
+  .van-card__header {
     justify-content: space-between;
-  
   }
-  .title{
+  .title {
     font-size: 25rpx;
   }
-  .van-card__content{
+  .van-card__content {
     padding-left: 40rpx;
   }
   // .van-card{
@@ -44,78 +41,77 @@ van-card {
 }
 
 page van-card .van-card__header {
-  border-bottom:none;
-  
+  border-bottom: none;
 }
-.progress{
+.progress {
   display: inline-block;
   width: 303rpx;
-  padding-top:20rpx;
+  padding-top: 20rpx;
   font-size: 24rpx;
-  color: #DD2928;
-  .progess_background{
+  color: #dd2928;
+  .progess_background {
     width: 307rpx;
     margin-top: 5rpx;
-    background: #F1F1F1;
-    .progress_value{
+    background: #f1f1f1;
+    .progress_value {
       height: 5rpx;
-      background:  #DD2928;
+      background: #dd2928;
     }
   }
 }
 
-.price{
-  float:right;
-  color: #DD2928;
+.price {
+  float: right;
+  color: #dd2928;
   font-size: 37rpx;
   text-align: center;
   view {
     height: 40rpx;
   }
-  .price_show{
-    color:#CACACA;
+  .price_show {
+    color: #cacaca;
     font-size: 24rpx;
-    text-decoration:line-through;
+    text-decoration: line-through;
   }
 }
 
-.bottom{
+.bottom {
   height: 110rpx;
 }
-.tags{
+.tags {
   height: 23rpx;
   width: 77rpx;
 }
 
-.steps{
+.steps {
   display: flex;
   flex-direction: row;
   padding: 17rpx 113rpx;
-  .status{
+  .status {
     border-radius: 50%;
     width: 60rpx;
     height: 60rpx;
     line-height: 60rpx;
     text-align: center;
     font-size: 22rpx;
-    color:#FFF;
-    background: #EEE9E9;
-
+    color: #fff;
+    background: #eee9e9;
   }
-  .line{
+  .line {
     height: 28rpx;
     flex: 1;
-    border-bottom: 5rpx solid #EEE9E9;
+    border-bottom: 5rpx solid #eee9e9;
   }
-  .status_active{
-    background: #FF6A21;
+  .status_active {
+    background: #ff6a21;
   }
-  .line_active{
-    border-bottom: 5rpx solid #FF6A21;
+  .line_active {
+    border-bottom: 5rpx solid #ff6a21;
   }
 }
 
-.order_address,.order_user_info {
+.order_address,
+.order_user_info {
   position: relative;
   margin: 0 100rpx 0 58rpx;
   padding-left: 52rpx;
@@ -124,41 +120,41 @@ page van-card .van-card__header {
   font-size: 24rpx;
   line-height: 37rpx;
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 0;
     transform: translateY(-50%);
     width: 27rpx;
     height: 35rpx;
-    @include bg('dizhi.png')
+    @include bg("dizhi.png");
   }
- 
 }
-.order_user_info{
-  button{
+.order_user_info {
+  button {
     float: right;
     margin-right: -60rpx;
-    width: 128rpx;
+    display: inline-block;
+    // width: 128rpx;
     height: 42 rpx;
     line-height: 42rpx;
-     background: #DD2928;
-    color:#FFF;
+    background: #dd2928;
+    color: #fff;
     font-size: 24rpx;
     border-radius: 18rpx;
   }
-  &::before{
-    @include bg('dianhua.png')
+  &::before {
+    @include bg("dianhua.png");
   }
 }
-.status_btn{
+.status_btn {
   height: 64rpx;
 }
-.status_btn::before{
+.status_btn::before {
   display: none;
- }
+}
 .line_1 {
   width: 100%;
-  margin-top:15rpx;
-  border-bottom: 1rpx solid #EEE;
+  margin-top: 15rpx;
+  border-bottom: 1rpx solid #eee;
 }

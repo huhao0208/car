@@ -1,0 +1,40 @@
+<!--pages/my/integralList/index.wxml-->
+<!-- <text>pages/my/integralList/index.wxml</text> -->
+<view class="top">
+    <my-info>
+        <view slot="integral_slot" class="integral_slot" bindtap="toInegral">
+           {{integralRule.ruleTitle?integralRule.ruleTitle+'>>':''}}
+        </view>
+          
+    </my-info>
+    
+    <van-dropdown-menu>
+        <van-dropdown-item value="" options="{{ option1 }}" bindchange="typeChange" />
+        <!-- <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" /> -->
+    </van-dropdown-menu>
+    
+</view>
+<scroll-view class="list_content"   scroll-x="false" scroll-y upper-threshold="50" lower-threshold="50" 
+scroll-top="{{scrollTop}}" scroll-left="0"  scroll-with-animation  enable-back-to-top="false" 
+bindscrolltoupper="" bindscrolltolower="loadmore" >
+<block wx:for="{{listData}}" wx:key="index" wx:for-item="list">
+<view class="integral_list_item line" wx:for='{{list}}' wx:key="{{item.id}}">
+    <view  class="item_left">
+        {{subTypeName[item.subType]}}
+
+        <view>
+           {{item.createTime}}
+        </view>
+          
+    </view>
+    <view class="item_right {{item.subType==5|| item.subType==7? 'item_right_subtract':''}}">
+        {{item.subType==5|| item.subType==7? '-':'+'}}{{item.integral}}
+    </view>
+  
+</view>
+
+</block>
+<load-more loadType="{{loadType}}" />  
+</scroll-view>
+
+  

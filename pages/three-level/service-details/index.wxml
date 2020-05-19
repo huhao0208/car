@@ -61,6 +61,10 @@
 	<van-tab title="店铺详情" >
 <!--		富文本内容区域-->
 		<rich-text nodes="{{details.details}}"/>
+
+		<view style="height: 80rpx;" />
+			
+		
 	</van-tab>
 
 	<van-tab title="店铺评价" >

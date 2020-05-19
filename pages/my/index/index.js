@@ -1,5 +1,5 @@
 
-import {getIntegralRule} from "../../../api"
+
 
 const app = getApp()
 
@@ -10,9 +10,6 @@ Page({
 	 */
 	data: {
 		vipArr: ["", "青铜会员", "白银会员", "黄金会员"],
-		integralRule:{
-			ruleTitle:'积分规则'
-		}
 	},
 	// 页面跳转
 	jumpHandle(e) {
@@ -31,14 +28,16 @@ Page({
 		app.isLogin()
 	},
 
-	// 组件绑定的时间 用来实时获取登录的用户信息
+	// 组件绑定的事件 回调 获取登录的用户信息
 	// 不需要了...
-	// hasLogin(e) {
-	// 	// console.log(e.detail,'登陆成功后获取的用户信息')
-	// 	// 更新用户信息
-	// //	this.onShow()
+	hasLogin(e) {
+		// console.log(e.detail,'登陆成功后获取的用户信息')
+		// 更新用户信息
+		this.setData({
+			userInfo:e.detail
+		})
 
-	// },
+	},
 
 	// 完善个人信息
 	improveInof() {
@@ -67,29 +66,27 @@ Page({
 		})
 	},
 
-	// 获取积分规则
-	async getIntegralRule(){
-		let res = await getIntegralRule()
-		this.setData({
-			integralRule:res
-		})
-	},
 	/**
 	 * 生命周期函数--监听页面初次渲染完成
 	 */
 	onReady: function () {
-
+		
 	},
 
 	/**
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
+		wx.hideLoading()
 		// 如果登录状态 则每次打开获取最新用户信息
 		if (app.globalData.unionId) {
 			app.getUserDetailInfo()
 		}
-		this.getIntegralRule()
+		if(app.globalData.isDev != this.data.isDev){
+			this.setData({
+				isDev:app.globalData.isDev
+			})
+		}
 	},
 
 	/**

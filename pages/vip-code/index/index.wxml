@@ -3,7 +3,7 @@
 <block wx:if="{{userInfo.vip}}">
 	<view class="top">
 		<icon /> {{userInfo.username}}的会员卡
-		<text>会员使用规则 >></text>
+		<text bindtap="toInegral" wx:if="{{integralRule.useRuleTitle}}">{{integralRule.useRuleTitle}} >></text>
 	</view>
 
 	<view class="card   card_vip{{userInfo.vip}}">
@@ -64,7 +64,7 @@
 			checked-color="#FF6A21" value="vip3" style="justify-content: center">
 			<!--			<van-radio custom-class="radio_item" name="vip1" icon-size="30rpx">黄金会员 ¥999/年</van-radio>-->
 			<!--			<van-radio custom-class="radio_item" name="vip2" icon-size="30rpx">白银会员 ¥666/年</van-radio>-->
-			<van-radio selected custom-class="radio_item" name="vip3" icon-size="30rpx">¥299/年</van-radio>
+			<van-radio selected custom-class="radio_item" name="vip3" icon-size="30rpx">¥{{price|| 0}}/年</van-radio>
 		</van-radio-group>
 	</view>
 

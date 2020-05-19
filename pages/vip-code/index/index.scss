@@ -5,6 +5,8 @@
 page{
   background: rgba(233,233,233,.6);
   position:absolute;
+  left: 0;
+  top:0;
 }
 .top{
   margin: 0 17rpx;
@@ -118,7 +120,7 @@ input{
   background: #FFF;
   margin: 30rpx 0;
   padding: 0 30rpx;
-  width: 100%;
+  // width: 100%;
   overflow: hidden;
   van-radio-group{
     border-bottom: 1rpx solid #EEE;

@@ -47,6 +47,7 @@ Component({
 			let that = this
 			collectProduct({type:this.data.type,proId:this.data.proid})
 				.then(_=>{
+					
 					wx.showToast({
 						title:'收藏成功'
 					})

@@ -1,28 +1,68 @@
 @mixin bg($name) {
-  background     : url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) no-repeat center;
+  background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/"+ $name) no-repeat center;
   background-size: 100%;
 }
 
-;
+// .shipping_methods_title {
+//   box-sizing: border-box;
+//   padding: 0 30rpx;
+//   font-size: 26rpx;
+//   color: #666;
+//   display: flex;
+//   width: 100vw;
+//   overflow-x: hidden;
+//   justify-content: space-between;
+//   align-items: center;
 
-.shipping_methods_title {
-  padding  : 10rpx 30rpx;
-  font-size: 26rpx;
-  color    : #666;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  van-dropdown-menu{
-    .van-dropdown-menu__item{
-     padding-left: 200rpx;
-     padding-right: 10rpx;
-     .van-ellipsis{
-       font-size: 26rpx;
-     }
-    }
-  
-  }
-}
+//   van-dropdown-menu {
+//     .integral_cell{
+//       box-sizing: border-box;
+//       width: 100vw;
+//       line-height:60rpx;
+//       overflow-x: hidden;
+//     }
+//     .integral_tips{
+//       display: flex;
+//       justify-content: space-between;
+//     }
+//     .van-dropdown-menu__item {
+//       padding-left: 200rpx;
+//       padding-right: 10rpx;
+
+//       .van-ellipsis {
+//         font-size: 26rpx;
+//       }
+//     }
+//   }
+
+//   .integral {
+//     .van-dropdown-item__option {
+//       display: none;
+//     }
+//     .integral_cell {
+//       padding:20rpx 30rpx;
+//     }
+//     .integral_cell_num {
+//       display: flex;
+//       justify-content: space-between;
+//       align-items: center;
+//       margin-bottom: 15rpx;
+//       .van-button--block {
+//         margin-left: 30rpx;
+//       }
+//       .van-button--hairline::after{
+//         border:none
+//       }
+//       input{
+//         flex: 1;
+//       }
+//     }
+//     // .confirm_btn{
+//     //   width: 80%;
+//     //   overflow: hidden;
+//     // }
+//   }
+// }
 
 // .shipping_methods_body {
 //   display: flex;
@@ -30,24 +70,27 @@
 //   font-size: 26rpx;
 //   color    : #666;
 
-  // van-radio {
-  //   flex: 1;
-  //    .van-radio{
-  //     justify-content: center;
-  //    }
-    
-  // }
-  // .active_method{
-  //   .van-radio__label{
-  //     color:rgb(25, 137, 250)
-  //   }
-  // }
+// van-radio {
+//   flex: 1;
+//    .van-radio{
+//     justify-content: center;
+//    }
+
+// }
+// .active_method{
+//   .van-radio__label{
+//     color:rgb(25, 137, 250)
+//   }
+// }
 // }
 
 page {
+  overflow-y: scroll!important;
+  height: auto;
+  margin-bottom: 200rpx;
   van-card {
     .van-card__header {
-      border-bottom  : none;
+      border-bottom: none;
       justify-content: space-between;
     }
 
@@ -60,53 +103,51 @@ page {
     }
 
     .van-card {
-      background: #FFF;
+      background: #fff;
     }
   }
-
 }
 
 .progress {
-  display    : inline-block;
-  width      : 303rpx;
+  display: inline-block;
+  width: 303rpx;
   padding-top: 20rpx;
-  font-size  : 24rpx;
-  color      : #DD2928;
+  font-size: 24rpx;
+  color: #dd2928;
 
   .progess_background {
-    width     : 307rpx;
+    width: 307rpx;
     margin-top: 5rpx;
-    background: #F1F1F1;
+    background: #f1f1f1;
 
     .progress_value {
-      height    : 5rpx;
-      background: #DD2928;
+      height: 5rpx;
+      background: #dd2928;
     }
   }
 }
 
 .price {
-  float         : right;
-  color         : #DD2928;
-  font-size     : 37rpx;
-  text-align    : center;
+  float: right;
+  color: #dd2928;
+  font-size: 37rpx;
+  text-align: center;
   // line-height: 100rpx;
 }
 
 .tags {
-  display  : inline-block;
-  padding  : 8rpx 8rpx 8rpx 12rpx;
+  display: inline-block;
+  padding: 8rpx 8rpx 8rpx 12rpx;
   font-size: 20rpx;
-  color    : #FFF;
-
+  color: #fff;
 }
 
 .address {
   margin-top: 20rpx;
-  padding      : 35rpx 15rpx 35rpx 30rpx;
+  padding: 35rpx 15rpx 35rpx 30rpx;
   // border-bottom: 1rpx dashed #EEE;
   // border-top   : 1rpx dashed #EEE;
-  color        : #666;
+  color: #666;
 
   .name {
     padding: 10rpx 0;
@@ -118,38 +159,48 @@ page {
 }
 
 .payment_type {
-  padding      : 35rpx 15rpx 35rpx 30rpx;
-  border-bottom: 2rpx solid #EEE;
+  padding: 20rpx 30rpx;
+  vertical-align: middle;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2rpx solid #eee;
+  margin-bottom: 180rpx;
 
   //border-top: 2rpx solid #EEE;
   icon {
-    width : 65rpx;
+    width: 65rpx;
     height: 53rpx;
-    @include bg('weixin.png');
+    @include bg("weixin.png");
     vertical-align: middle;
   }
 
   text {
-    float: right;
     font-size: 26rpx;
-    padding-right: 15rpx;
+    padding-right: 23rpx;
+
   }
 }
 
 .submit {
   position: fixed;
-  border-radius: 26rpx;
-  bottom:50rpx;
-  // width: 80%;
- left: 65rpx;
- right: 65rpx;
+  background: #fff;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+
+  .submit_btn {
+    border-radius: 26rpx;
+    display: block;
+    margin: 10rpx 30rpx 50rpx;
+  }
 }
 
 .price_item {
-  padding       : 30rpx;
+  padding: 30rpx;
   padding-bottom: 0;
-  font-size     : 26rpx;
-  color         : #666;
+  font-size: 26rpx;
+  color: #666;
 
   text {
     float: right;
@@ -157,11 +208,63 @@ page {
 }
 
 .total_price {
-  color         : #333;
+  color: #333;
   padding-bottom: 30rpx;
 
   text {
     font-size: 36rpx;
-    color    : #DD2928;
+    color: #dd2928;
+  }
+}
+
+.border {
+  border-bottom: 1px solid rgba(230, 230, 230, .4);
+}
+
+.item_cell {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(233, 233, 233, .3);
+
+  view {
+    font-size: 28rpx;
+    color: #666;
+  }
+  .right{
+    min-width: 300rpx;
+    text-align: right;
+  }
+}
+
+.cell_menu_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(233, 233, 233, .3);
+  view {
+    font-size: 28rpx;
+    color: #666;
+    // padding:30rpx;
+   
+    // box-sizing: border-box;
+  }
+
+}
+
+
+.submit{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120rpx;
+  background: #FFF;
+  button{
+    width: 90%;
+    border-radius: 20rpx;
   }
 }

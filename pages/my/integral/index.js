@@ -20,10 +20,14 @@ Page({
 
       let fpage = getCurrentPages().slice(-2)[0]
       console.log(fpage.data);
-      fpage.data.integralRule.ruleContent= fpage.data.integralRule.ruleContent? fpage.data.integralRule.ruleContent.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block" '):''
-      this.setData(fpage.data.integralRule)
+      let type = options.type || ''
+      let title = type=='vip'?fpage.data.integralRule.useRuleTitle:fpage.data.integralRule.ruleTitle
+      let content = type=='vip'? fpage.data.integralRule.useRuleContent: fpage.data.integralRule.ruleContent
+      content= content.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block" ') 
 
-      wx.setNavigationBarTitle({title:fpage.data.integralRule.ruleTitle})
+      this.setData({content})
+
+      wx.setNavigationBarTitle({title})
   },
 
   /**

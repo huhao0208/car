@@ -8,7 +8,7 @@
 		<van-tab title="待使用" />
 		<van-tab title="已使用" />
 		<block wx:for="{{listData}}" wx:for-item="list" wx:key="index">
-			<view wx:for="{{list}}" wx:key="{{item.id}}" data-orderId="{{item.id}}" bindtap="toOrderDetail"
+			<view wx:for="{{list}}" wx:key="{{item.id}}" data-goodsid="{{item.awardId}}" data-type="{{item.type}}" bindtap="toGoodsDetail"
 				class="cards">
 				<image src="{{item.awardUrl}}" />
 				<view class="center_card">
@@ -17,8 +17,8 @@
 				</view>
 				<!--		<button class="confirm_btn"  wx:if="{{false}}">确认收货</button>-->
 				<!--		<button class="confirm_btn"  wx:elif="{{true}}" bindtap="toAddress">填写地址</button>-->
-				<button class="confirm_btn" bindtap="toAddress" wx:if="{{state==0}}" data-id="{{item.id}}"
-					data-type="{{item.type}}" bindtap="jumpHandle">使用</button>
+				<button class="confirm_btn" catchtap="toAddress" wx:if="{{state==0}}" data-id="{{item.id}}"
+					data-type="{{item.type}}" catchtap="jumpHandle">使用</button>
 			</view>
 		</block>
 	</van-tabs>

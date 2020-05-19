@@ -1,4 +1,5 @@
 {
+  "enablePullDownRefresh":true,
   "usingComponents": {
     "collect": "../../../components/collect/index",
     "my-info": "../../../components/my-info/index",

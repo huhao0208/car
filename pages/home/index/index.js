@@ -113,7 +113,7 @@ Page({
 		
 			// 判断用户信息
 			let userInfo = app.globalData.userInfo || wx.getStorageInfoSync('userInfo')
-			if(userInfo && userInfo.id>=1){
+			if(userInfo && userInfo.vip>=1){
 				// 会员 进入会员专享
 				wx.navigateTo({
 					url: '/pages/vip/index/index'
@@ -147,26 +147,8 @@ Page({
 				that.setData({
 					isDev:Boolean(res)
 				})
-				// if(res){
-				// //	let arr = [];
-				// //	let items = ['金融贷款','精品商城','会员专享','每日活动','合作专区']
-				// 	// cardList.filter(item=>{
-				// 	// 		if(!items.includes(item.name))  arr.push(item)
-				// 	// })
-				// 	that.setData({
-				// 		cardsData: arr,
-				// 		isDev:true
-				// 	})
-				// 	console.log(arr);
-				// }else{
-				// 	that.setData({
-				// 		cardsData: cardList,
-				// 		isDev:false	
-				// 	})
-				// }
 			}
 		})
-		// 判断版本是否为dev	
 		this._getAdvertList()
 	},
 
@@ -181,6 +163,9 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
+
+		// 判断是否有 cardsData 如果没有则重新获取
+		if(!this.data.cardsData.length ||!this.data.indexSwiperData.length ) this.onLoad()
 
 	},
 

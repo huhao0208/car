@@ -10,7 +10,7 @@ var apiImg = function (imgurl) {
 	return 'http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/' + imgurl
 }
 var moneyFormat = function (money) {
-	return (money/10000).toFixed(2);
+	return (Math.abs(money) / 10000).toFixed(2);
 }
 
 // 距离计算
@@ -22,16 +22,16 @@ var distance = function (la1, lo1, la2, lo2) {
 	var Lb3 = lo1 * Math.PI / 180.0 - lo2 * Math.PI / 180.0;
 	var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lb3 / 2), 2)));
 	s = s * 6378.137;
-	console.log(s,'计算出来的距离')
+	console.log(s, '计算出来的距离')
 	s = Math.round(s * 10000) / 10000;
-	if(s.isNaN) return false
+	if (s.isNaN) return false
 	s = s.toFixed(2);
 	return s;
 }
 
 // 众筹进度换算
-var progress = function (num,total) {
-	return (num/total*100).toFixed(2)
+var progress = function (num, total) {
+	return (num / total * 100).toFixed(2)
 }
 var formatDate = function (timestamp, type) {
 	// timestamp 时间戳
@@ -103,10 +103,10 @@ var formatDate = function (timestamp, type) {
 
 
 module.exports = {
-	progress:progress,
-	distance:distance,
+	progress: progress,
+	distance: distance,
 	apiImg: apiImg,
 	imgUrl: imgUrl,
 	formatDate: formatDate,
-	moneyFormat:moneyFormat
+	moneyFormat: moneyFormat
 };

@@ -2,11 +2,14 @@
 	<!--金融贷款详情-->
 <wxs src="../../../utils/filters.wxs" module="filters" />
 
-<rich-text nodes ="{{details.details}}" space></rich-text>
-
+<view class="rich_content">
+	<rich-text nodes ="{{details.details}}" space></rich-text>
+	<view class="empty_box" style=" height: 140rpx"/>
+</view>
 <view class="footer">
 	<view class="kefu" >
-		<button
+		<button	
+				class="kefu_btn"
 				open-type="{{isLogin?'contact':''}}"
 				bindcontact="handleContact"
 				show-message-card

@@ -12,6 +12,7 @@ page {
   padding      : 0 30rpx;
   color        : #020202;
   margin-bottom: 240rpx;
+  box-sizing: border-box;
 }
 
 .swiper_wrap {
@@ -136,7 +137,7 @@ van-card {
     background   : #DD1A22;
     border-radius: 36rpx;
     color        : #FFF;
-    box-shadow   : 1rpx 1rpx 3rpx 3rpx #ccc;
+    box-shadow   : 1px 1px 1rpx 1rpx #EEE;
     border       : none;
   }
 
@@ -236,8 +237,13 @@ van-card {
 }
 
 van-popup {
+ overflow: hidden;
+ .popup_container{
+   width: 100vw;
+   overflow-x: hidden;
+ }
 .van-popup{
-  overflow-y:hidden
+  overflow-y:hidden; 
 }
   .card{
     display: flex;

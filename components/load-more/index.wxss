@@ -128,7 +128,8 @@
         transform: rotate(360deg);
     }
 }
-.end_text{
+
+.end_text {
     color: #CCC;
     text-align: center;
     margin: 1.5em auto;
@@ -136,21 +137,31 @@
     font-size: 24rpx;
     display: flex;
     padding: 0 40rpx;
+    align-items: center;
 }
-.end_text::before,.end_text::after{
+
+.end_text::before,
+.end_text::after {
     flex: 1;
     content: '';
-    margin: 0 60rpx;
-    transform: translateY(50%);
-    height: 1.5em;
-    border-top: 0.5rpx solid #EEE;
+    margin: 0 30rpx;
+    /* transform    : translateY(-50%); */
+    height: 1px;
+    background-image: -webkit-linear-gradient(top right, #EEE, #FFF);
+    /* border-top   : 1px solid #EEE; */
 }
-.no_data{
+
+.end_text::after {
+    background-image: -webkit-linear-gradient(top left, #EEE, #FFF);
+}
+
+.no_data {
     width: 100vw;
-    height: 400rpx;
+    min-height: 400rpx;
     padding-bottom: 80rpx;
+    margin-bottom: 50vh;
     box-sizing: border-box;
-    background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/wushuju.png") no-repeat center ;
+    background: url("http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/wushuju.png") no-repeat center;
     background-size: 200rpx;
     display: flex;
     font-size: 24rpx;
@@ -158,9 +169,10 @@
     justify-content: center;
     align-items: flex-end;
 
+
 }
 
-.go_top{
+.go_top {
     position: fixed;
     right: 40rpx;
     bottom: 120rpx;
