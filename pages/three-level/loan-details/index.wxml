@@ -3,7 +3,7 @@
 <wxs src="../../../utils/filters.wxs" module="filters" />
 
 <view class="rich_content">
-	<rich-text nodes ="{{details.details}}" space></rich-text>
+	<rich-text nodes ="{{details.details}}" ></rich-text>
 	<view class="empty_box" style=" height: 140rpx"/>
 </view>
 <view class="footer">

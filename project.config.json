@@ -210,10 +210,10 @@
 					"scene": null
 				},
 				{
-					"id": 21,
+					"id": 11,
 					"name": "商品详情",
 					"pathName": "pages/three-level/good-details/index",
-					"query": "productType=1&id=2",
+					"query": "productType=1&id=1",
 					"scene": null
 				},
 				{
@@ -522,6 +522,13 @@
 					"name": "pages/three-level/order-details/index",
 					"pathName": "pages/three-level/order-details/index",
 					"query": "orderId=194",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/my/prize/index",
+					"pathName": "pages/my/prize/index",
+					"query": "productType=1&id=1",
 					"scene": null
 				}
 			]

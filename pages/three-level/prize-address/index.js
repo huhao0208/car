@@ -1,5 +1,10 @@
 // 收货地址
-import { saveOrUpdateAddress, consultCarInfo, applyFinancialLoan, usePrize } from "../../../api"
+import {
+	saveOrUpdateAddress,
+	consultCarInfo,
+	applyFinancialLoan,
+	usePrize
+} from "../../../api"
 import areaList from "../../../components/area"
 
 const app = getApp()
@@ -10,20 +15,24 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-		options: {},     // 跳转过来接收的参数
-		sex: 1,  // 1男 2女
+		options: {}, // 跳转过来接收的参数
+		sex: 1, // 1男 2女
 		imgUrl: '',
 		areaList: '',
 		isShowAera: false,
-		address: [
-			{ name: '请选择' }, { name: '请选择' }, { name: '请选择' }
-		],  // 选择的地址
-		pageData: ''             // 上一个页面的data数据
+		address: [{
+			name: '请选择'
+		}, {
+			name: '请选择'
+		}, {
+			name: '请选择'
+		}], // 选择的地址
+		pageData: '' // 上一个页面的data数据
 
 	},
-	
+
 	// 去地址列表
-	toAddressList(){
+	toAddressList() {
 		wx.navigateTo({
 			url: '/pages/my/deliveryList/deliveryList'
 		})
@@ -50,7 +59,7 @@ Page({
 		})
 	},
 	iptAddressHandle(e) {
-	
+
 		this.setData({
 			[`currentAddress.address`]: e.detail.value,
 			iptAddress: e.detail.value
@@ -58,7 +67,7 @@ Page({
 	},
 	// // 性别 选择
 	selcetSexHandle(e) {
-	
+
 		this.setData({
 			'currentAddress.sex': e.detail,
 			sex: e.detail,
@@ -78,20 +87,35 @@ Page({
 	// 提交
 	submitHandle() {
 
-		usePrize({...this.data.currentAddress,id:this.data.id})
-		.then(_=>{
-			wx.showToast({
-				title:'提交成功'
+		usePrize({
+				...this.data.currentAddress,
+				id: this.data.id
 			})
-			
-			let time = setInterval(_=>{
-				clearInterval(time)
-				time=null
-				wx.navigateBack({
-					delta: 1, // 回退前 delta(默认为1) 页面
-				},1000)
+			.then(_ => {
+				wx.showToast({
+					title: '提交成功'
+				})
+
+				try {
+					// 刷新上一页数据
+					let prevPage = getCurrentPages().slice(-2)[0]
+					prevPage.tabChange({
+						detail: {
+							index: 1
+						}
+					})
+
+				} catch (error) {
+					console.log(error);
+					
+				}
+
+				let time = setInterval(_ => {
+					clearInterval(time)
+					time = null
+					wx.navigateBack()
+				}, 1000)
 			})
-		})
 
 	},
 	/**
@@ -117,11 +141,11 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-			let currentAddress = wx.getStorageSync('currentAddress') || app.globalData.currentAddress || ''
-			this.setData({
-				currentAddress
-			})
-			
+		let currentAddress = wx.getStorageSync('currentAddress') || app.globalData.currentAddress || ''
+		this.setData({
+			currentAddress
+		})
+
 	},
 
 	/**

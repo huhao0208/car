@@ -75,7 +75,7 @@
 			</view>
 
 			<!-- 产品详情 -->
-			<rich-text nodes="{{details.details}}" />
+			<rich-text nodes="{{details.details}}"  />
 
 			<!-- 解决苹果显示问题  -->
 			<view class="empty_box" style=" height: 140rpx" />

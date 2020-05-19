@@ -13,6 +13,6 @@ export const IMG_URL = 'http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/w
 
 // export const APPID = '';
 
-export const VERSION = '1.0.7' // 版本号
+export const VERSION = '1.0.6' // 版本号
 
 //export const LOGO = 'http://lantin-xiaochengxu.oss-cn-hangzhou.aliyuncs.com/wechat/weixin.png'
