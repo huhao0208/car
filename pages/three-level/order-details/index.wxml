@@ -82,8 +82,8 @@
 		<text class="logistics">{{expName}}</text>
 		<text class="logistics" selectable>快递单号: {{expNo}}</text>
 		<block wx:if="{{steps.length}}">
-			<van-steps wx:if="{{loadMoreEx}}" steps="{{ steps }}" direction="vertical" bindtap="showMoreEx" />
-			<van-steps wx:else steps="{{ [steps[0]] }}" direction="vertical" bindtap="showMoreEx" />
+			<van-steps wx:if="{{loadMoreEx}}" steps="{{ steps }}" direction="vertical" catchtap="showMoreEx" />
+			<van-steps wx:else steps="{{ [steps[0]] }}" direction="vertical" catchtap="showMoreEx" />
 		</block>
 	</block>
 	<!-- 评价 -->

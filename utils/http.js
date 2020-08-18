@@ -15,10 +15,13 @@ const request = function (method, url, data) {
 			'content-type': 'application/json'
 		}
 		header['X-Version'] = config.VERSION
-		// console.log(wx.$unionId);
+
 		try {
-			// let value = wx.$unionId ? wx.$unionId : '' //wx.getStorageSync('unionId')
-			let value = wx.getStorageSync('unionId')? wx.getStorageSync('unionId') : ''
+			let apptoken =(app&&app.globalData.unionId)? app.globalData.unionId:''
+			let value = wx.$unionId ? wx.$unionId : apptoken //wx.getStorageSync('unionId')
+			console.log(apptoken,'httpapp');
+			// getStorageSync有坑
+			// let value = wx.getStorageSync('unionId')? wx.getStorageSync('unionId') : ''
 			if (value) {
 				header['Authorization'] = `${value}`;
 			}
@@ -29,11 +32,17 @@ const request = function (method, url, data) {
 		}
 		// 判断请求api是否完整 并补全
 		let reqUrl = url.startsWith('http') ? url : base_url + url
-
+		let isShowLoading = false
 		// 发送请求 当获取分页数据时不显示loading  如果不需显示loading 则在请求的参数中添加hideLoading即可
 		try {
 			//	console.log(data.page, 'dataPage')
-			if ((!data.page || data.page == 1) && !data.hideLoading) sL('请稍候...')
+			if ((!data.page || data.page == 1) && !data.hideLoading) {
+				wx.showLoading({
+					title:'请稍候...'
+				})
+				 isShowLoading = true
+			}
+			
 			if (data.hideLoading) delete data.hideLoading
 		} catch (e) {
 
@@ -52,15 +61,14 @@ const request = function (method, url, data) {
 			header: header,
 			success: (res) => {
 				console.log(...url.split('/').slice(-1), res.data);
-				wx.hideLoading()
+				if(isShowLoading) wx.hideLoading()
 				
 				if (res.data.code == 401) {
 					sT('登录状态过期,请重新登录', 'none')
-
 					app.setGlobalData('unionId', '')
 					app.setGlobalData('userInfo', {})
-					
 					app.globalData.showLogin = true
+					reject(res)
 					return
 				}
 				// // 返回结果判断拦截

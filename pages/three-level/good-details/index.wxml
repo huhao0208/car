@@ -21,7 +21,7 @@
 	</view>
 
 	<view class="car_name">{{details.name}}</view>
-	<view class="car_price">原价: ¥{{details.originalPrice}}
+	<view class="car_price" >{{details.originalPrice?'原价: ¥'+details.originalPrice:''}}
 		<text>库存: {{details.stock}}</text>
 	</view>
 	<block wx:if="{{productType==1}}">

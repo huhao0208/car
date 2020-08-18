@@ -182,7 +182,7 @@ Page({
     getProductDetail({ id: onloadData.id, type: onloadData.productType })
       .then(res => {
         let detailsData = res
-        detailsData.details = res.details ? res.details.replace(/<img/gi, '<img style="max-width:100%;height:auto;display:block;float:left;" ') : '等待商家添加'//防止富文本图片过大
+        detailsData.details = res.details ? res.details.replace(/<img/gi, '<img style="max-width:100%;height:100%;display:block;" ') : '等待商家添加'//防止富文本图片过大
         details = detailsData
         this.setData({
           details: detailsData

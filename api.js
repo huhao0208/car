@@ -69,10 +69,10 @@ module.exports = {
 	userDrawLottery: data => post('api/userDrawLottery', {...data,hideLoading:true}),
 
 	// 获取中奖结果列表
-	getWinningRecordList: data => post('api/getWinningRecordList', data),
+	getWinningRecordList: data => post('api/getWinningRecordList', {...data,hideLoading:true}),
 
 	// 使用奖品
-	usePrize: data => post('api/usePrize', data),
+	usePrize: data => post('api/usePrize', {...data,hideLoading:true}),
 
 
 

@@ -95,7 +95,6 @@ Page({
 				wx.showToast({
 					title: '提交成功'
 				})
-
 				try {
 					// 刷新上一页数据
 					let prevPage = getCurrentPages().slice(-2)[0]
@@ -104,12 +103,10 @@ Page({
 							index: 1
 						}
 					})
-
 				} catch (error) {
 					console.log(error);
 					
 				}
-
 				let time = setInterval(_ => {
 					clearInterval(time)
 					time = null

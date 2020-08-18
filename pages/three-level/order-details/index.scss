@@ -301,6 +301,9 @@ van-field {
 
 // 物流
 van-steps {
+  view{
+    overflow-x: visible;
+  }
   .van-steps--vertical {
     padding-left: 30rpx;
   }

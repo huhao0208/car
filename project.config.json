@@ -530,6 +530,13 @@
 					"pathName": "pages/my/prize/index",
 					"query": "productType=1&id=1",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/three-level/good-details/index",
+					"pathName": "pages/three-level/good-details/index",
+					"query": "productType=1&id=1",
+					"scene": null
 				}
 			]
 		}

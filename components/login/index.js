@@ -1,4 +1,4 @@
-// 组件自动监控登录状态  如果需要登录 则直接调用 app.isLogin() 括号里面传递需要登录后处理的函数
+// 组件自动监控登录状态  如果需要登录的操作直接 则直接调用 app.isLogin() 括号里面传递需要登录后处理的函数
 // 组件通过hasLogin 绑定事件获取登录状态  接收参数为微信用户昵称 头像
 import {
 	xcxLogin
@@ -23,7 +23,6 @@ Component({
 			value: false
 		},
 	},
-
 	data: {
 		isLogin: false,
 		openType: 'getUserInfo',
@@ -154,7 +153,7 @@ Component({
 					res => {
 						//存储token
 						app.setGlobalData('unionId', res.token)		
-						// wx.$unionId = res.token
+						wx.$unionId = res.token
 						// 从后台获取用户信息
 						app.getUserDetailInfo(
 							ress => {
@@ -167,6 +166,10 @@ Component({
 								},100)
 							}
 						)
+						// 还原
+						that.setData({
+							openType: 'getUserInfo',
+						})
 					}
 				)
 				.catch(err => {
